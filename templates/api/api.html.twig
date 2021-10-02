@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Extranet API
+{% endblock %}
+
+{% block body %}
+
+	<div class="text-center">
+		<h1>Bienvenue sur notre API de recherche d'adresse</h1>
+	</div>
+
+	<div class="container-fluid">
+		<div class="gouv">
+			<div class="bordure col bordeur">
+				<div class="text-center">
+					<h4>Choisissez qu'un seul type:</h4>
+					<div id="radio" class="fields">
+                        <input type="radio" class="radio" name="type" value="housenumber"><label class="jsx-2161906765 label-inline">adresse complète</label>
+                        <input type="radio" class="radio" name="type" value="municipality"><label class="jsx-2161906765 label-inline">Ville</label>
+					</div>
+				</div>
+			</div>
+			<div class="bordure text-center col column bordeur">
+				<label for="adress">Adresse:</label>
+				<input name="adress" id="adress" placeholder="Chercher une adresse…" value="">
+			</div>
+		</div>
+        <div class="text-center mt-3 mb-3 bouton">
+            <button class="btn btn-primary" id="submit" type="submit">Rechercher l'adresse</button>
+        </div>
+	</div>
+	<div class="container map mb-2">
+		<section id="map" class="map-full"></section>
+	</div>
+{% endblock %}
