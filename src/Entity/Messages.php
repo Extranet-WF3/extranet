@@ -42,6 +42,12 @@ class Messages
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="messageReceived")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $target;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Messages
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getTarget(): ?Users
+    {
+        return $this->target;
+    }
+
+    public function setTarget(?Users $target): self
+    {
+        $this->target = $target;
 
         return $this;
     }
