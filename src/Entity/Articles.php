@@ -42,6 +42,12 @@ class Articles
      */
     private $originalLink;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="article")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Articles
     public function setOriginalLink(?string $originalLink): self
     {
         $this->originalLink = $originalLink;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

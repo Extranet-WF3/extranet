@@ -37,6 +37,11 @@ class Messages
      */
     private $status;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="messages")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Messages
     public function setStatus(bool $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

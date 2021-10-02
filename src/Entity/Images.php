@@ -27,6 +27,11 @@ class Images
      */
     private $name;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Users::class, mappedBy="image", cascade={"persist", "remove"})
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,28 @@ class Images
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setImage(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($user !== null && $user->getImage() !== $this) {
+            $user->setImage($this);
+        }
+
+        $this->user = $user;
 
         return $this;
     }

@@ -67,6 +67,12 @@ class Announces
      */
     private $city;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +194,18 @@ class Announces
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Users $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
