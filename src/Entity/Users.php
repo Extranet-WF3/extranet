@@ -127,11 +127,17 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $messages;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="target", orphanRemoval=true)
+     */
+    private $messageReceived;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
         $this->article = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->messageReceived = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -487,6 +493,36 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($message->getUser() === $this) {
                 $message->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Messages[]
+     */
+    public function getMessageReceived(): Collection
+    {
+        return $this->messageReceived;
+    }
+
+    public function addMessageReceived(Messages $messageReceived): self
+    {
+        if (!$this->messageReceived->contains($messageReceived)) {
+            $this->messageReceived[] = $messageReceived;
+            $messageReceived->setTarget($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessageReceived(Messages $messageReceived): self
+    {
+        if ($this->messageReceived->removeElement($messageReceived)) {
+            // set the owning side to null (unless already changed)
+            if ($messageReceived->getTarget() === $this) {
+                $messageReceived->setTarget(null);
             }
         }
 
