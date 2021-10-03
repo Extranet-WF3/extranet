@@ -6,16 +6,23 @@ use App\Entity\Announces;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class AnnouncesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('createdAt')
-            ->add('categories')
+           
+            ->add('categories', ChoiceType::class,[
+                'choices'  => [
+                    'Stage' => null,
+                    'Alternance' => null,
+                    'Emploi' => null
+                ],])
             ->add('title')
-            ->add('description')
+            ->add('description', TextareaType::class)
             ->add('originalLink')
             ->add('nameCompany')
             ->add('adressCompany')
@@ -23,6 +30,7 @@ class AnnouncesType extends AbstractType
             ->add('zipCode')
             ->add('city')
             ->add('user')
+            ->add('createdAt')
         ;
     }
 

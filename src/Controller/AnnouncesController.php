@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Announces;
+use App\Form\AnnouncesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -48,25 +49,11 @@ class AnnouncesController extends AbstractController
 
     //creation de formulaire Bootstrap
 
-       $form= $this->createFormBuilder($announce)
+       $form= $this->createForm(AnnouncesType::class, $announce);
 
-            ->add('title')
-            ->add('description', TextareaType::class)
-            ->add('categories', ChoiceType::class,[
-                'choices'  => [
-                    'Stage' => null,
-                    'Alternance' => null,
-                    'Emploi' => null
-                ],])
-            ->add('original_link')
-            ->add('name_company')
-            ->add('adress_company')
-            ->add('adress_additional')
-            ->add('zipcode')
-            ->add('city')
             
-            ->getForm()
-            ;
+            
+            
 
 
             //faire le lien entre le formulaire et les données de la requête
@@ -82,20 +69,15 @@ class AnnouncesController extends AbstractController
 
            //on recupère les données du formulaire
 
-               $data = $form->getData();
+               //$data = $form->getData();
 
-                $announce = new Announces;
+               //Insertion dans la BDD...Persister un objet avec Doctrine
 
-                $announce->setTitle($data['title']);
-                $announce->setDescription($data['description']);
-                $announce->setOriginalLink($data['original_link']);
-                $announce->setNameCompany($data['description']);
-
-                $manager = $this->getDoctrine()->getManager();
+               $manager = $this->getDoctrine()->getManager();
                 $manager->persist($announce);
                 $manager->flush();
 
-                return $this->redirectToRoute('');
+                
             }
             
 
