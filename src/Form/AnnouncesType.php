@@ -30,7 +30,7 @@ class AnnouncesType extends AbstractType
             ->add('zipCode')
             ->add('city')
             ->add('user')
-            ->add('createdAt')
+           // ->add('createdAt')
         ;
     }
 
