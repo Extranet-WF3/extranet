@@ -5,8 +5,8 @@ namespace App\Controller;
 use App\Entity\Announces;
 use App\Form\AnnouncesType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,13 +45,14 @@ class AnnouncesController extends AbstractController
     //on prepare une entité
 
     $announce= new Announces;
-    dump($announce);
+    
+    //dump($announce);
 
     //creation de formulaire Bootstrap
 
        $form= $this->createForm(AnnouncesType::class, $announce);
 
-            
+           // le formulaire est créer dans le fichier announcesType.php qui se trouve dans le dossier Form
             
             
 
@@ -67,15 +68,19 @@ class AnnouncesController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()){
 
 
-           //on recupère les données du formulaire
+                $announce->setCreatedAt(new \DateTimeImmutable());
 
-               //$data = $form->getData();
+               
 
                //Insertion dans la BDD...Persister un objet avec Doctrine
 
                $manager = $this->getDoctrine()->getManager();
-                $manager->persist($announce);
-                $manager->flush();
+                $manager->persist($announce); //mets de côté l'objet
+                $manager->flush(); //INSERT
+
+                //on va rediriger vers la même page
+
+                return $this->redirectToRoute('create_announce');
 
                 
             }

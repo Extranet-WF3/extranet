@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Announces;
+
 use App\DataFixtures\AppFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;

@@ -20,8 +20,8 @@ class Announces
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank
-     * @Assert\Date
+     * 
+     * 
      */
     private $createdAt;
 

@@ -17,19 +17,39 @@ class AnnouncesType extends AbstractType
            
             ->add('categories', ChoiceType::class,[
                 'choices'  => [
-                    'Stage' => null,
-                    'Alternance' => null,
-                    'Emploi' => null
-                ],])
-            ->add('title')
-            ->add('description', TextareaType::class)
-            ->add('originalLink')
-            ->add('nameCompany')
-            ->add('adressCompany')
-            ->add('adressAdditional')
-            ->add('zipCode')
-            ->add('city')
-            ->add('user')
+                    'Stage' => 'Stage',
+                    'Alternance' =>'Alternance' ,
+                    'Emploi' =>'Emploi' 
+                ], 
+                ])
+            ->add('title', null,[
+                'label' => 'Announce',
+                'attr' =>[
+                    'placeholder' => 'veuillez entrer le titre de l\'annonce',
+                ],
+            ])
+            ->add('description',null, [
+                'label' => 'Description du poste'], TextareaType::class)
+
+            ->add('originalLink',null,[
+                'label' => 'Lien de l\'annonce'
+                ])
+            ->add('nameCompany',null,[
+                'label' => 'Entreprise'
+                ])
+            ->add('adressCompany',null,[
+                'label' => 'Adresse de l\'entreprise'
+                ])
+            ->add('adressAdditional',null,[
+                'label' => 'L\' adresse additionnelle'
+                ])
+            ->add('zipCode',null,[
+                'label' => 'Code postal'
+                ])
+            ->add('city',null,[
+                'label' => 'Ville'
+                ])
+           // ->add('user')
            // ->add('createdAt')
         ;
     }
