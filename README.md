@@ -45,7 +45,7 @@ ATTENTION : Vérifier que votre version de mariadb est la bonne : Ici c'est la v
 
 ATTENTION : Dans le fichier .env, il faut commenter la ligne 31 actuellement active pour la désactiver (mettre # devant la ligne)
 
-	e – Créer la base de données en utilisant le nom de la BDD du projet :
+	e – Créer la base de données en utilisant le nom de la BDD du projet (se mettre sur la branche main)
 
 		php bin/console doctrine:database:create
 
@@ -63,7 +63,7 @@ ATTENTION : Dans le fichier .env, il faut commenter la ligne 31 actuellement act
 
 ATTENTION : Par l'intermédiaire de cette procédure, on récupère la structure de la Base de Données (le nom de BDD et la structure des tables créées), mais pas les données de la BDD. Dans ce cas, il faudrait que l'on récupère un export de la BDD et l'importer grâce à phpMyAdmin.
 
-	G – Synchroniser les fixtures (s'il y en a) :
+	g – Synchroniser les fixtures (s'il y en a) :
 
 		php bin/console doctrine:fixtures:load
 
@@ -71,6 +71,12 @@ ATTENTION : Par l'intermédiaire de cette procédure, on récupère la structure
 
 	taper yes puis faire entrer
 
-    Penser à changer de branche, vous devez travailler sur votre branche :
+	h - Récupérer tous les fichiers du projet (qui sont sur la branche main) en tapant la ligne de commande :
+
+	 	git rebase main
+
+Vous pouvez maintenant travailler sur le projet :
+
+    Attention : Penser à changer de branche, vous devez travailler sur votre branche :
 
         git checkout VotrePrenom
