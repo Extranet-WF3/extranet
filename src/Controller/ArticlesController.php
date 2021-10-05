@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ArticlesController extends AbstractController
 {
@@ -16,8 +17,9 @@ class ArticlesController extends AbstractController
      * @Route("/article/create", name="article_create")
      * @param article
      * @return Response
+     * On utilise le service $slugger de l'interface SluggerInterface
      */
-    public function create(Request $request): Response
+    public function create(Request $request, SluggerInterface $slugger): Response
     {
         // On prépare l'entité article
         $article = new Articles();
@@ -36,6 +38,10 @@ class ArticlesController extends AbstractController
 
         // On vérifie si le formulaire est soumis si on est en Post et aussi valide (champ non vide et syntaxe valide)
         if ($form->isSubmitted() && $form->isValid()) {
+
+            // Génération du slug et injection dans la BDD
+            $slug = $slugger->slug($article->gettitle())->lower();
+            $article->setSlug($slug);
 
             // Insérer en BDD... Persister un objet avec Doctrine
             $manager = $this->getDoctrine()->getManager();
@@ -88,6 +94,9 @@ class ArticlesController extends AbstractController
     public function show(): Response
     {
 
+        // Première solution sans la magie du ParamConverter avec le paramètre $slug
+        // $repository = $this->getDoctrine()->getRepository(Article::class);
+        // $article = $repository->findOneBySlug($slug);
 
 
 

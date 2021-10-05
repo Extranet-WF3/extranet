@@ -6,7 +6,19 @@
 
 <h1>Liste des articles</h1>
 
+    {# {% for article in articles %}
 
+        {{ article.title }}
+
+        {{ article.categories }}
+
+        {{ article.description | u.truncate(80, '...', false) }}
+
+        {# {{ article.createdAt | Faire le calcul de jours depuis le poste }} #}
+
+        {# <h1><a href="{{path('article', {'id': article.id}) }}"></a></h1>
+
+    {% endfor %} #}
 
 
 

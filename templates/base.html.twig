@@ -51,6 +51,26 @@
 
         {{ include('partials/_navbar.html.twig') }}
 
+
+    {# Afficher les messages Flash #}
+    <div class="container">
+
+        {% for label, messages in app.flashes %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+        
+    </div>
+
+
+
         {% block body %}
         {% endblock %}
 
@@ -64,7 +84,7 @@
             </div>
         {% endblock %}
 
-        {{  include('partials/_footer.html.twig') }}
+        {# {{  include('partials/_footer.html.twig') }} #}
 
         {% block javascripts %}
 
