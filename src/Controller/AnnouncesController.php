@@ -40,14 +40,17 @@ class AnnouncesController extends AbstractController
         ]);
     }
     /**
-     * @Route("/announce", name="announce")
+     * @Route("/announce/{slug}", name="announce_show")
      */
 
-     public function announce() {
+     public function announce(Announces $announce) {
         return $this->render('announces/announce.html.twig', [
-            'controller_name' => 'AnnouncesController',
+            'announce' => $announce,
         ]);
      }
+
+     
+
 
 
      /**
