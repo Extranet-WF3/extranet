@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Faker\Factory;
+
 class RegistrationController extends AbstractController
 {
     /**
@@ -17,7 +17,7 @@ class RegistrationController extends AbstractController
      */
     public function registerForm(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     { 
-        $faker = Factory::create('fr_FR');
+        
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -32,8 +32,9 @@ class RegistrationController extends AbstractController
                 
                 )
             );
-            $user->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
-            $user->setUpdateAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+            $user->setCreatedAt(new \DateTime());
+            $user->setUpdateAt(new \DateTime());
+            $user->setPseudo($user->getlastname().$user->getfirstname());
             
             
 
