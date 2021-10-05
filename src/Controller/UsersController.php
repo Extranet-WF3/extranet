@@ -24,9 +24,9 @@ class UsersController extends AbstractController
         ]);
     }
     /**
-     * @Route("/Profil", name="Profil")
+     * @Route("/Profil/edit", name="editProfil")
      */
-    public function Profil(Request $request)
+    public function editProfil(Request $request)
     {
         $manager = $this->GetDoctrine()->getManager();
 
@@ -115,7 +115,7 @@ class UsersController extends AbstractController
 
         $form->handleRequest($request);
 
-        return $this->render('users/Profil.html.twig', [
+        return $this->render('users/editProfil.html.twig', [
             'formUser' => $form->createview()
         ]);
     }
