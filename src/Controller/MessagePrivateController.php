@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,8 +14,14 @@ class MessagePrivateController extends AbstractController
      */
     public function index(): Response
     {
+        $message = $this->createFormBuilder();
+        
         return $this->render('message_private/index.html.twig', [
-            'controller_name' => 'MessagePrivateController',
+            'form' => 'MessagePrivateController',
         ]);
     }
+   
+   
+
+
 }

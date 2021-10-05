@@ -5,28 +5,22 @@
 {% endblock %}
 
 {% block body %}
-<form>
-	<div class="container-4 text-center text-dark ">
-		<h1>
-			Message privé
-		</h1>
+<form method="POST">
+        <h1>Message Privée </h1>
 
-		<h2>Objet : </h2>
+	 <div>
+        <label for="objet"> Objet : </label> <br>
+        <input type="text" id="objet" name="objet">
+     </div>
 
-        <div>
-            <label for="">
+     <div>
 
-        </div>
+     <label for="description"> Description : </label> <br>
+     <textarea name="description" id="description" cols="30" rows="10"></textarea>
+     
+     </div>
 
-
-		<h2>Message : </h2>
-
-		<textarea name="texte" id="" cols="30" rows="6" placeholder="Votre message"></textarea> <br>
-
-
-		<button type="submit" class="btn btn-success">Envoyer</button>
-
-	</div>
+     <input type="submit" value="Envoyer">
 
 </form>
 
