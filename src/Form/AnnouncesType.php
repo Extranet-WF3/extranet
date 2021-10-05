@@ -28,6 +28,8 @@ class AnnouncesType extends AbstractType
                     'placeholder' => 'veuillez entrer le titre de l\'annonce',
                 ],
             ])
+
+            
             ->add('description',null, [
                 'label' => 'Description du poste'], TextareaType::class)
 

@@ -1,50 +1,52 @@
-
-
 {% extends 'base.html.twig' %}
 
-{% block title %}Afficher une Announce!{% endblock %}
+{% block title %}Afficher une Announce!
+{% endblock %}
 
 
 {% block body %}
 
 
-<div class="example-wrapper">
-     <div class="show">
+	<div class="example-wrapper">
+		<div class="show">
 
-        <div class="entreprise">
-            <h2> l'entreprise:name_company</h2>
-            <p>Description de l'entreprise</p>
-            <p>Adresse </p>
-            <p>Adresse complementaire</p>
-            <p>Code postal</p>
-            <p>Ville</p>
-        </div>
+			<div class="entreprise">
+				<h2>{{ announce.name_company }}</h2>
+
+				
+
+				<p>{{ announce.adress_company }}</p>
+
+				<p>{{ announce.adress_additional }}</p>
+
+				<p>{{ announce.zip_code }}</p>
+
+				<p>{{ announce.city }}</p>
+			</div>
+
+
+			<div class="annonce">
+				<h2>Le poste
+				</h2>
+				<h4>{{ announce.title }}</h4>
+			</div>
+
+			<div class="description">
+				<h4>{{ announce.description }}</h4>
+			</div>
+
+
+			<div class="categorie">
+				<h2>Type d'emploi</h2>
+				<p>{{ announce.categories }}</p>
+			</div>
+
+
+		</div>
         
+		<button>Postuler</button>
 
-        <div class="annonce">
-            <h2>Le poste </h2>
-            <h4>Titre du poste</h4>
-        </div>
-
-        <div class="description">
-            <h4>Description du poste</h4>
-        </div>
-
-        
-
-        
-        <div class="categorie">
-            <h2>Type d'emploi</h2>
-            <p>categorie</p>
-        </div>
+	</div>
 
 
-
-    </div>
-    <button>Postuler</button>
-
-    </div>
-
-    
-</div>
-{% endblock %}
+</div>{% endblock %}

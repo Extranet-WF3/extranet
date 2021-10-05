@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AnnouncesController extends AbstractController
 {
@@ -40,7 +40,7 @@ class AnnouncesController extends AbstractController
      * 
      */
 
-    public function create(Request $request):Response{
+    public function create(Request $request, SluggerInterface $slugger):Response{
 
     //on prepare une entité
 
@@ -66,6 +66,10 @@ class AnnouncesController extends AbstractController
             //verifier si le formulaire est soumis et validé
             
             if ($form->isSubmitted() && $form->isValid()){
+
+                $slug = $slugger->slug($announce->getTitle())->lower();
+
+                $announce->setSlug($slug);
 
 
                 $announce->setCreatedAt(new \DateTimeImmutable());

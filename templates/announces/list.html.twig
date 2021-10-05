@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des annonce - {{ parent () }} {% endblock %}
+{% block title %}Liste des annonces - {{ parent () }} {% endblock %}
 
 {% block body %}
 
@@ -57,10 +57,10 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                   <h3> <a href="./annonce.html">Developpeur web</a></h3>
+                   <h3> <a href="{{ path('announce') }}">{{ announce.title }}</a></h3>
                     
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="./annonce.html">aujourdh'ui</a>
+                    <a href="{{ path('announce') }}">aujourdh'ui</a>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="./annonce.html" >il y'a un jour</a>
+                    <a href="{{ path('announce') }}" >il y'a un jour</a>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="./annonce.html" >il y'a 3 jours</a>
+                    <a href="{{ path('announce') }}" >il y'a 3 jours</a>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="./annonce.html" >il y'a 10 jours</a>
+                    <a href="{{ path('announce') }}" >il y'a 10 jours</a>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="./annonce.html" >il y'a 20 jours</a>
+                    <a href="{{ path('announce') }}" >il y'a 20 jours</a>
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
                     <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="./annonce.html" >il y'a 15 jours</a>
+                    <a href="{{ path('announce') }}" >il y'a 15 jours</a>
                 </div>
             </div>
         </div>
