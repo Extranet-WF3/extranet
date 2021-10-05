@@ -9,17 +9,19 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Faker\Factory;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/inscription", name="app_register")
      */
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
-    {
+    public function registerForm(Request $request, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    { 
+        $faker = Factory::create('fr_FR');
         $user = new Users();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -27,8 +29,15 @@ class RegistrationController extends AbstractController
             $userPasswordHasherInterface->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
+                
                 )
             );
+            $user->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+            $user->setUpdateAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+            
+            
+
+        
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
@@ -38,7 +47,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('users/inscription.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

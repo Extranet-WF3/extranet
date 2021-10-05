@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>LISTES DES UTILISATEURS</h1>
+<table class="table">
+<thead>
+<th>ID</th>
+<th>nom</th>
+<th>prenom</th>
+<th>statut</th>
+<th>numéros de session</th>
+<th>Année courante</th>
+
+</thead>
+<tbody>
+{% for user in users %}
+<tr>
+<td>{{user.id}}</td>
+<td>{{user.lastname}}</td>
+<td>{{user.firstname}}</td>
+<td>{{user.function}}</td>
+<td>{{user.sessionNumber}}</td>
+<td>{{user.trainingYear}}</td>
+<td></td>
+</tr>
+{% else %}
+<tr>
+
+  <td colspan=5> il n'yas pas dutlisateurs inscrit</td>
+  </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% endblock %}
