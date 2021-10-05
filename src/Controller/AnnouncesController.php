@@ -17,10 +17,26 @@ class AnnouncesController extends AbstractController
     /**
      * @Route("/announces", name="announces")
      */
-    public function index(): Response
+    public function list(): Response
     {
+        //on recupère les annonces dans la BDD
+
+        $repository = $this->getDoctrine()->getRepository(Announces::class);
+
+        //Toutes les annonces dans un tableau
+        
+
+        //recuperer toutes les annonces
+
+        $announces = $repository->findAll();
+
+        //Le produit avec l'id
+
+        $repository->find(1);
+
+
         return $this->render('announces/list.html.twig', [
-            'controller_name' => 'AnnouncesController',
+            'announces' => $announces,
         ]);
     }
     /**
