@@ -131,4 +131,18 @@ class UsersController extends AbstractController
 
         ]);
     }
+
+
+   /**
+     * @Route("/show/{pseudo}", name="users_show")
+     */
+    public function show( Users $users)
+    { 
+       
+        return $this->render('users/show.html.twig', [
+            'users' => $users,
+
+        ]);
+    }
+
 }
