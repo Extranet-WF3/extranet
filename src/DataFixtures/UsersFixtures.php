@@ -35,7 +35,7 @@ class UsersFixtures extends Fixture
             $Users->setFirstName($faker->Firstname());
             $Users->setPseudo($faker->lastname() . $faker->firstname());
             $Users->setFunction($functions[array_rand($functions)]);
-            $Users->setPassword('$2y$13$ZxREluDrZma0qettrENIwufq7znBcCGI5JNJ.1gr3smwt/ksjFqq.');
+            $Users->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
             if ($Users->getFunction() == 'Aprenant') {
 
 
@@ -54,7 +54,7 @@ class UsersFixtures extends Fixture
         $admin->setFirstName(('Ducornet'));
         $admin->setPseudo(('Martine') . ('Ducornet'));
         $admin->setFunction($functions[array_rand($functions)]);
-        $admin->setPassword('$2y$13$ZxREluDrZma0qettrENIwufq7znBcCGI5JNJ.1gr3smwt/ksjFqq.');
+        $admin->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
         $manager->persist($admin);
 
 
