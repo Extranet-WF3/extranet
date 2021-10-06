@@ -14,6 +14,7 @@ class MessageType extends AbstractType
             ->add('objet')
             ->add('description')
             ->add('status')
+            ->getForm()
         ;
     }
 

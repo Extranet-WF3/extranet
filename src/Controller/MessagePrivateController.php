@@ -14,10 +14,11 @@ class MessagePrivateController extends AbstractController
      */
     public function index(): Response
     {
+            // je crée un formulaire avec 
         $message = $this->createFormBuilder();
         
         return $this->render('message_private/index.html.twig', [
-            'form' => 'MessagePrivateController',
+            'form' => '',
         ]);
     }
    
