@@ -33,11 +33,12 @@ class MessagePrivateController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($messages);
             $em->flush(); // Insert 
+            
 
 
-            return new Response('Message Envoyé !');
-
-
+            
+           // Permet d'etre redigere dans la meme page avec la validation du message envoyé 
+            $this->addFlash('success', 'Message Envoyé');
         }
         
         return $this->render('message_private/index.html.twig', [
