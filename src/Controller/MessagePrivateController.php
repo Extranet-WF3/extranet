@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Messages;
+use App\Form\MessageType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,25 +14,34 @@ class MessagePrivateController extends AbstractController
     /**
      * @Route("/messageprivate", name="message_private")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
             // Je prépare l'entité 
         $messages = new Messages();
-        dump($messages);
+        
 
         // je crée un formulaire symfony 
-        $form = $this->createForm(ContactType::class, $messages)
+        $form = $this->createForm(MessageType::class, $messages);
 
-        $manager = $this->getDoctrine()->getManager();
-        $manager->persist($messages);
-        $manager->flush()
+        $form->handleRequest($request);
+
+        // si le formulaire a été soumis 
+
+        if($form->isSubmitted()){
+
+            // on enregistre le champ en bdd 
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($messages);
+            $em->flush(); // Insert 
 
 
+            return new Response('Message Envoyé !');
 
 
+        }
         
         return $this->render('message_private/index.html.twig', [
-            'messages' => $messages->createView(),
+            'controller_name' => 'MessagePrivateController'
 
            
         ]);
