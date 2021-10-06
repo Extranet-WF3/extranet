@@ -19,25 +19,44 @@ class UsersFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $functions = ['Admin', 'Apprenti'];
+        $functions = ['Manager', 'Aprenant', 'Formateur'];
+
 
         $faker = Factory::create('fr_FR');
         //creation des utlisateurs
         for ($nbUsers = 1; $nbUsers <= 5; $nbUsers++) {
             $Users = new Users();
+
+
             $Users->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
             $Users->setUpdateAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
             $Users->setEmail($faker->email());
             $Users->setLastName($faker->lastname());
             $Users->setFirstName($faker->Firstname());
-            $Users->setPseudo($faker->lastname().$faker->firstname());
+            $Users->setPseudo($faker->lastname() . $faker->firstname());
             $Users->setFunction($functions[array_rand($functions)]);
-            $Users->setSessionNumber(rand(1, 100));
-            $Users->setTrainingYear(rand(1, 100));
-            $Users->setPassword('$2y$13$ZxREluDrZma0qettrENIwufq7znBcCGI5JNJ.1gr3smwt/ksjFqq.');
+            $Users->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
+            if ($Users->getFunction() == 'Aprenant') {
+
+
+                $Users->setSessionNumber(rand(1, 100));
+                $Users->setTrainingYear(rand(1, 100));
+            }
+
 
             $manager->persist($Users);
         }
+        $admin = new Users();
+        $admin->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+        $admin->setUpdateAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+        $admin->setEmail('admin@test.com');
+        $admin->setLastName(('Martine'));
+        $admin->setFirstName(('Ducornet'));
+        $admin->setPseudo(('Martine') . ('Ducornet'));
+        $admin->setFunction($functions[array_rand($functions)]);
+        $admin->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
+        $manager->persist($admin);
+
 
         $manager->flush();
     }
