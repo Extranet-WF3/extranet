@@ -14,12 +14,10 @@
 
         {{ article.description | u.truncate(80, '...', false) }}
 
-        {# {{ article.createdAt | Faire le calcul de jours depuis le poste }} #}
+        {# {{ article.createdAt | Faire le calcul de jours depuis le poste avec le KNPTimme Bundle }} #}
 
         {# <h1><a href="{{path('article', {'id': article.id}) }}"></a></h1>
 
     {% endfor %} #}
-
-
 
 {% endblock %}

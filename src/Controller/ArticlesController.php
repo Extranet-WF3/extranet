@@ -84,6 +84,9 @@ class ArticlesController extends AbstractController
         ]);
     }
 
+
+
+    
     /** Affichage d'un article avec Param Converter
      * @Route("/article/{slug}", name="article_show")
      * @param Article
