@@ -84,33 +84,16 @@ class ArticlesController extends AbstractController
         ]);
     }
 
-
-
-    /** Affichage d'un article
-     * @Route("/article", name="article")
-     * @param 
+    /** Affichage d'un article avec Param Converter
+     * @Route("/article/{slug}", name="article_show")
+     * @param Article
      * @return Response
      */
-    public function show(): Response
+    public function show(Articles $Article): Response
     {
-
-        // Première solution sans la magie du ParamConverter avec le paramètre $slug
-        // $repository = $this->getDoctrine()->getRepository(Article::class);
-        // $article = $repository->findOneBySlug($slug);
-
-
-
-        // Retourne une page 404 quand un article n'existe pas :
-        // if (! isset($aticles[$page - 1])) {
-            // throw $this->createNotFoundException("La page $page n'existe pas.");
-        // ou
-        // if (!in_array($slug, $articles)) {
-        // throw $this->createNotFoundException('Cet article n\'existe pas');
-
-
-
-        return $this->render('articles/show.html.twig'
-    
+        return $this->render('articles/show.html.twig', [
+            'article' => $Article,
+            ]  
         );
     }
 }
