@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Articles;
 use App\Form\ArticleType;
+use App\Repository\ArticlesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,18 +76,19 @@ class ArticlesController extends AbstractController
      * @param 
      * @return Response
      */
-    public function index(): Response
+    public function index(ArticlesRepository $repository): Response
     {
+        $articles = $repository -> findAll();
 
-
-        return $this->render('articles/index.html.twig', [
-            'controller_name' => 'ArticlesController',
-        ]);
+        return $this -> render('articles/index.html.twig', [
+            'articles' => $articles,
+            ]
+            );
     }
 
 
 
-    
+
     /** Affichage d'un article avec Param Converter
      * @Route("/article/{slug}", name="article_show")
      * @param Article
