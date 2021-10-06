@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Liste des annonces {% endblock %}
+{% block title %}
+	Liste des annonces
+{% endblock %}
 
 {% block body %}
 
@@ -47,29 +49,34 @@
 
 
 		</div>
-		<div class="container">
+
+		{% for announce in announces %}
+			<a href="{{ path('announce_show', {slug: announce.slug}) }}">
+
+				<div class="container">
 
 
-			{% for announce in announces %}
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body">
-								<h3>
-									<a href="{{ path('announce_show', {slug: announce.slug}) }}">{{ announce.nameCompany }}</a>
-								</h3>
-								<a href="{{ path('announce_show', {slug: announce.slug}) }}">
-								<p class="card-text">{{ announce.description | u.truncate(20 , '...', false) }}.</p>
-								</a>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body">
+
+									<h4>{{ announce.nameCompany }}</h4>
+									<p class="card-text">{{ announce.description | u.truncate( 65, '...', false) }}</p>
+									{% if announce.createdAt %}
+									{{ announce.createdAt |ago }}
+								 {% else %} 
+
+								 (unpublished)
+
+								 {% endif %}
+								</div>
 							</div>
 						</div>
 					</div>
-					
+
 				</div>
-			{% endfor %}
-		</div>
+			</a>
+		{% endfor %}
 
-	</div>
-
-
-{% endblock %}
+	{% endblock %}

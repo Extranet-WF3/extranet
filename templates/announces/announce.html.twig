@@ -6,6 +6,7 @@
 
 {% block body %}
 
+	
 
 	<div class="example-wrapper">
 		<div class="show">
@@ -43,11 +44,14 @@
 
 
 		</div>
-        <a href="{{ path('announce_show', {slug: announce.slug}) }}">
+        <a href="{{ announce.originalLink }}">
 		<button >Postuler</button>
 		</a>
 
 	</div>
 
+	
 
-</div>{% endblock %}
+
+
+{% endblock %}
