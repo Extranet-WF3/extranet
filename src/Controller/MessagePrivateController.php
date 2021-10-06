@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Messages;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,11 +15,25 @@ class MessagePrivateController extends AbstractController
      */
     public function index(): Response
     {
-            // je crée un formulaire avec 
-        $message = $this->createFormBuilder();
+            // Je prépare l'entité 
+        $messages = new Messages();
+        dump($messages);
+
+        // je crée un formulaire symfony 
+        $form = $this->createForm(ContactType::class, $messages)
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($messages);
+        $manager->flush()
+
+
+
+
         
         return $this->render('message_private/index.html.twig', [
-            'form' => '',
+            'messages' => $messages->createView(),
+
+           
         ]);
     }
    
