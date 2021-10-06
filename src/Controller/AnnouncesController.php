@@ -39,16 +39,7 @@ class AnnouncesController extends AbstractController
             'announces' => $announces,
         ]);
     }
-    /**
-     * @Route("/announce/{slug}", name="announce_show")
-     */
-
-     public function announce(Announces $announce) {
-        return $this->render('announces/announce.html.twig', [
-            'announce' => $announce,
-        ]);
-     }
-
+    
      
 
 
@@ -114,6 +105,18 @@ class AnnouncesController extends AbstractController
             'form' => $form ->createView() 
         ]);
      }
+
+
+     /**
+     * @Route("/announce/{slug}", name="announce_show")
+     */
+
+    public function announce(Announces $announce) {
+        return $this->render('announces/announce.html.twig', [
+            'announce' => $announce,
+        ]);
+     }
+
 
 
 

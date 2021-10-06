@@ -11,24 +11,24 @@
 		<div class="show">
 
 			<div class="entreprise">
-				<h2>{{ announce.name_company }}</h2>
+				<h4>{{ announce.nameCompany }}</h4>
 
 				
 
-				<p>{{ announce.adress_company }}</p>
+				<p>{{ announce.adressCompany }}</p>
 
-				<p>{{ announce.adress_additional }}</p>
+				<p>{{ announce.adressAdditional }}</p>
 
-				<p>{{ announce.zip_code }}</p>
+				<p>{{ announce.zipCode }}</p>
 
 				<p>{{ announce.city }}</p>
 			</div>
 
 
 			<div class="annonce">
-				<h2>Le poste
-				</h2>
-				<h4>{{ announce.title }}</h4>
+				<h4>Le poste : {{ announce.title }} </h4>
+				
+				
 			</div>
 
 			<div class="description">
@@ -37,14 +37,15 @@
 
 
 			<div class="categorie">
-				<h2>Type d'emploi</h2>
+				<h4>Type d'emploi</h4>
 				<p>{{ announce.categories }}</p>
 			</div>
 
 
 		</div>
-        
-		<button>Postuler</button>
+        <a href="{{ path('announce_show', {slug: announce.slug}) }}">
+		<button >Postuler</button>
+		</a>
 
 	</div>
 

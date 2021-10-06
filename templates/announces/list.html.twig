@@ -1,8 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des annonces -
-	{{ parent () }}
-{% endblock %}
+{% block title %} Liste des annonces {% endblock %}
 
 {% block body %}
 
@@ -58,23 +56,15 @@
 						<div class="card">
 							<div class="card-body">
 								<h3>
-									<a href="#">dev web</a>
+									<a href="{{ path('announce_show', {slug: announce.slug}) }}">{{ announce.nameCompany }}</a>
 								</h3>
-
+								<a href="{{ path('announce_show', {slug: announce.slug}) }}">
 								<p class="card-text">{{ announce.description | u.truncate(20 , '...', false) }}.</p>
-								<a href="{{ path('announce_show') }}">aujourd'hui</a>
+								</a>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body">
-								<h5 class="card-title">Special title treatment</h5>
-								<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-								<a href="{{ path('announce') }}">il y'a un jour</a>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			{% endfor %}
 		</div>
