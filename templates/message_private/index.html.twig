@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Message privée
+{% endblock %}
+
+{% block body %}
+<form method="POST">
+        <h1>Message Privée </h1>
+
+	 <div>
+        <label for="objet"> Objet : </label> <br>
+        <input type="text" id="objet" name="objet">
+     </div>
+
+     <div>
+
+     <label for="description"> Description : </label> <br>
+     <textarea name="description" id="description" cols="30" rows="10"></textarea>
+     
+     </div>
+
+     <input type="submit" value="Envoyer">
+
+</form>
+
+
+
+{% endblock %}
+
