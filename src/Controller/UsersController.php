@@ -123,9 +123,9 @@ class UsersController extends AbstractController
     /**
      * @Route("/listes", name="users_listes")
      */
-    public function listes( UsersRepository $repository)
-    { 
-        $users=$repository->findAll();
+    public function listes(UsersRepository $repository)
+    {
+        $users = $repository->findAll();
         return $this->render('users/listes.html.twig', [
             'users' => $users
 
@@ -133,16 +133,25 @@ class UsersController extends AbstractController
     }
 
 
-   /**
+    /**
      * @Route("/show/{pseudo}", name="users_show")
      */
-    public function show( Users $users)
-    { 
-       
+    public function show(Users $users)
+    {
+
         return $this->render('users/show.html.twig', [
             'users' => $users,
 
         ]);
     }
-
+    /**
+     * @Route("/Profil", name="users_Profil")
+     */
+    public function Profil(UsersRepository $repository): Response
+    {
+        $users = $repository->findAll();
+        return $this->render('users/Profil.html.twig', [
+            'user' => $users,
+        ]);
+    }
 }
