@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Articles;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class ArticlesFixtures extends Fixture
+class ArticlesFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -36,9 +37,22 @@ class ArticlesFixtures extends Fixture
             // Pour le test on passe l'user_id à nulle
             $article->setUser(null);
 
+            // cette référence renvoie l’objet Utilisateur créé dans UserFixtures
+            $article->setUser($this->getReference('userId'));
+
             $manager->persist($article);
         }
 
         $manager->flush();
+
     }
+
+            // Gère les dépendances de la table user et article
+            public function getDependencies()
+            {
+            return [
+                UserFixtures::class,
+            ];
+            }
+    
 }

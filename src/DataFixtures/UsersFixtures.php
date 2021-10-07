@@ -59,5 +59,8 @@ class UsersFixtures extends Fixture
 
 
         $manager->flush();
+
+        $this->addReference('userId', $Users);
+
     }
 }
