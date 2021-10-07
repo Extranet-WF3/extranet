@@ -46,8 +46,6 @@ class MessagePrivateController extends AbstractController
             $em->persist($messages);
             $em->flush(); // Insert en bdd
             
-          
-
             
            // Permet d'etre redigere dans la meme page avec la validation du message envoyé 
             $this->addFlash('success', 'Message Envoyé');
@@ -55,7 +53,8 @@ class MessagePrivateController extends AbstractController
         
         return $this->render('message_private/index.html.twig', [
             'MessageForm' => $form->createView(),
-
+            
+            
 
            
         ]);
