@@ -2,39 +2,60 @@
 
 {% block body %}
 	<h1>LISTES DES UTILISATEURS</h1>
-	<table class="table">
-		<thead>
-			
-			<th>lastname</th>
-			<th>firstname</th>
-			<th>pseudo</th>
-			<th>email</th>
-			<th>sessionNumber</th>
-			<th>phonenumber</th>
-			<th>année courante</th>
 
 
-		</thead>
-		<tbody>
+	<div class="container">
+<table>
+		<tr>
+			<td>lastname:</td>
+			<td>{{app.user.lastname}}</td>
+		</tr>
+		<tr>
+			<td>Firstname:</td>
+			<td>{{app.user.firstname}}</td>
+		</tr>
+		<tr>
+			<td>pseudo:</td>
+			<td>{{app.user.pseudo}}</td>
+		</tr>
+		<tr>
+			<td>email:</td>
+			<td>{{app.user.email}}</td>
+		</tr>
+		<tr>
+			<td>numéroSession</td>
+			<td>{{app.user.sessionnumber}}</td>
+		</tr>
+		<tr>
+			<td>Numéro de téléphone</td>
+			<td>{{app.user.numberPhone}}</td>
+		</tr>
+		<tr>
+			<td>Linkedin</td>
+			<td>{{app.user.linkedin}}</td>
+		</tr>
+		<tr>
+			<td>Github</td>
+			<td>{{app.user.github}}</td>
+		</tr>
+		<tr>
+			<td>Twitter</td>
+			<td>{{app.user.twitter}}</td>
+		</tr>
+		<tr>
+			<td>Situationcourante</td>
+			<td>{{app.user.currentSituation}}</td>
+		</tr>
+		<tr>
+			<td>Posteactuelle</td>
+			<td>{{app.user.currentPost}}</td>
+		</tr>
+</table>
+		
+	</div>
 
-			<tr>
-				<td>{{users.lastname}}</td>
-				<td>{{users.firstname}}</td>
-				<td>{{users.pseudo}}</td>
-				<td>{{users.email}}</td>
-				<td>{{users.sessionnumber}}</td>
-				<td>{{users.phonenumber}}</td>
-				<td>{{users.trainingYear}}</td>
 
-				<td></td>
-			</tr>
-
-			<tr>
-
-				<td colspan="6">
-					il n'yas pas dutlisateurs inscrit</td>
-			</tr>
-
-		</tbody>
-	</table>
+	<a role="button" class="btn btn-success" href="{{path('editProfil', {'pseudo': app.user.pseudo})}}">ModifierProfil</a>
+	<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voirmessageprivés</a>
+	<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">SuprimerCompte</a>
 {% endblock %}
