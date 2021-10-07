@@ -12,29 +12,40 @@
 			<th>sessionNumber</th>
 			<th>phonenumber</th>
 			<th>année courante</th>
+			<th>linkedin</th>
+			<th>github</th>
+			<th>twitter</th>
+			<th>situationcourante</th>
+			<th>currentpost</th>
 
 
 		</thead>
 		<tbody>
 
 			<tr>
-				<td>{{users.lastname}}</td>
-				<td>{{users.firstname}}</td>
-				<td>{{users.pseudo}}</td>
-				<td>{{users.email}}</td>
-				<td>{{users.sessionnumber}}</td>
-				<td>{{users.phonenumber}}</td>
-				<td>{{users.trainingYear}}</td>
+				<td>{{app.user.lastname}}</td>
+				</tr>
+				<tr>
+				<td>{{app.user.firstname}}</td>
+				<td>{{app.user.pseudo}}</td>
+				<td>{{app.user.email}}</td>
+				<td>{{app.user.sessionnumber}}</td>
+				<td>{{app.user.numberPhone}}</td>
+				<td>{{app.user.linkedin}}</td>
+				<td>{{app.user.github}}</td>
+				<td>{{app.user.twitter}}</td>
+				<td>{{app.user.currentSituation}}</td>
+				<td>{{app.user.currentPost}}</td>
+
 
 				<td></td>
 			</tr>
 
-			<tr>
-
-				<td colspan="6">
-					il n'yas pas dutlisateurs inscrit</td>
-			</tr>
-
+		
 		</tbody>
 	</table>
+	<a role="button" class="btn btn-success" href="{{path('editProfil', {'pseudo': app.user.pseudo})}}">ModifierProfil</a>
+	
+	<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voirmessageprivés</a>
+	<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">SuprimerCompte</a>
 {% endblock %}
