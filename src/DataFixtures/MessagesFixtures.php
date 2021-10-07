@@ -36,7 +36,7 @@ class MessagesFixtures extends Fixture implements DependentFixtureInterface
 
         // persistes les messages
         // envoi la bdd 
-        $manager->flush();
+            $manager->flush();
     }
     public function getDependencies()
     {

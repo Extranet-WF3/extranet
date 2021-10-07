@@ -6,8 +6,6 @@ use App\Entity\Users;
 use App\Repository\UsersRepository;
 use App\Entity\Messages;
 use App\Form\MessageType;
-use DateTime;
-use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,19 +45,19 @@ class MessagePrivateController extends AbstractController
             $em->flush(); // Insert en bdd
             
             
-           // Permet d'etre redigere dans la meme page avec la validation du message envoyé 
             $this->addFlash('success', 'Message Envoyé');
+           // Permet d'etre redigere dans la meme page avec la validation du message envoyé 
         }
         
         return $this->render('message_private/index.html.twig', [
             'MessageForm' => $form->createView(),
             
             
-
-           
+            
+            
         ]);
     }
-   
+    
    
 
 
