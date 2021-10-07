@@ -20,7 +20,7 @@ class MessagesFixtures extends Fixture implements DependentFixtureInterface
         for ($nbMessages = 1; $nbMessages <20; $nbMessages++) {
 
             $product = new Messages();
-            $product->SetObject($faker->sentence(10));
+            $product->SetObject($faker->sentence(4));
             $product->setMessage($faker->text(50));
             $product->SetStatus($faker->boolean(50)); // mettre un chiffre 50 pour avoir 50% de chance d'avoir TRUE
 

@@ -32,7 +32,7 @@ class MessagePrivateController extends AbstractController
             // on enregistre le champ en bdd 
             $em = $this->getDoctrine()->getManager();
             $em->persist($messages);
-            $em->flush(); // Insert 
+            $em->flush(); // Insert en bdd
             
 
 
