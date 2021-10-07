@@ -58,7 +58,10 @@
                         Catégorie: {{ article.categories }}
                     </div>
 
-                </div>
+					{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
+					<p>Publié <time>{{ article.createdAt | ago }}</time></p>
+
+				</div>
 
             </div>
 

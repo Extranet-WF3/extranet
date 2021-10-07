@@ -13,7 +13,9 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            // ->add('createdAt')
+
+        // La donnée createdAt est générée automatiquement dans le contrôleur    
+        // ->add('createdAt')
 
             ->add('title', null, [
                 'label'=>'Titre',
@@ -24,7 +26,7 @@ class ArticleType extends AbstractType
                     'placeholder' => 'Titre'
                 ],
                 ])
-    
+
             ->add('categories', ChoiceType::class, [
                 'label'=>'Catégorie',
                 'attr'=>[
@@ -45,7 +47,7 @@ class ArticleType extends AbstractType
                     'Secteur emploi' => 'Secteur emploi',
                 ],
                 ])
-    
+
             ->add('description', null, [
                 'label'=>'Description',
                 'attr'=>['rows' => 10, 'cols' => 50 ],
@@ -53,7 +55,7 @@ class ArticleType extends AbstractType
                     'placeholder' => 'Ecrire votre article'
                 ],
                 ])
-    
+
             -> add('originalLink', null, [
                 'label'=>'Lien de l\'article',
                 'attr'=>[
@@ -64,7 +66,9 @@ class ArticleType extends AbstractType
                 ],
                 ])
 
+            // La donnée user_id est récupérée de la table Users    
             //->add('user')
+
         ;
     }
 
