@@ -12,14 +12,18 @@
 			<select class="custom-select">
 				<option selected>Date de publication</option>
 				{% for announce in announces %}
+					{% set myDate = "now"|date %}
 					{% if announce.createdAt %}
-					{% set myDate = myDate|date_modify('-4 day') %}
+						{% set myDate = myDate|date_modify('-4 day') %}
+						<a href="{{ path('announces', {slug: announce.slug}) }}">
+						<option value="1">4 derniers jours</option>
+					</a>
 					{% else %}
 
-				(unpublished)
+						(unpublished)
 
 					{% endif %}
-					<option value="1">4 derniers jours</option>
+					
 				{% endfor %}
 				<option value="2">3 derniers jours</option>
 				<option value="3">7 derniers jours</option>
