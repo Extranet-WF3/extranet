@@ -11,7 +11,16 @@
 		<div class="select">
 			<select class="custom-select">
 				<option selected>Date de publication</option>
-				<option value="1">Dernière 24h</option>
+				{% for announce in announces %}
+					{% if announce.createdAt %}
+					{% set myDate = myDate|date_modify('-4 day') %}
+					{% else %}
+
+				(unpublished)
+
+					{% endif %}
+					<option value="1">4 derniers jours</option>
+				{% endfor %}
 				<option value="2">3 derniers jours</option>
 				<option value="3">7 derniers jours</option>
 			</select>
@@ -64,12 +73,12 @@
 									<h4>{{ announce.nameCompany }}</h4>
 									<p class="card-text">{{ announce.description | u.truncate( 65, '...', false) }}</p>
 									{% if announce.createdAt %}
-									{{ announce.createdAt |ago }}
-								 {% else %} 
+										{{ announce.createdAt |ago }}
+									{% else %}
 
-								 (unpublished)
+										(unpublished)
 
-								 {% endif %}
+									{% endif %}
 								</div>
 							</div>
 						</div>

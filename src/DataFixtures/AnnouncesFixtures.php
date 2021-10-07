@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Announces;
 
+
 use App\DataFixtures\AppFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -30,10 +31,17 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
             $announce->setCity($faker->city());
             $announce->setSlug($faker->slug());
             
+
+            $announce->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
+
+            $announce->setUser($this->getReference("user_id"));
+
             $manager->persist($announce);
             $manager->flush();
 
         }
+
+
 
 
         
