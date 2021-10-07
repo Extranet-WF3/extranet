@@ -38,7 +38,7 @@ class ArticleType extends AbstractType
                     'Général' => 'Général',
                     'Programmation' => 'Programmation',
                     'Langage' => 'Langage',
-                    'Framework' => 'framework',
+                    'Framework' => 'Framework',
                     'API' => 'API',
                     'Logiciel' => 'Logiciel',
                     'Matériel informatique' => 'Matériel informatique',

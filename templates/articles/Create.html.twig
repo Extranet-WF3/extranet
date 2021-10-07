@@ -4,46 +4,24 @@
 
 {% block body %}
 
-{{ form_start (form)}}
+{# On désactive la validation par défaut du navigateur #}
+{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
 
-{# Pour désactiver la validation par défaut du navigateur #}
-{# {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }} #}
-	
 	{# Affichage des champs titre, description, catégorie et lien article #}
 	{{form_widget(form)}}
 
-    <div class="my-custom-class-for-errors">
+	{# Affichage des erreurs #}
+    <div class="">
         {{ form_errors(form) }}
     </div>
 
-    {# <div class="row">
-
-        <div class="col">
-            {{ form_row(form.task) }}
-        </div>
-
-        <div class="col" id="some-custom-id">
-            {{ form_row(form.dueDate) }}
-        </div>
-    </div> #}
-
-    {# <div class="form-control">
-
-        <i class="fa fa-calendar"></i> {{ form_label(form.dueDate) }}
-
-        {{ form_widget(form.dueDate) }}
-
-        <small>{{ form_help(form.dueDate) }}</small>
-
-        <div class="form-error">
-
-            {{ form_errors(form.dueDate) }}
-        </div>
-    </div> #}
-
+	{# Affichage de l'aide #}
+    <div class="">
+        {{ form_help(form) }}
+    </div>
 
 	{# Le bouton de validation #}
-	<button class="btn btn-primary formnovalidate">Valider</button>
+	<button class="btn btn-primary">Valider</button>
 
 {{ form_end (form)}}
 

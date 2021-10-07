@@ -34,7 +34,10 @@ class ArticlesController extends AbstractController
         // C'est à dire qu'il remplit les données de l'objet avec les données du formulaire
 
         // On génère la date de création de l'article
-        $article->setcreatedAt(new \DateTimeImmutable()); 
+        $article->setcreatedAt(new \DateTimeImmutable());
+
+        // On va chercher l'id de l'utilisateur dans la table user
+        $article->setUser($this->getUser());
 
 
         // On vérifie si le formulaire est soumis si on est en Post et aussi valide (champ non vide et syntaxe valide)
@@ -55,12 +58,14 @@ class ArticlesController extends AbstractController
             'Votre article a été créé avec succès.'
         );
 
-        // Redirection vers la page de liste des articles
-        return $this->redirectToRoute('list_article');
+        // Redirection vers le nouveau produit /product/le-slug-du-produit
+        return $this->redirectToRoute('article_show', ['slug' => $article->getSlug()]);
 
         // ou
-        // Redirection vers le nouveau produit /product/le-slug-du-produit
-        // return $this->redirectToRoute('product_show', ['slug' => $product->getSlug()]);
+
+        // Redirection vers la page de liste des articles
+        // return $this->redirectToRoute('list_article');
+
         }
 
         return $this->render('articles/create.html.twig', [
