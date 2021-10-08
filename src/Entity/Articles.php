@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ArticlesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ArticlesRepository::class)
@@ -24,21 +26,29 @@ class Articles
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Choice({"Programmation", "Langage", "Framework", "API", "Logiciel", "Matériel informatique", "Secteur emploi"})
+     * 
      */
     private $categories;
 
     /**
      * @ORM\Column(type="string", length=120)
+     * @Assert\NotBlank
+     * @Assert\Length(min=3, max=120)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\Length(min=10)
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(min=10, max=255)
      */
     private $originalLink;
 
@@ -47,6 +57,11 @@ class Articles
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -121,6 +136,18 @@ class Articles
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

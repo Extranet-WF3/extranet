@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Création d'un article - {{parent()}}{% endblock %}
+
+{% block body %}
+
+{# On désactive la validation par défaut du navigateur #}
+{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+
+	{# Affichage des champs titre, description, catégorie et lien article #}
+	{{form_widget(form)}}
+
+	{# Affichage des erreurs #}
+    <div class="">
+        {{ form_errors(form) }}
+    </div>
+
+	{# Affichage de l'aide #}
+    <div class="">
+        {{ form_help(form) }}
+    </div>
+
+	{# Le bouton de validation #}
+	<button class="btn btn-primary">Valider</button>
+
+{{ form_end (form)}}
+
+
+{% endblock %}

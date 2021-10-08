@@ -7,7 +7,7 @@
 	<div class="collapse navbar-collapse" id="navbarContent">
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a class="nav-link text-white" href="{{path('users_listes')}}">Liste des utilisateurs</a>
+				<a class="nav-link text-white" href="{{path('api')}}">Liste des membres</a>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,8 +23,8 @@
 					Articles
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{path('home')}}">Créer une article</a>
-					<a class="dropdown-item" href="#">Liste des articles</a>
+					<a class="dropdown-item" href="{{path('article_create')}}">Créer une article</a>
+					<a class="dropdown-item" href="{{path('list_article')}}">Liste des articles</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">

@@ -44,9 +44,13 @@ class UsersFixtures extends Fixture
                 $Users->setTrainingYear(rand(1, 100));
             }
 
-
             $manager->persist($Users);
+
+            // On ajoute une réference à user_id pour les articles
+            $this->addReference('UserId'.$nbUsers, $Users);
+
         }
+        
         $admin = new Users();
         $admin->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
         $admin->setUpdateAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
@@ -61,11 +65,8 @@ class UsersFixtures extends Fixture
 
         $manager->flush();
 
-
-
         $this->addReference("UserId", $Users);
         $this->addReference("TargetId", $Users);
-
 
     }
 }
