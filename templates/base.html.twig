@@ -23,9 +23,28 @@
 		{% else  %}
 			{{ include('partials/_navbarlogin.html.twig') }}
 		{% endif %}
+		<div class="container">
+
+        {% for label, messages in app.flashes %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+					
+        </div>
+		
+
+        {% endfor %}
+
+		{% endfor %}
+		
+		</div>
+
 
 		{% block body %}{% endblock %}
 
+		
 		{% block sidebar %}
 			<div class="container">
 				<div class="sidebar">
@@ -38,6 +57,8 @@
 					</a>
 				</div>
 			</div>
+
+		
 		{% endblock %}
 
 		{{  include('partials/_footer.html.twig') }}
