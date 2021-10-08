@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AnnouncesType extends AbstractType
 {
@@ -32,7 +33,7 @@ class AnnouncesType extends AbstractType
             
             ->add('description',null, [
                 'label' => 'Description du poste'], TextareaType::class)
-
+                
             ->add('originalLink',null,[
                 'label' => 'Lien de l\'annonce'
                 ])

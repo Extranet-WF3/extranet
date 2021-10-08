@@ -9,6 +9,11 @@
 
 }
 
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .select_1{
     display: flex;
     justify-content: space-around;

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Announces;
 use App\Form\AnnouncesType;
+use App\Repository\AnnouncesRepository;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -17,10 +19,12 @@ class AnnouncesController extends AbstractController
     /**
      * @Route("/announces", name="announces")
      */
-    public function list(): Response
+    public function list(AnnouncesRepository $announcesRepository): Response
     {
         //on recupère les annonces dans la BDD
-
+        
+        //$announcesRepository = $this->getDoctrine()
+          //  ->getRepository(users::class)->findAll();
         $repository = $this->getDoctrine()->getRepository(Announces::class);
 
         //Toutes les annonces dans un tableau
@@ -54,7 +58,7 @@ class AnnouncesController extends AbstractController
 
     //on prepare une entité
 
-    $announce= new Announces;
+    $announce = new Announces;
     
     //dump($announce);
 
@@ -84,7 +88,7 @@ class AnnouncesController extends AbstractController
 
                 $announce->setCreatedAt(new \DateTimeImmutable());
 
-               
+                $announce->setUser($this->getUser());
 
                //Insertion dans la BDD...Persister un objet avec Doctrine
 
@@ -118,6 +122,42 @@ class AnnouncesController extends AbstractController
      }
 
 
+     /**
+     * @Route("/{id}/edit", name="announce_edit", methods={"GET","POST"})
+     */
+
+    public function edit(Request $request, Announces $announce): Response
+    {
+        $form = $this->createForm(AnnouncesType::class, $announce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('announces/edit.html.twig', [
+            'announce' => $announce,
+            'form' => $form,
+        ]);
 
 
+
+
+}
+
+/**
+     * @Route("/{id}", name="announce_delete", methods={"GET"})
+     */
+    public function delete(Request $request,  $announce): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$announce->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($announce);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
+    }
 }

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} edit announce!{% endblock %}
+
+{% block body %}
+
+<h1>  </h1>
+
+<div class=card-body>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+
+{{ include('announces/formEdit.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('announces') }}">back to list</a>
+
+    {{ include('announces/deleteAnnounce.html.twig') }}
+
+{{ form_end(form) }}
+
+{% endblock %}

@@ -34,7 +34,7 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
 
             $announce->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
 
-            $announce->setUser($this->getReference("user_id"));
+            $announce->setUser($this->getReference("UserId"));
 
             $manager->persist($announce);
             $manager->flush();
@@ -49,7 +49,7 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
-            UserFixtures::class,
+            UsersFixtures::class,
         ];
     }
 }
