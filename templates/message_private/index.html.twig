@@ -1,30 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Message privée
-{% endblock %}
+{% block title %}Message privée{% endblock %}
 
 {% block body %}
-<form method="POST">
-        <h1 class="text-center">Message Privée </h1>
-<div class=" text-center">
-        <div>
-        <label for="objet"> Objet : </label> <br>
-        <input type="text" id="objet" name="objet">
-     </div>
+<div class="container">
 
-     <div>
 
-     <label for="description"> Description : </label> <br>
-     <textarea name="description" id="description" cols="30" rows="10"></textarea>
-     
-     </div>
 
-     <input type="submit" value="Envoyer">
+
+{{ form_start(MessageForm) }}
+
+
+{{ form_widget(MessageForm)}}
+
+
+<button type="submit" class="btn btn-primary"> Envoyer </button>
+
+ {{ form_end(MessageForm) }}
+
+
+
 
 </div>
-	 
-</form>
+
 
 
 

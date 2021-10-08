@@ -19,24 +19,24 @@ class MessagesFixtures extends Fixture implements DependentFixtureInterface
         // Créer 30 messages avec une boucle for 
         for ($nbMessages = 1; $nbMessages <20; $nbMessages++) {
 
-            $product = new Messages();
-            $product->SetObject($faker->sentence(4));
-            $product->setMessage($faker->text(50));
-            $product->SetStatus($faker->boolean(50)); // mettre un chiffre 50 pour avoir 50% de chance d'avoir TRUE
+            $messages = new Messages();
+            $messages->SetObject($faker->sentence(4));
+            $messages->setMessage($faker->text(50));
+            $messages->SetStatus($faker->boolean(50)); // mettre un chiffre 50 pour avoir 50% de chance d'avoir TRUE
 
 
 
-            $product->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('now', '+30 years')));
-            $product->SetUser($this->getReference("UserId")); // récuperer l'objet dans UsersFixture de la table UsersId
+            $messages->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('now', '+30 years')));
+            $messages->SetUser($this->getReference("UserId")); // récuperer l'objet dans UsersFixture de la table UsersId
 
-            $product->setTarget($this->getReference("TargetId")); // récuperer l'objet dans UsersFixture de la table TargetId
-            $manager->persist($product);
+            $messages->setTarget($this->getReference("TargetId")); // récuperer l'objet dans UsersFixture de la table TargetId
+            $manager->persist($messages);
+
         }
-
 
         // persistes les messages
         // envoi la bdd 
-        $manager->flush();
+            $manager->flush();
     }
     public function getDependencies()
     {
