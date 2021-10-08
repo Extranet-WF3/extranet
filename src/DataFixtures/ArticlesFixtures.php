@@ -35,7 +35,11 @@ class ArticlesFixtures extends Fixture implements DependentFixtureInterface
             $article->setoriginalLink($faker->url());
 
             // cette référence renvoie l’objet Utilisateur créé dans UserFixtures
-            $article->setUser($this->getReference('UserId'));
+            // $article->setUser($this->getReference('UserId'));
+
+            // On génère un id user aléatoire entre 1 et 5
+            $user = $this->getReference('UserId'.rand(1,5));
+            $article->setUser($user);
 
             $manager->persist($article);
         }
