@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>LISTES DES UTILISATEURS</h1>
+	<h1>PROFIL DE {{app.user.pseudo}}</h1>
 
 
 	<div class="container">
@@ -23,11 +23,11 @@
 			<td>{{app.user.email}}</td>
 		</tr>
 		<tr>
-			<td>numéroSession</td>
+			<td>numéroSession:</td>
 			<td>{{app.user.sessionnumber}}</td>
 		</tr>
 		<tr>
-			<td>Numéro de téléphone</td>
+			<td>Numéro de téléphone:</td>
 			<td>{{app.user.numberPhone}}</td>
 		</tr>
 		<tr>
@@ -35,19 +35,19 @@
 			<td>{{app.user.linkedin}}</td>
 		</tr>
 		<tr>
-			<td>Github</td>
+			<td>Github:</td>
 			<td>{{app.user.github}}</td>
 		</tr>
 		<tr>
-			<td>Twitter</td>
+			<td>Twitter:</td>
 			<td>{{app.user.twitter}}</td>
 		</tr>
 		<tr>
-			<td>Situationcourante</td>
+			<td>Situationcourante:</td>
 			<td>{{app.user.currentSituation}}</td>
 		</tr>
 		<tr>
-			<td>Posteactuelle</td>
+			<td>Posteactuelle:</td>
 			<td>{{app.user.currentPost}}</td>
 		</tr>
 </table>
