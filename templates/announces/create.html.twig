@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une annonce!{% endblock %}
+
+{% block body %}
+
+<h1> Créer une annonce </h1>
+
+<div class=card-body>
+{{ form_start(form) }}
+{{ form_widget(form) }}
+
+<button class="btn btn-primary" formnovalidate>Postuler</button>
+
+{{ form_end(form) }}
+
+{% endblock %}
