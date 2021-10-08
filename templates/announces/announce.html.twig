@@ -48,6 +48,12 @@
 		<button >Postuler</button>
 		</a>
 
+		<div class="col mt-4">
+			<a href="{{ path('announce_edit', {id: announce.id}) }}" class="btn btn-secondary mr-3">Modifier</a>
+			{#<a href="{{ path('announce_delete', { id: announce.id}) }}" class="btn btn-danger">Delete</a>#}
+			{{ include('announces/deleteAnnounce.html.twig') }}
+		</div>
+
 	</div>
 
 	

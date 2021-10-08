@@ -123,7 +123,7 @@ class AnnouncesController extends AbstractController
 
 
      /**
-     * @Route("/{id}/edit", name="announce_edit", methods={"GET","POST"})
+     * @Route("/{id}/announce", name="announce_edit", methods={"GET","POST"})
      */
 
     public function edit(Request $request, Announces $announce): Response
@@ -147,17 +147,19 @@ class AnnouncesController extends AbstractController
 
 }
 
-/**
-     * @Route("/{id}", name="announce_delete", methods={"GET"})
+
+    /**
+     * @Route("/{id}/delete", name="announce_delete", methods={"POST"})
      */
     public function delete(Request $request, Announces $announce): Response
     {
         if ($this->isCsrfTokenValid('delete'.$announce->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+           $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($announce);
-            $entityManager->flush();
+           $entityManager->flush();
         }
 
         return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
     }
+
 }
