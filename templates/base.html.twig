@@ -39,6 +39,7 @@
 
             <!-- Fichier de style CSS -->
             <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+            <link rel="stylesheet" href="{{ asset('css/announces.css')}}">
 
             <!-- Fichier Media Query -->
             <link rel="stylesheet" href="{{ asset('css/media-query.css')}}">
@@ -49,8 +50,11 @@
 
     <body>
 
-        {{ include('partials/_navbar.html.twig') }}
-
+		{%  if app.user %}
+			{{ include('partials/_navbar.html.twig') }}
+		{% else  %}
+			{{ include('partials/_navbarlogin.html.twig') }}
+		{% endif %}
 
     {# Afficher les messages Flash #}
     <div class="container">
@@ -69,24 +73,26 @@
         
     </div>
 
-
-
         {% block body %}
         {% endblock %}
 
-        {% block sidebar %}
-            <div class="container">
-                <div class="sidebar">
-                    <a href="https://www.wf3.fr/" class="rebordIconTop siteWeb" target="_blank"><img src="{{asset('/images/Logo_wf3.png')}}" alt="Logo du site"></a>
-                    <a href="https://www.linkedin.com/school/webforce3/" class="linkedin" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="/api" class="rebordIconDown api"><i class="fas fa-map-marked-alt"></i></a>
-                </div>
-            </div>
-        {% endblock %}
+		{% block sidebar %}
+			<div class="container">
+				<div class="sidebar">
+					<a href="https://www.wf3.fr/" class="rebordIconTop siteWeb" target="_blank"><img src="{{asset('/images/Logo_wf3.png')}}" alt="Logo du site"></a>
+					<a href="https://www.linkedin.com/school/webforce3/" class="linkedin" target="_blank">
+						<i class="fab fa-linkedin"></i>
+					</a>
+					<a href="/api" class="rebordIconDown api">
+						<i class="fas fa-map-marked-alt"></i>
+					</a>
+				</div>
+			</div>
+		{% endblock %}
 
-        {# {{  include('partials/_footer.html.twig') }} #}
+		{{  include('partials/_footer.html.twig') }}
 
-        {% block javascripts %}
+    {% block javascripts %}
 
             <!-- Scripts js -->
 
@@ -102,9 +108,9 @@
             <script src="{{ asset('js/api.js')}}"></script>
 
             <!-- Scripts js du projet-->
-			<script src="{{ asset('js/script.js')}}"></script>
+			      <script src="{{ asset('js/script.js')}}"></script>
 
-        {% endblock %}
+    {% endblock %}
 
     </body>
 

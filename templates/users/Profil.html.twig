@@ -1,65 +1,61 @@
 {% extends 'base.html.twig' %}
-{% block title %}Welcome!
-{% endblock %}
-
 
 {% block body %}
-
-	<h1>PROFIL DE {{users.pseudo}}</h1>
+	<h1>PROFIL DE {{app.user.pseudo}}</h1>
 
 
 	<div class="container">
 <table>
 		<tr>
 			<td>lastname:</td>
-			<td>{{users.lastname}}</td>
+			<td>{{app.user.lastname}}</td>
 		</tr>
 		<tr>
 			<td>Firstname:</td>
-			<td>{{users.firstname}}</td>
+			<td>{{app.user.firstname}}</td>
 		</tr>
 		<tr>
 			<td>pseudo:</td>
-			<td>{{users.pseudo}}</td>
+			<td>{{app.user.pseudo}}</td>
 		</tr>
 		<tr>
 			<td>email:</td>
-			<td>{{users.email}}</td>
+			<td>{{app.user.email}}</td>
 		</tr>
 		<tr>
 			<td>numéroSession:</td>
-			<td>{{users.sessionnumber}}</td>
+			<td>{{app.user.sessionnumber}}</td>
 		</tr>
 		<tr>
 			<td>Numéro de téléphone:</td>
-			<td>{{users.numberPhone}}</td>
+			<td>{{app.user.numberPhone}}</td>
 		</tr>
 		<tr>
 			<td>Linkedin</td>
-			<td>{{users.linkedin}}</td>
+			<td>{{app.user.linkedin}}</td>
 		</tr>
 		<tr>
 			<td>Github:</td>
-			<td>{{users.github}}</td>
+			<td>{{app.user.github}}</td>
 		</tr>
 		<tr>
 			<td>Twitter:</td>
-			<td>{{users.twitter}}</td>
+			<td>{{app.user.twitter}}</td>
 		</tr>
 		<tr>
 			<td>Situationcourante:</td>
-			<td>{{users.currentSituation}}</td>
+			<td>{{app.user.currentSituation}}</td>
 		</tr>
 		<tr>
 			<td>Posteactuelle:</td>
-			<td>{{users.currentPost}}</td>
+			<td>{{app.user.currentPost}}</td>
 		</tr>
 </table>
-
+		
 	</div>
 
 
+	<a role="button" class="btn btn-success" href="{{path('editProfil', {'pseudo': app.user.pseudo})}}">ModifierProfil</a>
 	<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voirmessageprivés</a>
-
-
+	<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">SuprimerCompte</a>
 {% endblock %}

@@ -14,8 +14,8 @@
 					Annonces
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{path('home')}}">Créer une annonce</a>
-					<a class="dropdown-item" href="#">Liste des annonces</a>
+					<a class="dropdown-item" href="{{path('create_announce')}}">Créer une annonce</a>
+					<a class="dropdown-item" href="{{path('announces')}}">Liste des annonces</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
@@ -29,11 +29,12 @@
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Pseudo
+					{{app.user.pseudo}}
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{path('home')}}">Voir mon profil</a>
-					<a class="dropdown-item" href="#">Voir mes messages</a>
+					<a class="dropdown-item" href="{{path('users_Profil')}}">Voir mon profil</a>
+					<a class="dropdown-item" href="{{path('message_private')}}">Voir mes messages</a>
+					<a class="dropdown-item" href="{{path('app_logout')}}">déconnécter</a>
 				</div>
 			</li>
 			<img class="avatar" src="{{asset('/images/avatar_base.png')}}" alt="Avatar">

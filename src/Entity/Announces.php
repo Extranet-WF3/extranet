@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AnnouncesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnouncesRepository::class)
@@ -19,36 +20,47 @@ class Announces
 
     /**
      * @ORM\Column(type="date")
+     * 
+     * 
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *  @Assert\Choice({"Stage", "Alternance", "Emploi"})
      */
     private $categories;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank
      */
+
+    
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *  @Assert\Url 
      */
     private $originalLink;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $nameCompany;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $adressCompany;
 
@@ -59,11 +71,14 @@ class Announces
 
     /**
      * @ORM\Column(type="string", length=5)
+     * @Assert\NotBlank
+     * @Assert\Length(max=5)
      */
     private $zipCode;
 
     /**
      * @ORM\Column(type="string", length=60)
+     * @Assert\NotBlank
      */
     private $city;
 
@@ -72,6 +87,11 @@ class Announces
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function getId(): ?int
     {
@@ -206,6 +226,18 @@ class Announces
     public function setUser(?Users $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

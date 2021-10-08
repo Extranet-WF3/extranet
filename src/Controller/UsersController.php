@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class UsersController extends AbstractController
 {
@@ -24,7 +25,7 @@ class UsersController extends AbstractController
         ]);
     }
     /**
-     * @Route("/Profil/edit", name="editProfil")
+     * @Route("/{pseudo}/Profil/edit", name="editProfil")
      */
     public function editProfil(Request $request)
     {
@@ -123,9 +124,9 @@ class UsersController extends AbstractController
     /**
      * @Route("/listes", name="users_listes")
      */
-    public function listes( UsersRepository $repository)
-    { 
-        $users=$repository->findAll();
+    public function listes(UsersRepository $repository)
+    {
+        $users = $repository->findAll();
         return $this->render('users/listes.html.twig', [
             'users' => $users
 
@@ -133,16 +134,41 @@ class UsersController extends AbstractController
     }
 
 
-   /**
+    /**
      * @Route("/show/{pseudo}", name="users_show")
      */
-    public function show( Users $users)
-    { 
-       
+    public function show(Users $users)
+    {
+
         return $this->render('users/show.html.twig', [
             'users' => $users,
 
         ]);
     }
+    /**
+     * @Route("/Profil", name="users_Profil")
+     */
+    public function Profil(UsersRepository $repository): Response
+    {
+        $users = $repository->findAll();
+        return $this->render('users/Profil.html.twig', [
+            'user' => $users,
+        ]);
+    }
 
+    /**
+     * @Route("/Profil/delete", name="deleteProfil")
+     */
+    public function delete()
+    {
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($this->getUser());
+        $manager->flush();
+        $session = $this->get('session');
+        $session = new Session();
+        $session->invalidate();
+
+        return $this->redirectToRoute('app_logout');
+    }
 }

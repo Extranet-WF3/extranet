@@ -21,6 +21,7 @@ class UsersFixtures extends Fixture
     {
         $functions = ['Manager', 'Aprenant', 'Formateur'];
 
+        
 
         $faker = Factory::create('fr_FR');
         //creation des utlisateurs
@@ -64,8 +65,8 @@ class UsersFixtures extends Fixture
 
         $manager->flush();
 
-        // On ajoute une réference à user_id pour les announces
-        $this->addReference('UserId', $Users);
+        $this->addReference("UserId", $Users);
+        $this->addReference("TargetId", $Users);
 
     }
 }

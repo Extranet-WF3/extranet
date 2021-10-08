@@ -79,4 +79,16 @@ Vous pouvez maintenant travailler sur le projet :
 
     Attention : Penser à changer de branche, vous devez travailler sur votre branche :
 
-        git checkout VotrePrenom
+    git checkout VotrePrenom
+
+
+
+
+
+	E-effacer les données dans la BDD
+
+	php bin/console doctrine:fixtures:load
+
+	utiliser les faker et conserver ses données dans la BDD
+
+	php bin/console doctrine:fixtures:load --append
