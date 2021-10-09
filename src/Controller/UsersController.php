@@ -171,4 +171,29 @@ class UsersController extends AbstractController
 
         return $this->redirectToRoute('app_logout');
     }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function admin(UsersRepository $repository)
+    {
+        $users = $repository->findByActivated(0);
+        return $this->render('users/Admin.html.twig', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
+     * @Route("admin/{id}/activer", name="admin_activated", methods="GET")
+     */
+    public function permuteActivated(UsersRepository $repository, $id)
+    {
+        $user = $repository->findOneBy(["id" => $id]);
+        $user->setActivated(true);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('users_Profil');
+    }
 }

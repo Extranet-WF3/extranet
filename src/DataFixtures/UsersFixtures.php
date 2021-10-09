@@ -37,6 +37,7 @@ class UsersFixtures extends Fixture
             $Users->setPseudo($faker->lastname() . $faker->firstname());
             $Users->setFunction($functions[array_rand($functions)]);
             $Users->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
+            $Users->setActivated(false);
             if ($Users->getFunction() == 'Aprenant') {
 
 
@@ -58,7 +59,9 @@ class UsersFixtures extends Fixture
         $admin->setLastName(('Martine'));
         $admin->setFirstName(('Ducornet'));
         $admin->setPseudo(('Martine') . ('Ducornet'));
-        $admin->setFunction($functions[array_rand($functions)]);
+        $admin->setFunction('Manager');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setActivated(true);
         $admin->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
         $manager->persist($admin);
 
