@@ -5,18 +5,37 @@
 
 {% block body %}
 
-	<h1>
-		Message Reçu
-	</h1>
+	<h1>Messages Récu</h1>
+	<br>
 
-	{% for receveids in receveid %}
+	<table class="table">
+		<thead>
 
-		<div>
+			<th>Expéditeur</th>
+			<th>Objet</th>
+			<th>Message</th>
+			<th>Date</th>
 
-			{{ receveid }}
 
-		</div>
+		</thead>
+		<tbody>
+			{% for receveid in receveids %}
+				<tr>
+					<td>{{ receveid.pseudo}}</td>
+					<td>{{ receveid.object}}</td>
+					<td>{{ receveid.message}}</td>
 
-	{% endfor %}
+				</tr>
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez reçu aucun message
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
 
 {% endblock %}

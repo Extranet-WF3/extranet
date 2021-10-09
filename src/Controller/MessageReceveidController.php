@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 use App\Entity\Messages;
+use App\Entity\Users;
 use App\Repository\UsersRepository;
+use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,14 +19,16 @@ class MessageReceveidController extends AbstractController
     {
 
         // récupere tous les donées msg private (objet : message)
+        $receveids = $this->getDoctrine()
+        ->getRepository(Messages::class)
+        ->getRepository(Users::class)
+        ->findAll();
 
-        $receveid = $this->getDoctrine()->getRepository(Messages::class)->findAll();
-
-     //   dd($receveid);
+       // dd($receveid);
 
               
         return $this->render('message_receveid/index.html.twig', [ // renvoi sur la page twig
-            'receveid' => $receveid, // permet d'envoyer ce qu'on a recuperer sur twig 
+            'receveids' => $receveids, // permet d'envoyer ce qu'on a recuperer sur twig 
         ]);
     }
 }
