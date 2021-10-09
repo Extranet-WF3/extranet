@@ -21,7 +21,6 @@ class MessageReceveidController extends AbstractController
         // récupere tous les donées msg private (objet : message)
         $receveids = $this->getDoctrine()
         ->getRepository(Messages::class)
-        ->getRepository(Users::class)
         ->findAll();
 
        // dd($receveid);

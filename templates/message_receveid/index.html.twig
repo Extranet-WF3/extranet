@@ -5,8 +5,9 @@
 
 {% block body %}
 
-	<h1>Messages Récu</h1>
-	<br>
+	<h1 class="text-center"> Messages Reçus </h1>
+    
+    <br>
 
 	<table class="table">
 		<thead>
@@ -19,9 +20,10 @@
 
 		</thead>
 		<tbody>
+        {# Boucle qui récupere id etc dans la bdd  #}
 			{% for receveid in receveids %}
 				<tr>
-					<td>{{ receveid.pseudo}}</td>
+					<td>{{ receveid.id}}</td>
 					<td>{{ receveid.object}}</td>
 					<td>{{ receveid.message}}</td>
 
