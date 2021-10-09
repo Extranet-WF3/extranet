@@ -1,13 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MessageReceveidController!{% endblock %}
+{% block title %}Hello MessageReceveidController!
+{% endblock %}
 
 {% block body %}
 
+	<h1>
+		Message Reçu
+	</h1>
 
+	{% for receveids in receveid %}
 
+		<div>
 
+			{{ receveid }}
 
+		</div>
 
+	{% endfor %}
 
 {% endblock %}

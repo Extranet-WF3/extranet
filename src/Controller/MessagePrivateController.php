@@ -51,13 +51,11 @@ class MessagePrivateController extends AbstractController
         return $this->render('message_private/index.html.twig', [
             'MessageForm' => $form->createView(),
             
-            
-            
+        
             
         ]);
     }
     
    
-
 
 }

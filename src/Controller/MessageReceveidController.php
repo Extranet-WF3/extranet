@@ -18,15 +18,13 @@ class MessageReceveidController extends AbstractController
 
         // récupere tous les donées msg private (objet : message)
 
-        $receveid = $this->getDoctrine()
-                   ->getRepository(Messages::class) // recuperer le messagesreposittoy.php
-                   ->findAll();
+        $receveid = $this->getDoctrine()->getRepository(Messages::class)->findAll();
+
+     //   dd($receveid);
 
               
-
-
         return $this->render('message_receveid/index.html.twig', [ // renvoi sur la page twig
-            'messagereceveid' => 'MessageReceveidController',
+            'receveid' => $receveid, // permet d'envoyer ce qu'on a recuperer sur twig 
         ]);
     }
 }
