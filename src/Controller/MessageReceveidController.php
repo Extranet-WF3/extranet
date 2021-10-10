@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Entity\Messages;
 use App\Entity\Users;
+use App\Repository\MessagesRepository;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\Mapping\Id;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,19 +16,18 @@ class MessageReceveidController extends AbstractController
     /**
      * @Route("/messagereceveid", name="message_receveid")
      */
-    public function index(): Response
+    public function index(MessagesRepository $repository ): Response
     {
-
-        // récupere tous les donées msg private (objet : message)
-        $receveids = $this->getDoctrine()
-        ->getRepository(Messages::class)
-        ->findAll();
+        $user = $this->getUser();
+       
+        $messages = $repository->findByUser([$user], null, 1, null);
 
        // dd($receveid);
 
               
-        return $this->render('message_receveid/index.html.twig', [ // renvoi sur la page twig
-            'receveids' => $receveids, // permet d'envoyer ce qu'on a recuperer sur twig 
+        return $this->render('message_receveid/receveid.html.twig', [ // renvoi sur la page twig
+            'messages' => $messages, 
+            'user' => $user, // permet d'envoyer ce qu'on a recuperer sur twig 
         ]);
     }
 }

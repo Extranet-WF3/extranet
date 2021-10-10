@@ -4,15 +4,33 @@
 {% block title %}Message reçu
 {% endblock %}
 
-{{ receveid.id}}
-{{ receveid.object}}
-{{ receveid.message}}
-{{ receveid.createdAt}}
-
 {% block body%}
 
+<table class="table">
+	<thead>
+		{#<th>pseudo</th>#}
+		<th>Objet</th>
+		<th>Message reçu</th>
+		<th>Date</th>
 
-<p></p>
 
+	</thead>
+	<tbody>
+		{% for message in messages %}
+			<tr>
+				<td>{{message.object}}</td>
+				<td>{{message.message}}</td>
+				<td>{{message.createdAt|ago}}</td>
+			</tr>
+		</tbody>
+	{% else %}
+		<tr>
 
+			<td colspan="5">
+				Vous n'avez reçu aucun message
+			</td>
+		</tr>
+	{% endfor %}
+    
+</tbody></table>
 {%endblock%}

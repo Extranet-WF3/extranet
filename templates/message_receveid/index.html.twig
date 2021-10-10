@@ -21,21 +21,7 @@
 		</thead>
 		<tbody>
         {# Boucle qui récupere id etc dans la bdd  #}
-			{% for receveid in receveids %}
-				<tr>
-					<td>{{ receveid.id}}</td>
-					<td>{{ receveid.object}}</td>
-					<td>{{ receveid.message}}</td>
-
-				</tr>
-			{% else %}
-				<tr>
-
-					<td colspan="5">
-						Vous n'avez reçu aucun message
-					</td>
-				</tr>
-			{% endfor %}
+		
 		</tbody>
 	</table>
 
