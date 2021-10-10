@@ -3,6 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Entity\Announces;
+use App\Entity\Articles;
+use App\Repository\AnnouncesRepository;
+use App\Repository\ArticlesRepository;
 use App\Repository\UsersRepository;
 use Doctrine\Persistence\ObjectManager;
 use phppharser\Node\Expr\Cast\Object_;
@@ -52,13 +56,6 @@ class UsersController extends AbstractController
                     'placeholder' => 'email'
                 ]
             ])
-            ->add('Pseudo', TextType::class, [
-
-                'attr' => [
-                    'placeholder' => 'lastname.firstname'
-                ]
-            ])
-
             ->add('NumberPhone', TextType::class, [
 
                 'attr' => [
@@ -148,11 +145,15 @@ class UsersController extends AbstractController
     /**
      * @Route("/Profil", name="users_Profil")
      */
-    public function Profil(UsersRepository $repository): Response
+    public function Profil(UsersRepository $repository, ArticlesRepository $repoart, AnnouncesRepository $repoannoun): Response
     {
-        $users = $repository->findAll();
+        $user = $this->getUser();
+        $articles = $repoart->findByUser([$user], null, 6, null);
+        $announces = $repoannoun->findByUser([$user], null, 6, null);
         return $this->render('users/Profil.html.twig', [
-            'user' => $users,
+            'user' => $user,
+            'articles' => $articles,
+            'announces' => $announces,
         ]);
     }
 

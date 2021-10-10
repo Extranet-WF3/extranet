@@ -25,7 +25,7 @@ class UsersFixtures extends Fixture
 
         $faker = Factory::create('fr_FR');
         //creation des utlisateurs
-        for ($nbUsers = 1; $nbUsers <= 5; $nbUsers++) {
+        for ($nbUsers = 1; $nbUsers <= 11; $nbUsers++) {
             $Users = new Users();
 
 
@@ -38,11 +38,18 @@ class UsersFixtures extends Fixture
             $Users->setFunction($functions[array_rand($functions)]);
             $Users->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
             $Users->setActivated(false);
+            if($Users->getFunction() == 'Formateur') {
+                $Users->setRoles(['ROLE_USERS']);
+            }
             if ($Users->getFunction() == 'Aprenant') {
 
 
                 $Users->setSessionNumber(rand(1, 100));
                 $Users->setTrainingYear(rand(1, 100));
+                $Users->setRoles(['ROLE_USERS']);
+            }
+            if($Users->getFunction() == 'Manager') {
+                $Users->setRoles(['ROLE_ADMIN']);
             }
 
             $manager->persist($Users);

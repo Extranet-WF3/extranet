@@ -1,57 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<h1>PROFIL DE {{app.user.pseudo}}</h1>
+	<h1>PROFIL DE
+		{{app.user.pseudo}}</h1>
 
 
 	<div class="container">
-<table>
-		<tr>
-			<td>lastname:</td>
-			<td>{{app.user.lastname}}</td>
-		</tr>
-		<tr>
-			<td>Firstname:</td>
-			<td>{{app.user.firstname}}</td>
-		</tr>
-		<tr>
-			<td>pseudo:</td>
-			<td>{{app.user.pseudo}}</td>
-		</tr>
-		<tr>
-			<td>email:</td>
-			<td>{{app.user.email}}</td>
-		</tr>
-		<tr>
-			<td>numéroSession:</td>
-			<td>{{app.user.sessionnumber}}</td>
-		</tr>
-		<tr>
-			<td>Numéro de téléphone:</td>
-			<td>{{app.user.numberPhone}}</td>
-		</tr>
-		<tr>
-			<td>Linkedin</td>
-			<td>{{app.user.linkedin}}</td>
-		</tr>
-		<tr>
-			<td>Github:</td>
-			<td>{{app.user.github}}</td>
-		</tr>
-		<tr>
-			<td>Twitter:</td>
-			<td>{{app.user.twitter}}</td>
-		</tr>
-		<tr>
-			<td>Situationcourante:</td>
-			<td>{{app.user.currentSituation}}</td>
-		</tr>
-		<tr>
-			<td>Posteactuelle:</td>
-			<td>{{app.user.currentPost}}</td>
-		</tr>
-</table>
-		
+		<table>
+			<tr>
+				<td>lastname:</td>
+				<td>{{app.user.lastname}}</td>
+			</tr>
+			<tr>
+				<td>Firstname:</td>
+				<td>{{app.user.firstname}}</td>
+			</tr>
+			<tr>
+				<td>pseudo:</td>
+				<td>{{app.user.pseudo}}</td>
+			</tr>
+			<tr>
+				<td>email:</td>
+				<td>{{app.user.email}}</td>
+			</tr>
+			<tr>
+				<td>numéroSession:</td>
+				<td>{{app.user.sessionnumber}}</td>
+			</tr>
+			<tr>
+				<td>Numéro de téléphone:</td>
+				<td>{{app.user.numberPhone}}</td>
+			</tr>
+			<tr>
+				<td>Linkedin</td>
+				<td>{{app.user.linkedin}}</td>
+			</tr>
+			<tr>
+				<td>Github:</td>
+				<td>{{app.user.github}}</td>
+			</tr>
+			<tr>
+				<td>Twitter:</td>
+				<td>{{app.user.twitter}}</td>
+			</tr>
+			<tr>
+				<td>Situationcourante:</td>
+				<td>{{app.user.currentSituation}}</td>
+			</tr>
+			<tr>
+				<td>Posteactuelle:</td>
+				<td>{{app.user.currentPost}}</td>
+			</tr>
+		</table>
+
 	</div>
 
 
@@ -61,4 +62,65 @@
 	{% if is_granted('ROLE_ADMIN') %}
 		<a role="submit" class="btn btn-primary" href="{{ path('admin')}}">Voir les comptes en attentes</a>
 	{% endif %}
+	<br>
+	<table>
+		<thead>
+			<th>Titre</th>
+			<th>Date de création</th>
+			<th>Catégories</th>
+			<th>Description</th>
+
+		</thead>
+		<tbody>
+			{% for article in articles %}
+				<tr>
+					<td>{{article.title}}</td>
+					<td>{{article.createdAt |ago}}</td>
+					<td>{{article.categories}}</td>
+					<td>{{article.description}}</td>
+					<td><a class="btn btn-primary" href="{{ path('article_show', {slug: article.slug}) }}">Voir l'article</a></td>
+				</tr>
+				
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez pas poster d'articles</td>
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+	<br>
+	<table>
+		<thead>
+			<th>Titre</th>
+			<th>Date de création</th>
+			<th>Catégories</th>
+			<th>Description</th>
+
+		</thead>
+		<tbody>
+			{% for announce in announces %}
+				<tr>
+					<td>{{announce.title}}</td>
+					<td>{{announce.createdAt |ago}}</td>
+					<td>{{announce.categories}}</td>
+					<td>{{announce.description}}</td>
+					<td><a class="btn btn-primary" href="{{ path('announce_show', {slug: announce.slug}) }}">Voir l'annonce</a></td>
+				</tr>
+				
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez pas poster d'annonces</td>
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+
 {% endblock %}
