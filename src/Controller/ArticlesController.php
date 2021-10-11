@@ -99,10 +99,10 @@ class ArticlesController extends AbstractController
      * @param Article
      * @return Response
      */
-    public function show(Articles $Article): Response
+    public function show(Articles $article): Response
     {
         return $this->render('articles/show.html.twig', [
-            'article' => $Article,
+            'article' => $article,
             ]  
         );
     }

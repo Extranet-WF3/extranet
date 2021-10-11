@@ -39,7 +39,7 @@ class RegistrationController extends AbstractController
             $user->setUpdateAt(new \DateTime());
             $user->setPseudo($user->getlastname().$user->getfirstname());
             $user->setActivated(0);
-            
+            $user->setRoles(['ROLE_USER']);
 
         
 

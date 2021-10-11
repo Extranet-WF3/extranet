@@ -145,11 +145,11 @@ class UsersController extends AbstractController
     /**
      * @Route("/Profil", name="users_Profil")
      */
-    public function Profil(UsersRepository $repository, ArticlesRepository $repoart, AnnouncesRepository $repoannoun): Response
+    public function Profil(ArticlesRepository $repoart, AnnouncesRepository $repoannoun)
     {
         $user = $this->getUser();
-        $articles = $repoart->findByUser([$user], null, 6, null);
-        $announces = $repoannoun->findByUser([$user], null, 6, null);
+        $articles = $repoart->findByUser([$user], ['createdAt' => 'ASC'], 6, null);
+        $announces = $repoannoun->findByUser([$user], ['createdAt' => 'ASC'], 6, null);
         return $this->render('users/Profil.html.twig', [
             'user' => $user,
             'articles' => $articles,
