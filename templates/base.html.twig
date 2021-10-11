@@ -55,23 +55,6 @@
 		{% else  %}
 			{{ include('partials/_navbarlogin.html.twig') }}
 		{% endif %}
-		<div class="container">
-
-        {% for label, messages in app.flashes %}
-
-            {% for message in messages %}
-
-                <div class="alert alert-{{ label }}">
-                    {{ message }}
-					
-        </div>
-		
-
-        {% endfor %}
-
-		{% endfor %}
-		
-		</div>
 
 
     {# Afficher les messages Flash #}
