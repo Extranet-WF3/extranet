@@ -19,8 +19,9 @@ class MessageReceveidController extends AbstractController
     public function index(MessagesRepository $repository ): Response
     {
         $user = $this->getUser();
+
        
-        $messages = $repository->findByUser([$user], null, 1, null);
+        $messages = $repository->findByTarget([$user], null, 5, null); 
 
        // dd($receveid);
 
