@@ -27,8 +27,6 @@ class Articles
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
-     * @Assert\Choice({"Programmation", "Langage", "Framework", "API", "Logiciel", "Matériel informatique", "Secteur emploi"})
-     * 
      */
     private $categories;
 

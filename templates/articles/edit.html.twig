@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Création d'un article - {{parent()}}{% endblock %}
+{% block title %}Modification d'un article - {{parent()}}{% endblock %}
 
 {% block body %}
+
+<h1>Modifier l'article</h1>
 
 {# On désactive la validation par défaut du navigateur #}
 {{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
@@ -15,8 +17,8 @@
         {{ form_errors(form) }}
     </div>
 
-	{# Bouton de validation #}
-	<button class="btn btn-primary">Valider</button>
+	{# Le bouton de validation de la modification #}
+	<button class="btn btn-primary">Modifier</button>
 
 {{ form_end (form)}}
 

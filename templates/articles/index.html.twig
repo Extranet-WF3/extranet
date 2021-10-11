@@ -9,47 +9,50 @@
 	<main>
 
 		<!-- Bouton de filtre suivant les catégories -->
-		<div class="row">
+		{# <div class="row"> #}
 
-			<div class="col-8 offset-2 mt-3">
-				<select name="categories" class="">
+			{# <div class="col-8 offset-2 mt-3"> #}
+				{# <select name="categories" class=""> #}
 
-					<option value=""></option>
+					{# <option value=""></option> #}
 
-					<option value="">Général</option>
+					{# <option value="">Général</option> #}
 
-					<option value="">Programmation</option>
+					{# <option value="">Programmation</option> #}
 
-					<option value="">Langages</option>
+					{# <option value="">Langages</option> #}
 
-					<option value="">Frameworks</option>
+					{# <option value="">Frameworks</option> #}
 
-					<option value="">API</option>
+					{# <option value="">API</option> #}
 
-					<option value="">Logiciels</option>
+					{# <option value="">Logiciels</option> #}
 
-					<option value="">Matériel informatique</option>
+					{# <option value="">Matériel informatique</option> #}
 
-					<option value="">Secteur emploi</option>
+					{# <option value="">Secteur emploi</option> #}
 
-				</select>
+				{# </select> #}
 
-			</div>
+			{# </div> #}
 
-		</div>
+		{# </div> #}
 
+		<!-- Boucle d'affichage de tous les articles -->
         {% for article in articles %}
 
         <div class="col-12 col-md-6 col-lg-4">
 
-            <div class="card card-product mb-4">
+            <div class="card card-article mb-4">
 
                 <div class="card-body">
 
                     <h4 class="card-title">
-                        {# <a href="{{ path('article_show', {slug: article.slug}) }}" title="{{ article.name }}"> #}
+
+                    <a href="{{ path('article_show', {slug: article.slug}) }}">
                             {{ article.title }}
-                        {# </a> #}
+                    </a>
+
                     </h4>
 
                     <p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
@@ -59,7 +62,7 @@
                     </div>
 
 					{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
-					<p>Publié <time>{{ article.createdAt | ago }}</time></p>
+					<p>Publié <time class="inline-block">{{ article.createdAt | ago }}</time></p>
 
 				</div>
 
