@@ -16,6 +16,11 @@
 		<th>Date</th>
 
 
+		
+		<button class="btn btn-primary">Répondre</button>
+		
+
+
 	</thead>
 	<tbody>
 		{% for message in messages %}
@@ -23,16 +28,21 @@
 				<td>{{message.object}}</td>
 				<td>{{message.message}}</td>
 				<td>{{message.createdAt|ago}}</td>
+			
 			</tr>
 		</tbody>
 	{% else %}
 		<tr>
 
 			<td colspan="5">
-				Vous n'avez reçu aucun message
+				Vous n'avez reçu aucun message pour le moment 
 			</td>
 		</tr>
 	{% endfor %}
+
+
     
-</tbody></table>
+</tbody>
+
+</table>
 {%endblock%}

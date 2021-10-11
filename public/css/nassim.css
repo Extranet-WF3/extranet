@@ -31,7 +31,8 @@ h2{
 }
 
 #scrollUp { /* a revoir car petit beug */
-        position: fixed;
+        
+        
         bottom: 150px;
         opacity: 2;
         z-index: 2;
@@ -40,12 +41,15 @@ h2{
         width: 20px;
     
 }
-.img-scroll{
-    height: 50px;
-    width: 35px;
+.scroll{
+    height: 15px;
+    width: 20px;    
 }
 .finTexte{
-    
+
     margin-right: 55%;
 }
+
+
+
 
