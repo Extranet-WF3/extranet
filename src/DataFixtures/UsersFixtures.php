@@ -31,7 +31,7 @@ class UsersFixtures extends Fixture
         $image->setSrc("avatar_base.png");
 
         //creation des utlisateurs
-        for ($nbUsers = 1; $nbUsers <= 5; $nbUsers++) {
+        for ($nbUsers = 1; $nbUsers <= 11; $nbUsers++) {
             $Users = new Users();
 
 
@@ -44,11 +44,19 @@ class UsersFixtures extends Fixture
             $Users->setImage(null);
             $Users->setFunction($functions[array_rand($functions)]);
             $Users->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
+            $Users->setActivated(false);
+            if($Users->getFunction() == 'Formateur') {
+                $Users->setRoles(['ROLE_USERS']);
+            }
             if ($Users->getFunction() == 'Aprenant') {
 
 
                 $Users->setSessionNumber(rand(1, 100));
                 $Users->setTrainingYear(rand(1, 100));
+                $Users->setRoles(['ROLE_USERS']);
+            }
+            if($Users->getFunction() == 'Manager') {
+                $Users->setRoles(['ROLE_ADMIN']);
             }
 
             $manager->persist($Users);
@@ -64,7 +72,9 @@ class UsersFixtures extends Fixture
         $admin->setLastName(('Martine'));
         $admin->setFirstName(('Ducornet'));
         $admin->setPseudo(('Martine') . ('Ducornet'));
-        $admin->setFunction($functions[array_rand($functions)]);
+        $admin->setFunction('Manager');
+        $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setActivated(true);
         $admin->setPassword('$2y$13$BWRnkAlTMAVuOk.tx01xheVAQ/9W.TNejmP7Xo2JeTPX1SKwAWDvu');
         $manager->persist($admin);
 

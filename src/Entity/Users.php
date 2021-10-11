@@ -138,6 +138,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $messageReceived;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $activated;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -533,6 +538,18 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
                 $messageReceived->setTarget(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getActivated(): ?bool
+    {
+        return $this->activated;
+    }
+
+    public function setActivated(bool $activated): self
+    {
+        $this->activated = $activated;
 
         return $this;
     }
