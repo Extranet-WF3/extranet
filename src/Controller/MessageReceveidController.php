@@ -25,7 +25,7 @@ class MessageReceveidController extends AbstractController
        // dd($receveid);
 
               
-        return $this->render('message_receveid/receveid.html.twig', [ // renvoi sur la page twig
+        return $this->render('message_receveid/receveid.html.twig', [ 
             'messages' => $messages, 
             'user' => $user, // permet d'envoyer ce qu'on a recuperer sur twig 
         ]);
