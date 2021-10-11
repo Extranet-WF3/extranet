@@ -14,11 +14,17 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 class ArticlesController extends AbstractController
 {
 
-    /** Formulaire de création d'un article
-     * @Route("/article/create", name="article_create")
-     * @param article
-     * @return Response
+    /** 
+     * Formulaire de création d'un article
      * On utilise le service $slugger de l'interface SluggerInterface
+     * 
+     * @Route("/article/create", name="article_create")
+     * 
+     * @param Articles $article
+     * @param SluggerInterface $slugger
+     * 
+     * @return Response
+     * 
      */
     public function create(Request $request, SluggerInterface $slugger): Response
     {
@@ -79,9 +85,14 @@ class ArticlesController extends AbstractController
 
 
 
-    /** Affichage de la liste des articles
+    /** 
+     * Affichage de la liste des articles
+     * 
      * @Route("/articles", name="list_article")
-     * @param 
+     * 
+     * @param Article $article
+     * @param ArticlesRepository $repository
+     * 
      * @return Response
      */
     public function index(ArticlesRepository $repository): Response
@@ -97,9 +108,13 @@ class ArticlesController extends AbstractController
 
 
 
-    /** Affichage d'un article avec Param Converter
+    /** 
+     * Affichage d'un article avec Param Converter
+     * 
      * @Route("/article/{slug}", name="article_show")
-     * @param Article
+     * 
+     * @param Articles $article
+     * 
      * @return Response
      */
     public function show(Articles $article): Response
@@ -113,8 +128,14 @@ class ArticlesController extends AbstractController
 
 
 
-    /** Modification d'un article avec Param Converter (chargement automatique de l'article par son id)
+    /** 
+     * Modification d'un article avec Param Converter (chargement automatique de l'article par son id)
+     * 
      * @Route("/article/{id}/edit", name="article_edit")
+     * 
+     * @param Articles $article
+     * 
+     * @return Response
      */
     public function edit(Articles $article, Request $request ): Response
     {
@@ -154,8 +175,14 @@ class ArticlesController extends AbstractController
 
 
 
-    /** Suppression d'un article avec Param Converter
+    /** 
+     * Suppression d'un article avec Param Converter et avec Voter
+     * 
      * @Route("/article/{id}/delete", name="article_delete")
+     * 
+     * @param  Articles  $article
+     * 
+     * @return Response
      */
     public function delete(Articles $article): Response
     {
