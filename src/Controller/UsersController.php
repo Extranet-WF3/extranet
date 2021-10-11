@@ -29,13 +29,13 @@ class UsersController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{pseudo}/Profil/edit", name="editProfil")
+     * @Route("Profil/edit", name="editProfil")
      */
     public function editProfil(Request $request)
     {
         $manager = $this->GetDoctrine()->getManager();
 
-        $user = new Users();
+    $user = $this->getuser();
 
         $form = $this->createFormBuilder($user)
             ->add('lastname', TextType::class, [
@@ -114,7 +114,9 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
         return $this->render('users/editProfil.html.twig', [
-            'formUser' => $form->createview()
+            'user'=>$user,
+            'formUser' => $form->createview(),
+            
         ]);
     }
 

@@ -123,7 +123,7 @@ class AnnouncesController extends AbstractController
 
 
      /**
-     * @Route("/{slug}/edit", name="announce_edit", methods={"GET","POST"})
+     * @Route("/announce/{id}/edit", name="announce_edit", methods={"GET","POST"})
      */
 
     public function edit(Request $request, Announces $announce): Response
