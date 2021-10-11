@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Announces;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,14 +17,14 @@ class AnnouncesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-           
-            ->add('categories', ChoiceType::class,[
-                'choices'  => [
-                    'Stage' => 'Stage',
-                    'Alternance' =>'Alternance' ,
-                    'Emploi' =>'Emploi' 
-                ], 
-                ])
+        ->add('categories', ChoiceType::class,[
+            'choices'  => [
+                'Stage' => 'Stage',
+                'Alternance' =>'Alternance' ,
+                'Emploi' =>'Emploi' 
+            ], 
+            ])
+            
             ->add('title', null,[
                 'label' => 'Announce',
                 'attr' =>[
