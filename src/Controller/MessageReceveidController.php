@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Messages;
 use App\Entity\Users;
 use App\Repository\MessagesRepository;
@@ -23,12 +24,12 @@ class MessageReceveidController extends AbstractController
         // recuper la cible puis filtre les 5 dernier message
         $messages = $repository->findByTarget([$user], null, 5, null); 
 
-       // dd($receveid);
-
               
         return $this->render('message_receveid/receveid.html.twig', [ 
             'messages' => $messages, 
             'user' => $user, // permet d'envoyer ce qu'on a recuperer sur twig 
+
+        
         ]);
     }
 }

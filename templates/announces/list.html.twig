@@ -7,67 +7,36 @@
 {% block body %}
 
 
-	<div class="example-wrapper">
-		<div class="select">
-			<select class="custom-select">
-				<option selected>Date de publication</option>
-
-				<option value="1">
-					4 derniers jours
-				</option>
+	<div class="container">
 
 
-				<option value="2">3 derniers jours</option>
-				<option value="3">7 derniers jours</option>
-			</select>
-
-			<select class="custom-select ">
-				<option selected>Posté par</option>
-				<option value="1">Admin</option>
-				<option value="2">les autres membres</option>
-
-			</select>
-
-			<select class="custom-select ">
-				<option selected>Categories</option>
-				<option value="1">Stage</option>
-				<option value="2">Alternance</option>
-				<option value="3">Emploi</option>
-			</select>
+		<div class="row">
+			{% for announce in announces %}
 
 
-		</div>
+				<div class="col-sm-6">
+					<a href="{{ path('announce_show', {slug: announce.slug}) }}">
+						<div class="card">
+							<div class="card-body">
 
-		<div class="container">
+								<h4>{{ announce.nameCompany }}</h4>
+								<p class="card-text">{{ announce.description | u.truncate( 200, '...', false) }}</p>
+								{% if announce.createdAt %}
+									{{ announce.createdAt |ago }}
+								{% else %}
 
+									(unpublished)
 
-			<div class="row">
-				{% for announce in announces %}
-
-
-					<div class="col-sm-6">
-						<a href="{{ path('announce_show', {slug: announce.slug}) }}">
-							<div class="card">
-								<div class="card-body">
-
-									<h4>{{ announce.nameCompany }}</h4>
-									<p class="card-text">{{ announce.description | u.truncate( 200, '...', false) }}</p>
-									{% if announce.createdAt %}
-										{{ announce.createdAt |ago }}
-									{% else %}
-
-										(unpublished)
-
-									{% endif %}
-								</div>
+								{% endif %}
 							</div>
-						</a>
-					</div>
+						</div>
+					</a>
+				</div>
 
 
-				{% endfor %}
-			</div>
-
+			{% endfor %}
 		</div>
 
-	{% endblock %}
+	</div>
+
+{% endblock %}

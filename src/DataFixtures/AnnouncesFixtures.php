@@ -18,10 +18,10 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
 
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i <5 ; $i++){
+        for ($i = 0; $i < 10; $i++) {
 
             $announce = new Announces();
-            $announce->setCategories($faker->randomElement($array = array ( 'Stage','Alternance','Emploi')));
+            $announce->setCategories($faker->randomElement($array = array('Stage', 'Alternance', 'Emploi')));
             $announce->setTitle($faker->title());
             $announce->setDescription($faker->text());
             $announce->setOriginalLink($faker->url());
@@ -30,7 +30,7 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
             $announce->setZipCode($faker->postcode());
             $announce->setCity($faker->city());
             $announce->setSlug($faker->slug());
-            
+
 
             $announce->setCreatedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-30 days')));
 
@@ -38,13 +38,7 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($announce);
             $manager->flush();
-
         }
-
-
-
-
-        
     }
     public function getDependencies()
     {
@@ -53,4 +47,3 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
         ];
     }
 }
-       

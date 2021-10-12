@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>LISTES DES UTILISATEURS EN ATTENTE</h1>
+	<table class="table">
+		<thead>
+			<th>pseudo</th>
+			<th>nom</th>
+			<th>prenom</th>
+			<th>statut</th>
+			<th>numéros de session</th>
+			<th>Année Session</th>
+
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{user.pseudo}}</td>
+					<td>{{user.lastname}}</td>
+					<td>{{user.firstname}}</td>
+					<td>{{user.function}}</td>
+					<td>{{user.sessionNumber}}</td>
+					<td>{{user.trainingYear}}</td>
+                    <td><a role="submit" href="{{ path('admin_activated', {id: user.id}) }}" class="btn btn-success" >activer le compte</a></td>
+				</tr>
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						il n'yas pas dutlisateurs en attente</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
