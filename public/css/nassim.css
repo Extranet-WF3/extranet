@@ -20,33 +20,30 @@ h2{
      height: 18rem;
     
 }
-.bienvenue{
-    text-align: center;
-}
 .bienvenue-texte{
-    width: 80%;
-    margin:auto;
-    font-size: 30px;
-    text-align: justify;
+  
+    font-size: 20px;
+    margin-left: 10px;
+    margin-right:10px;
+    
 }
 
 #scrollUp { /* a revoir car petit beug */
-        
-        
-        bottom: 150px;
-        opacity: 2;
-        z-index: 2;
-        cursor: pointer;
-        right : 100px;
-        width: 20px;
-    
+    bottom: 150px;
+    opacity: 2;
+    z-index: 2;
+    cursor: pointer;
+    right : 100px;
+    width: 20px;
 }
-.scroll{
-    height: 15px;
-    width: 20px;    
+img.scroll{
+    display: flex;
+    justify-items: center;
+    height: 45px;
+    width: 30px;    
+    left: 40px;
 }
 .finTexte{
-
     margin-right: 55%;
 }
 
