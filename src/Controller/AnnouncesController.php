@@ -161,10 +161,8 @@ class AnnouncesController extends AbstractController
     }
 
 
-
     /**
-     * @Route("/{id}/delete", name="announce_delete", methods={"POST"})
-
+     * @Route("/announce/{id}/delete", name="announce_delete", methods={"POST"})
      */
     public function delete(Request $request, Announces $announce): Response
     {
@@ -180,3 +178,4 @@ class AnnouncesController extends AbstractController
         return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
     }
 }
+
