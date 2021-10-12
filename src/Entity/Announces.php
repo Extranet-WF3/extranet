@@ -45,7 +45,7 @@ class Announces
      * @Assert\NotBlank
      */
 
-    
+
     private $description;
 
     /**
@@ -95,7 +95,7 @@ class Announces
      */
     private $slug;
 
-    
+
 
     public function getId(): ?int
     {
@@ -245,9 +245,4 @@ class Announces
 
         return $this;
     }
-
-    
-    }
-
-    
-
+}

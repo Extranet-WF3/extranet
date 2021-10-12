@@ -50,16 +50,16 @@
 
 		<div class="col mt-4">
 			{% if is_granted('edit',announce) %}
-			<a href="{{ path('announce_edit', {id: announce.id}) }}" class="btn btn-secondary mr-3">Modifier</a>
+				<a href="{{ path('announce_edit', {id: announce.id}) }}" class="btn btn-secondary mr-3">Modifier</a>
 			{% endif %}
 			{#<a href="{{ path('announce_delete', { id: announce.id}) }}" class="btn btn-danger">Delete</a>#}
 
 			{% if is_granted('delete',announce) %}
-			
-			{{ include('announces/deleteAnnounce.html.twig') }}
+
+				{{ include('announces/deleteAnnounce.html.twig') }}
 
 			{% endif %}
-			
+
 		</div>
 
 	</div>

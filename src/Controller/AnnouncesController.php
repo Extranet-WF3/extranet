@@ -25,7 +25,7 @@ class AnnouncesController extends AbstractController
     public function list(AnnouncesRepository $announcesRepository): Response
     {
 
-       
+
         //on recupère les annonces dans la BDD
 
         //$announcesRepository = $this->getDoctrine()
@@ -46,7 +46,7 @@ class AnnouncesController extends AbstractController
 
         return $this->render('announces/list.html.twig', [
             'announces' => $announces,
-            
+
         ]);
     }
 
@@ -130,7 +130,7 @@ class AnnouncesController extends AbstractController
 
 
 
-     /**
+    /**
 
      * @Route("/announce/{id}/edit", name="announce_edit", methods={"GET","POST"})
 
@@ -141,10 +141,10 @@ class AnnouncesController extends AbstractController
     {
         //l'utilisateur doit être connecté s'il ne l'ai pas on redirige
 
-        
+
         $this->denyAccessUnlessGranted('edit', $announce);
 
-        
+
         $form = $this->createForm(AnnouncesType::class, $announce);
         $form->handleRequest($request);
 
@@ -168,19 +168,15 @@ class AnnouncesController extends AbstractController
      */
     public function delete(Request $request, Announces $announce): Response
     {
-        
+
         $this->denyAccessUnlessGranted('delete', $announce);
 
         //if ($this->isCsrfTokenValid('delete' . $announce->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($announce);
-            $entityManager->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($announce);
+        $entityManager->flush();
         //}
 
         return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
     }
-
-
-
-    
 }

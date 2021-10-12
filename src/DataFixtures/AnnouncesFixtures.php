@@ -21,7 +21,7 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 0; $i < 10; $i++) {
 
             $announce = new Announces();
-            $announce->setCategories($faker->randomElement($array = array ( 'Stage','Alternance','Emploi')));
+            $announce->setCategories($faker->randomElement($array = array('Stage', 'Alternance', 'Emploi')));
             $announce->setTitle($faker->title());
             $announce->setDescription($faker->text());
             $announce->setOriginalLink($faker->url());
