@@ -56,7 +56,7 @@ class AnnouncesController extends AbstractController
 
     /**
      * 
-     * @Route("/announce/create", name="create_announce", methods={"GET", "POST"})
+     * @Route("/announce/create", name="create_announce")
      * 
      */
 
@@ -132,7 +132,7 @@ class AnnouncesController extends AbstractController
 
     /**
 
-     * @Route("/announce/{id}/edit", name="announce_edit", methods={"GET","POST"})
+     * @Route("/announce/{id}/edit", name="announce_edit")
 
 
      */
