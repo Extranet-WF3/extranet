@@ -4,57 +4,67 @@
 
 {% block body %}
 
-    <main class="container-fluid">
+    <article class="container-fluid">
 
+        <!-- Block titre de l'article -->
         <div class="row mt-4">
 
             <div class="col-8 offset-2 border rounded py-3" style="background: rgb(211, 211, 211);">
-            <h1>{{ article.title }}</h1>
+            
+                <h2>{{ article.title }}</h2>
+            
             </div>
 
         </div>
 
+        <!-- Block catégorie de l'article -->
         <div class="row mt-4">
 
             <div class="col-8 offset-2 border rounded mb-0 pt-3" style="background: rgb(211, 211, 211);">
-            <p>Catégorie : <span class="font-weight-bold" > {{ article.categories }}</span></p>
+            
+                <p>Catégorie : <span class="font-weight-bold" > {{ article.categories }}</span></p>
+            
             </div>
             
         </div>
 
+        <!-- Block description de l'article -->
         <div class="row mt-4">
 
             <div class="col-8 offset-2 border rounded text-justify py-3" style="background: rgb(211, 211, 211);">
 
-            <article>{{ article.description }}</article>
+                <article>{{ article.description }}</article>
 
             </div>
 
         </div>
-        
+
+        <!-- Block lien vers l'article -->
         <div class="row mt-4">
 
             <div class="col-8 offset-2 border rounded py-2" style="background: rgb(211, 211, 211);">
 
-            <a href="{{ article.originalLink }}">Lien de l’article</a>
-
-        </div>
-
-        <div class="row mt-4">
-
-            <div class="col-8 offset-2 border rounded" style="background: rgb(211, 211, 211);">
-
-            <span>Date de publication : <time class="inline-block">{{ article.createdAt |format_date ('long', locale='fr') }}</time></span>
+                <a href="{{ article.originalLink }}">Lien vers l’article</a>
 
             </div>
 
         </div>
 
+        <!-- Block date de publication -->
+        <div class="row mt-4">
+
+            <div class="col-8 offset-2 border rounded pt-3" style="background: rgb(211, 211, 211);">
+
+                <p>Date de publication, le <time>{{ article.createdAt |format_date ('long', locale='fr') }}</time></p>
+
+            </div>
+
+        </div>
 
         <div class="row mt-4">
 
-            <!-- Modification de l'article -->
-            <div class="col mt-4">
+            <!-- Block de boutons de modifications de l'article -->
+            <div class="col-8 offset-2">
 
                 {# Bouton de modification avec condition de connexion de l'utilisateur et d'autorisation de modifier car l'article lui est associé #}
                 {% if is_granted('edit', article) %}
@@ -82,7 +92,7 @@
 
                             <div class="modal-header">
 
-                                <h5 class="modal-title text-danger" id="delete-Modal">Attention</h5>
+                                <h5 class="modal-title text-danger text-uppercase">Attention</h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -114,6 +124,6 @@
 
         </div>
 
-    </Main>
+    </article>
 
 {% endblock %}

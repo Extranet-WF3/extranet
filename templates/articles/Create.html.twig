@@ -4,20 +4,48 @@
 
 {% block body %}
 
-{# On désactive la validation par défaut du navigateur #}
-{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+	<main class="container">
 
-	{# Affichage des champs titre, description, catégorie et lien article #}
-	{{form_widget(form)}}
+		<div class="row">
 
-	{# Affichage des erreurs #}
-    <div class="">
-        {{ form_errors(form) }}
-    </div>
+			<div class="col">
 
-	{# Bouton de validation #}
-	<button class="btn btn-primary">Valider</button>
+				<div class="card">
 
-{{ form_end (form)}}
+					<!-- Entête formulaire de création d'un article -->
+					<h1 class="card-header col-8 offset-2 text-center my-3 py-3" >
+
+						Créer un article
+
+					</h1>
+
+					<!-- Formulaire de création -->
+					<div class="card-body col-8 offset-2 border rounded text-center mb-3 py-3" style="background: rgb(211, 211, 211);">
+
+						{# On désactive la validation par défaut du navigateur #}
+						{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+
+							{# Affichage des champs titre, description, catégorie et lien article #}
+							{{form_widget(form)}}
+
+							{# Affichage des erreurs #}
+							<div class="">
+								{{ form_errors(form) }}
+							</div>
+
+							{# Bouton de validation #}
+							<button class="btn btn-primary">Valider</button>
+
+						{{ form_end (form)}}
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
 
 {% endblock %}

@@ -4,22 +4,52 @@
 
 {% block body %}
 
-<h1>Modifier l'article</h1>
+	<main class="container">
 
-{# On désactive la validation par défaut du navigateur #}
-{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+		<div class="row">
 
-	{# Affichage des champs titre, description, catégorie et lien article #}
-	{{form_widget(form)}}
+			<div class="col">
 
-	{# Affichage des erreurs #}
-    <div class="">
-        {{ form_errors(form) }}
-    </div>
+				<div class="card border rounded">
 
-	{# Le bouton de validation de la modification de l'article #}
-	<button class="btn btn-primary">Valider</button>
+					<!-- Entête formulaire de modification d'un article -->
+					<h2 class="card-header col-8 offset-2 text-center my-3 py-3" >
 
-{{ form_end (form)}}
+						Modifier
+
+						<br>
+						
+						{{ article.title }}.
+
+					</h2>
+
+					<!-- Formulaire de modification -->
+					<div class="card-body col-8 offset-2 text-center mb-3 py-3" style="background: rgb(211, 211, 211);">
+
+						{# On désactive la validation par défaut du navigateur #}
+						{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
+
+							{# Affichage des champs titre, description, catégorie et lien article #}
+							{{form_widget(form)}}
+
+							{# Affichage des erreurs #}
+							<div class="">
+								{{ form_errors(form) }}
+							</div>
+
+							{# Le bouton de validation de la modification de l'article #}
+							<button class="btn btn-primary">Valider</button>
+
+						{{ form_end (form)}}
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</main>
 
 {% endblock %}

@@ -4,73 +4,56 @@
 
 {% block body %}
 
-<h1>Liste des articles</h1>
-
 	<main>
 
-		<!-- Bouton de filtre suivant les catégories -->
-		{# <div class="row"> #}
+		<h1 class="text-center">Liste des articles</h1>
 
-			{# <div class="col-8 offset-2 mt-3"> #}
-				{# <select name="categories" class=""> #}
+		<p class="col-12 display-4">Cliquer sur le titre de l'article pour le lire</p>
 
-					{# <option value=""></option> #}
+        <!-- Liste des articles -->
+        <div class="col">
 
-					{# <option value="">Général</option> #}
+            <div class="row">
 
-					{# <option value="">Programmation</option> #}
+				<!-- Boucle d'affichage de tous les articles -->
+				{% for article in articles %}
 
-					{# <option value="">Langages</option> #}
+				<div class="col-12 col-md-6 col-lg-4">
 
-					{# <option value="">Frameworks</option> #}
+					<div class="card card-article mb-4">
 
-					{# <option value="">API</option> #}
+						<div class="card-body" style="background: rgb(211, 211, 211);">
 
-					{# <option value="">Logiciels</option> #}
+							<!-- Affichage du titre de l'article -->
+							<h4 class="card-title">
 
-					{# <option value="">Matériel informatique</option> #}
+								<a href="{{ path('article_show', {slug: article.slug}) }}">
+										{{ article.title }}
+								</a>
 
-					{# <option value="">Secteur emploi</option> #}
+							</h4>
 
-				{# </select> #}
+							<!-- Affichage du début la description de l'article (texte tronqué) -->
+							<p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
 
-			{# </div> #}
+							<!-- Affichage de la catégorie de l'article -->
+							<p>Catégorie : {{ article.categories }}</p>
 
-		{# </div> #}
+							<!-- Affichage de la date de publication de l'article -->
+							{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
+							<p>Publié le <time>{{ article.createdAt | ago }}</time></p>
 
-		<!-- Boucle d'affichage de tous les articles -->
-        {% for article in articles %}
+						</div>
 
-        <div class="col-12 col-md-6 col-lg-4">
-
-            <div class="card card-article mb-4">
-
-                <div class="card-body">
-
-                    <h4 class="card-title">
-
-                    <a href="{{ path('article_show', {slug: article.slug}) }}">
-                            {{ article.title }}
-                    </a>
-
-                    </h4>
-
-                    <p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
-
-                    <div class="mb-4">
-                        Catégorie: {{ article.categories }}
-                    </div>
-
-					{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
-					<p>Publié <time class="inline-block">{{ article.createdAt | ago }}</time></p>
+					</div>
 
 				</div>
 
-            </div>
+				{% endfor %}
 
-        </div>
+			</div>
 
-        {% endfor %}
+		</div>
 
 	</Main>
 
