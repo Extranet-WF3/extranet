@@ -13,14 +13,14 @@
 				<div class="card">
 
 					<!-- Entête formulaire de création d'un article -->
-					<h1 class="card-header col-8 offset-2 bg-white border-0 text-center my-3 py-3" >
+					<h1 class="card-header col-8 offset-2 bg-white border-0 text-center py-3" >
 
 						Créer un article
 
 					</h1>
 
 					<!-- Formulaire de création -->
-					<div class="card-body col-8 offset-2 border rounded mb-3 py-3" style="background: rgb(211, 211, 211);">
+					<div class="card-body col-8 offset-2 border rounded mb-5 py-3" style="background: rgb(211, 211, 211);">
 
 						{# On désactive la validation par défaut du navigateur #}
 						{{ form_start (form, {'attr': {'novalidate': 'novalidate'}})}}
@@ -29,12 +29,14 @@
 							{{form_widget(form)}}
 
 							{# Affichage des erreurs #}
-							<div class="">
+							<div>
 								{{ form_errors(form) }}
 							</div>
 
+							<div class="text-center">
 							{# Bouton de validation #}
 							<button class="btn btn-primary">Valider</button>
+							</div>
 
 						{{ form_end (form)}}
 
