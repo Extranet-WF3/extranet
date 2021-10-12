@@ -18,7 +18,7 @@
 		<meta name="copyright" content="© CC BY-NC-SA 4.0" />
 
         <!-- Logo 3 de WF3 dans l'onglet de la page -->
-        <link rel="icon" type="image" href="{{asset('/images/Logo_wf3.png')}}"/>
+        <link rel="icon" type="image/png" href="{{asset('/images/Logo_wf3.png')}}"/>
 
 
         {# Run `composer require symfony/webpack-encore-bundle`
@@ -40,6 +40,8 @@
             <!-- Fichier de style CSS -->
             <link rel="stylesheet" href="{{ asset('css/style.css')}}">
             <link rel="stylesheet" href="{{ asset('css/announces.css')}}">
+            <link rel="stylesheet" href="{{ asset('css/nassim.css')}}">
+            
 
             <!-- Fichier Media Query -->
             <link rel="stylesheet" href="{{ asset('css/media-query.css')}}">
@@ -55,23 +57,6 @@
 		{% else  %}
 			{{ include('partials/_navbarlogin.html.twig') }}
 		{% endif %}
-		<div class="container">
-
-        {% for label, messages in app.flashes %}
-
-            {% for message in messages %}
-
-                <div class="alert alert-{{ label }}">
-                    {{ message }}
-					
-        </div>
-		
-
-        {% endfor %}
-
-		{% endfor %}
-		
-		</div>
 
 
     {# Afficher les messages Flash #}

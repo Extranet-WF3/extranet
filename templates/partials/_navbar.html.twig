@@ -32,15 +32,17 @@
 					{{app.user.pseudo}}
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{{path('users_Profil')}}">Voir mon profil</a>
-					<a class="dropdown-item" href="{{path('message_private')}}">Voir mes messages</a>
+
+					<a class="dropdown-item" href="{{path('users_Profil')}}"> Voir mon profil</a>
+					<a class="dropdown-item" href="{{path('message_private')}}"> Envoyer un Message </a>
+					<a class="dropdown-item" href="{{path('message_receveid')}}"> Voir mes messages </a>
 					<a class="dropdown-item" href="{{path('app_logout')}}">déconnécter</a>
 				</div>
 			</li>
 			{% if app.user.image != null %}
 				<img src="image" src=""{{asset('')}} alt="image">
 			{% else %}
-				<img class="avatar" src="{{asset('/images/avatar_base.png')}}" alt="Avatar">
+				<img class="avatar" src="{{asset('/images/src/avatar_base.png')}}" alt="Avatar">
 			{% endif %}
 		</div>
 	</nav>

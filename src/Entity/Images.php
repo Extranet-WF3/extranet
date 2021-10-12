@@ -20,7 +20,7 @@ class Images
      */
     private $id;
     /**
-     * @Vich\UploadableField(mapping="avatars", fileNameProperty="src")
+     * @Vich\UploadableField(mapping="src", fileNameProperty="src")
      * @var File
      */
     private $imageFile;
@@ -46,7 +46,7 @@ class Images
         return $this->id;
     }
 
- public function setImageFile(?File $imageFile = null)
+    public function setImageFile(?File $imageFile = null)
     {
         $this->imageFile = $imageFile;
 
@@ -105,4 +105,5 @@ class Images
 
         return $this;
     }
+   
 }
