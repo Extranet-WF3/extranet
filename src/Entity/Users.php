@@ -558,7 +558,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface,Seriali
     {
         return serialize(array(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
 
         ));
@@ -568,7 +568,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface,Seriali
     {
         list(
             $this->id,
-            $this->username,
+            $this->email,
             $this->password,
 
         ) = unserialize($serialized);
