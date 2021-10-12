@@ -27,7 +27,9 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
             $announce->setOriginalLink($faker->url());
             $announce->setNameCompany($faker->sentence(1));
             $announce->setAdressCompany($faker->address());
-            $announce->setZipCode($faker->postcode());
+            $announce->setZipCode(str_replace(' ', '', $faker->postcode()));
+
+
             $announce->setCity($faker->city());
             $announce->setSlug($faker->slug());
 
