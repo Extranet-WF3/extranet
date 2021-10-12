@@ -18,8 +18,8 @@
 					<a href="{{ path('announce_show', {slug: announce.slug}) }}">
 						<div class="card card-article mb-4">
 							<div class="card-body" style="background: rgb(211, 211, 211);">
-								
-				
+
+
 								<h4>{{ announce.nameCompany }}</h4>
 								<p class="card-text">{{ announce.description | u.truncate( 200, '...', false) }}</p>
 								{% if announce.createdAt %}
