@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Message reçu
+{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center p-4"> Message Reçu  </h1>
+
+<table class="table text-center p-4">
+	<thead>
+		
+		<th>Objet</th>
+		<th>Message reçu</th>
+		<th>Date</th>
+		<th><button type="button" class="btn btn-success">Répondre</button></th>
+	</thead>
+	<tbody>
+		{% for message in messages %}
+			<tr>
+				<td>{{message.object}}</td>
+				<td>{{message.message}}</td>
+				<td>{{message.createdAt|ago}}</td>
+			</tr>
+		</tbody>
+	{% else %}
+
+		<tr>
+
+			<td colspan="4">
+				Vous n'avez reçu aucun message pour le moment 
+			</td>
+		</tr>
+	{% endfor %}
+
+
+    
+</tbody>
+
+</table>
+{%endblock%}

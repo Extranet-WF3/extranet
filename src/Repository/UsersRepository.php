@@ -32,6 +32,7 @@ class UsersRepository extends ServiceEntityRepository implements PasswordUpgrade
         }
 
         $user->setPassword($newHashedPassword);
+        $user->setRoles(['ROLE_USERS']);
         $this->_em->persist($user);
         $this->_em->flush();
     }

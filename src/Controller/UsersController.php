@@ -1,17 +1,26 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Images;
 use App\Entity\Users;
+use App\Entity\Announces;
+use App\Entity\Articles;
+use App\Form\ImageType;
+use App\Repository\AnnouncesRepository;
+use App\Repository\ArticlesRepository;
 use App\Repository\UsersRepository;
 use Doctrine\Persistence\ObjectManager;
 use phppharser\Node\Expr\Cast\Object_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\MailerService;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class UsersController extends AbstractController
 {
@@ -25,13 +34,13 @@ class UsersController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{pseudo}/Profil/edit", name="editProfil")
+     * @Route("Profil/edit", name="editProfil")
      */
     public function editProfil(Request $request)
     {
         $manager = $this->GetDoctrine()->getManager();
 
-        $user = new Users();
+        $user = $this->getUser();
 
         $form = $this->createFormBuilder($user)
             ->add('lastname', TextType::class, [
@@ -52,13 +61,6 @@ class UsersController extends AbstractController
                     'placeholder' => 'email'
                 ]
             ])
-            ->add('Pseudo', TextType::class, [
-
-                'attr' => [
-                    'placeholder' => 'lastname.firstname'
-                ]
-            ])
-
             ->add('NumberPhone', TextType::class, [
 
                 'attr' => [
@@ -109,6 +111,14 @@ class UsersController extends AbstractController
                 ]
             ])
 
+            ->add('image', ImageType::class, [
+                'attr' => [
+
+                    'placeholder' => 'Image'
+
+                ]
+
+            ])
 
 
 
@@ -117,7 +127,9 @@ class UsersController extends AbstractController
         $form->handleRequest($request);
 
         return $this->render('users/editProfil.html.twig', [
-            'formUser' => $form->createview()
+            'user' => $user,
+            'formUser' => $form->createview(),
+
         ]);
     }
 
@@ -148,11 +160,21 @@ class UsersController extends AbstractController
     /**
      * @Route("/Profil", name="users_Profil")
      */
-    public function Profil(UsersRepository $repository): Response
+    public function Profil(ArticlesRepository $repoart, AnnouncesRepository $repoannoun)
     {
-        $users = $repository->findAll();
+        $user = $this->getUser();
+
+
+
+
+
+        $articles = $repoart->findByUser([$user], ['createdAt' => 'ASC'], 6, null);
+        $announces = $repoannoun->findByUser([$user], ['createdAt' => 'ASC'], 6, null);
         return $this->render('users/Profil.html.twig', [
-            'user' => $users,
+            'user' => $user,
+            'articles' => $articles,
+            'announces' => $announces,
+
         ]);
     }
 
@@ -170,5 +192,37 @@ class UsersController extends AbstractController
         $session->invalidate();
 
         return $this->redirectToRoute('app_logout');
+    }
+
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function admin(UsersRepository $repository)
+    {
+        $users = $repository->findByActivated(0);
+        return $this->render('users/Admin.html.twig', [
+            'users' => $users,
+        ]);
+    }
+
+    /**
+     * @Route("admin/{id}/activer", name="admin_activated", methods="GET")
+     */
+    public function permuteActivated(UsersRepository $repository,MailerInterface $mailer ,$id)
+    {
+        $user = $repository->findOneBy(["id" => $id]);
+        $user->setActivated(true);
+        $entityManager = $this->getDoctrine()->getManager();
+        $email = (new Email())
+        ->from('webforc3@gmail.com')
+        ->cc('webforc3@gmail.com')
+        ->to($user->getEmail())
+        ->subject('Compte WebForce3 ')
+        ->text('L\'activation de votre compte a été validé par un administrateur.');
+        $mailer->send($email);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('users_Profil');
     }
 }
