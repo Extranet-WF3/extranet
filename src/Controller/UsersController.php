@@ -125,6 +125,11 @@ class UsersController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            $image = $form->get('image')->getData();
+            $manager->persist($user);
+            $manager->flush();
+        }
 
         return $this->render('users/editProfil.html.twig', [
             'user' => $user,
@@ -140,7 +145,7 @@ class UsersController extends AbstractController
     {
         $users = $repository->findAll();
         return $this->render('users/listes.html.twig', [
-            'users' => $users
+            'users' => $users,
 
         ]);
     }

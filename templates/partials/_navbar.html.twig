@@ -42,9 +42,11 @@
 		</ul>
 
 			{% if app.user.image != null %}
-                <img src="image" src="{{app.user.image}}" alt="image">
-            {% else %}
-                <img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="Avatar">
-            {% endif %}			
-	</div>
-</nav>
+
+				<img src="image" src="{{app.user.image.src}}" alt="image">
+			{% else %}
+				<img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="Avatar">
+			{% endif %}
+		</div>
+	</nav>
+
