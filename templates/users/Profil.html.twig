@@ -5,7 +5,7 @@
 {% block body %}
 	<h1 class="text-center my-3">Profil de 
 
-		{{app.user.firstname}} {{app.user.lastname}}</h1>
+		{{app.user.lastname}} {{app.user.firstname}} </h1>
 
 
 	<div class="container col-4 offset-4 border rounded">
@@ -67,8 +67,10 @@
 		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Supprimer mon compte</a>
 	</div>
 	<br>
+
 		<div class="col-10 offset-1 text-center">
 	<h3>Liste de vos six dernières annonces</h3>
+
 	<table class="table">
 		<thead>
 			<th>Titre</th>
@@ -102,7 +104,9 @@
 	</div>
 
 	<div class="col-10 offset-1 text-center">
+
 		<h3>Liste de vos six derniers articles</h3>
+
 	<table class="table">
 		<thead>
 			<th>Titre</th>
