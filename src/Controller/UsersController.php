@@ -50,7 +50,9 @@ class UsersController extends AbstractController
                 'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Nom'
-                ]
+
+                ],
+          
             ])
             ->add('Firstname', TextType::class, [
                 'label' => 'Prénom',
@@ -72,10 +74,29 @@ class UsersController extends AbstractController
                 ]
             ])
             ->add('Function', TextType::class, [
-
+                'label' => 'Statut',
                 'attr' => [
                     'placeholder' => 'statut'
                 ]
+            ])
+            ->add('currentSituation', TextType::class, [
+                'label' => 'Situation actuelle',
+                'attr' => [
+
+                    'placeholder' => 'Situation actuelle'
+
+
+                ],
+                'required' => false,
+            ])
+            ->add('currentPost', TextType::class, [
+                'label' => 'Poste actuel',
+                'attr' => [
+                'placeholder' => 'Poste actuel'
+
+
+                ],
+                'required' => false,
             ])
 
             ->add('SessionNumber', TextType::class, [
@@ -120,31 +141,13 @@ class UsersController extends AbstractController
             ->add('image', ImageType::class, [
                 'label' => 'Avatar',
                 'attr' => [
-                    'placeholder' => 'Avatar'
-
+                    'placeholder' => 'Avatar',
+                    
                 ],
                 'required' => false,
 
             ])
 
-            ->add('currentSituation', TextType::class, [
-                'attr' => [
-
-                    'placeholder' => 'situation courante'
-
-
-                ],
-                'required' => false,
-            ])
-            ->add('currentPost', TextType::class, [
-                'attr' => [
-
-                    'placeholder' => 'poste actuel'
-
-
-                ],
-                'required' => false,
-            ])
 
 
 
