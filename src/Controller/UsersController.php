@@ -72,9 +72,9 @@ class UsersController extends AbstractController
             ])
 
             ->add('Function', TextType::class, [
-
                 'label' => 'Statut',
                 'attr' => [
+
                     'placeholder' => 'Statut'
                 ],
             ])
@@ -98,6 +98,7 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
+
             ])
 
             ->add('SessionNumber', TextType::class, [
