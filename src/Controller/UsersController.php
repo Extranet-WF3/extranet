@@ -46,87 +46,110 @@ class UsersController extends AbstractController
 
         $form = $this->createFormBuilder($user)
             ->add('lastname', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Nom'
                 ]
             ])
             ->add('Firstname', TextType::class, [
-
+                'label' => 'Prénom',
                 'attr' => [
-                    'placeholder' => 'prénom'
+                    'placeholder' => 'Prénom'
                 ]
             ])
 
             ->add('email', TextType::class, [
-
+                'label' => 'Adresse mail',
                 'attr' => [
-                    'placeholder' => 'email'
+                    'placeholder' => 'Adresse mail'
                 ]
             ])
             ->add('NumberPhone', TextType::class, [
-
+                'label' => 'Numéro de téléphone',
                 'attr' => [
-                    'placeholder' => 'numéro de télephone'
+                    'placeholder' => 'Numéro de téléphone'
                 ]
             ])
 
-            ->add('Linkedin', TextType::class, [
+            ->add('Function', TextType::class, [
 
+                'label' => 'Statut',
                 'attr' => [
-                    'placeholder' => 'linkedin'
+                    'placeholder' => 'Statut'
                 ],
-                'required' => false,
-            ])
-
-
-            ->add('twitter', TextType::class, [
-
-                'attr' => [
-                    'placeholder' => ' twitter'
-                ],
-                'required' => false,
-            ])
-
-            ->add('github', TextType::class, [
-
-                'attr' => [
-                    'placeholder' => ' github'
-                ],
-                'required' => false,
-            ])
-
-            ->add('image', ImageType::class, [
-                'attr' => [
-
-                    'placeholder' => 'Image'
-
-
-                ],
-                'required' => false,
-
             ])
 
             ->add('currentSituation', TextType::class, [
+                'label' => 'Situation actuelle',
                 'attr' => [
 
-                    'placeholder' => 'situation courante'
+                    'placeholder' => 'situation actuelle'
 
 
                 ],
                 'required' => false,
             ])
             ->add('currentPost', TextType::class, [
+                'label' => 'Poste actuel',
                 'attr' => [
 
-                    'placeholder' => 'poste actuel'
+                    'placeholder' => 'Poste actuel'
 
 
                 ],
                 'required' => false,
             ])
 
+            ->add('SessionNumber', TextType::class, [
+                'label' => 'Numéro de session',
+                'attr' => [
+                    'placeholder' => 'Numéro de session'
+                ]
+            ])
 
 
+            ->add('trainingYear', TextType::class, [
+                'label' => 'Année de formation',
+                'attr' => [
+                    'placeholder' => 'Année de formation'
+                ]
+            ])
+
+            ->add('Linkedin', TextType::class, [
+                'label' => 'Profil Linkedin',
+                'attr' => [
+                    'placeholder' => 'Profil Linkedin'
+                ]
+            ])
+
+
+            ->add('twitter', TextType::class, [
+                'label' => 'Profil Twitter',
+                'attr' => [
+                    'placeholder' => 'Profil Twitter'
+                ]
+            ])
+
+            ->add('github', TextType::class, [
+                'label' => 'GitHub',
+                'attr' => [
+                    'placeholder' => ' GitHub'
+                ],
+                'required' => false,
+
+            ])
+
+            ->add('image', ImageType::class, [
+                'label' => 'Avatar',
+                'attr' => [
+
+                    'placeholder' => 'Avatar'
+
+
+                ],
+                'required' => false,
+
+            ])
 
 
             ->getForm();
