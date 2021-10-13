@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Images;
 use App\Entity\Users;
 use App\Entity\Announces;
@@ -21,6 +22,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 class UsersController extends AbstractController
 {
@@ -125,6 +127,11 @@ class UsersController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+            $manager->persist($user);
+            $manager->flush();
+        }
 
         return $this->render('users/editProfil.html.twig', [
             'user' => $user,
@@ -140,7 +147,7 @@ class UsersController extends AbstractController
     {
         $users = $repository->findAll();
         return $this->render('users/listes.html.twig', [
-            'users' => $users
+            'users' => $users,
 
         ]);
     }
@@ -208,17 +215,17 @@ class UsersController extends AbstractController
     /**
      * @Route("admin/{id}/activer", name="admin_activated", methods="GET")
      */
-    public function permuteActivated(UsersRepository $repository,MailerInterface $mailer ,$id)
+    public function permuteActivated(UsersRepository $repository, MailerInterface $mailer, $id)
     {
         $user = $repository->findOneBy(["id" => $id]);
         $user->setActivated(true);
         $entityManager = $this->getDoctrine()->getManager();
         $email = (new Email())
-        ->from('webforc3@gmail.com')
-        ->cc('webforc3@gmail.com')
-        ->to($user->getEmail())
-        ->subject('Compte WebForce3 ')
-        ->text('L\'activation de votre compte a été validé par un administrateur.');
+            ->from('webforc3@gmail.com')
+            ->cc('webforc3@gmail.com')
+            ->to($user->getEmail())
+            ->subject('Compte WebForce3 ')
+            ->text('L\'activation de votre compte a été validé par un administrateur.');
         $mailer->send($email);
         $entityManager->persist($user);
         $entityManager->flush();

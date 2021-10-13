@@ -33,18 +33,23 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-					<a class="dropdown-item" href="{{path('users_Profil')}}"> Voir mon profil</a>
-					<a class="dropdown-item" href="{{path('message_private')}}"> Envoyer un message </a>
-					<a class="dropdown-item" href="{{path('message_receveid')}}"> Voir mes messages </a>
+					<a class="dropdown-item" href="{{path('users_Profil')}}">
+						Voir mon profil</a>
+					<a class="dropdown-item" href="{{path('message_private')}}">
+						Envoyer un message
+					</a>
+					<a class="dropdown-item" href="{{path('message_receveid')}}">
+						Voir mes messages
+					</a>
 					<a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a>
 				</div>
 			</li>
 		</ul>
 
-			{% if app.user.image != null %}
-                <img src="image" src="{{app.user.image}}" alt="image">
-            {% else %}
-                <img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="Avatar">
-            {% endif %}			
+		{% if app.user.image != null %}
+			<img src="{{ vich_uploader_asset(app.user.image) }}" alt="{{ app.user.email }}">
+		{% else %}
+			<img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="{{ app.user.email }}">
+		{% endif %}
 	</div>
 </nav>
