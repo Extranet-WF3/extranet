@@ -15,7 +15,8 @@ html{
 
 img{
     height: 150px; 
-    width : 300px;
+    width : 200px;
+    padding : 5px;
 }
 .navbar-collapse{
     justify-content: flex-end;
@@ -35,6 +36,18 @@ img{
     width: 100px;
     border-radius: 50px;
 }
+.navbar-brand{
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    width: 100px;
+}
+
+
 /* Fin Header */
 
 
