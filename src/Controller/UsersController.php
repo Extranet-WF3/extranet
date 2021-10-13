@@ -71,20 +71,11 @@ class UsersController extends AbstractController
                     'placeholder' => 'Numéro de téléphone'
                 ]
             ])
-            ->add('Function', ChoiceType::class, [
+            ->add('Function', TextType::class, [
 
-                'label' => 'Statut',
                 'attr' => [
-                    'placeholder' => 'Statut'
-                ],
-                'choices' => [
-                    '' => null,
-                    'Apprenant' => 'Apprenant',
-                    'Formateur' => 'Formateur',
-                    'Manager' => 'Manager',
-
-                ],
-
+                    'placeholder' => 'statut'
+                ]
             ])
 
             ->add('SessionNumber', TextType::class, [
