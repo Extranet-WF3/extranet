@@ -21,24 +21,21 @@ h2{
     
 }
 .bienvenue-texte{
-  
+
     font-size: 20px;
     margin-left: 10px;
     margin-right:10px;
     
 }
 
-#scrollUp { /* a revoir car petit beug */
-    bottom: 150px;
+#scrollUp {
     opacity: 2;
     z-index: 2;
     cursor: pointer;
-    right : 100px;
-    width: 20px;
+    bottom: 10px;
 }
+
 img.scroll{
-    display: flex;
-    justify-items: center;
     height: 45px;
     width: 30px;    
     left: 40px;

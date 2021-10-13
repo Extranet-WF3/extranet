@@ -1,37 +1,48 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Liste des membres - {{parent()}}{% endblock %}
+
 {% block body %}
-	<h1>LISTES DES UTILISATEURS</h1>
-	<table class="table">
-		<thead>
-			<th>pseudo</th>
-			<th>nom</th>
-			<th>prenom</th>
-			<th>statut</th>
-			<th>numéros de session</th>
-			<th>Année Session</th>
 
-		</thead>
-		<tbody>
-			{% for user in users %}
-				<tr>
-					<td>
-						<a href="{{ path('users_show', { pseudo:user.pseudo }) }}">{{user.pseudo}}</a>
-					</td>
-					<td>{{user.lastname}}</td>
-					<td>{{user.firstname}}</td>
-					<td>{{user.function}}</td>
-					<td>{{user.sessionNumber}}</td>
-					<td>{{user.trainingYear}}</td>
+	<div class="container col-10 offset-1">
 
-				</tr>
-			{% else %}
-				<tr>
+		<h1 class="text-center my-3">Liste des membres</h1>
+		<table class="table border rounded list">
+			<thead>
+				<th>Pseudo</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Statut</th>
+				<th>Numéro de session</th>
+				<th>Année de session</th>
 
-					<td colspan="5">
-						il n'yas pas dutlisateurs inscrit</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+			</thead>
+
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>
+							<a href="{{ path('users_show', { pseudo:user.pseudo }) }}">{{user.pseudo}}</a>
+						</td>
+						<td>{{user.lastname}}</td>
+						<td>{{user.firstname}}</td>
+						<td>{{user.function}}</td>
+						<td>{{user.sessionNumber}}</td>
+						<td>{{user.trainingYear}}</td>
+
+					</tr>
+				{% else %}
+					<tr>
+
+						<td colspan="5">
+							il n'y a pas d'utilisateur inscrit
+						</td>
+
+					</tr>
+
+				{% endfor %}
+			</tbody>
+			
+		</table>
+	</div>
 {% endblock %}
