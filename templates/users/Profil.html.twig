@@ -3,7 +3,7 @@
 {% block title %}Page profil - {{parent()}}{% endblock %}
 
 {% block body %}
-	<h1>Profil de 
+	<h1 class="text-center my-3">Profil de 
 		{{app.user.pseudo}}</h1>
 
 
@@ -65,41 +65,8 @@
 		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Supprimer mon compte</a>
 	</div>
 	<br>
-	<div class="col-10 offset-1 text-center">
-		<h3>Liste des six derniers articles</h3>
-	<table class="table">
-		<thead>
-			<th>Titre</th>
-			<th>Date de création</th>
-			<th>Catégories</th>
-			<th>Description</th>
-
-		</thead>
-		<tbody>
-			{% for article in articles %}
-				<tr>
-					<td>{{article.title}}</td>
-					<td>{{article.createdAt |ago}}</td>
-					<td>{{article.categories}}</td>
-					<td>{{article.description}}</td>
-					<td><a class="btn btn-primary" href="{{ path('article_show', {slug: article.slug}) }}">Voir l'article</a></td>
-				</tr>
-				
-			{% else %}
-				<tr>
-
-					<td colspan="5">
-						Vous n'avez pas posté d'articles</td>
-				</tr>
-
-
-			{% endfor %}
-		</tbody>
-	</table>
-	</div>
-	<br>
-	<div class="col-10 offset-1 text-center">
-	<h3>Liste des six dernières annonces</h3>
+		<div class="col-10 offset-1 text-center">
+	<h3>Liste de vos six dernières annonces</h3>
 	<table class="table">
 		<thead>
 			<th>Titre</th>
@@ -132,5 +99,37 @@
 
 	</div>
 
+	<div class="col-10 offset-1 text-center">
+		<h3>Liste de vos six derniers articles</h3>
+	<table class="table">
+		<thead>
+			<th>Titre</th>
+			<th>Date de création</th>
+			<th>Catégories</th>
+			<th>Description</th>
+
+		</thead>
+		<tbody>
+			{% for article in articles %}
+				<tr>
+					<td>{{article.title}}</td>
+					<td>{{article.createdAt |ago}}</td>
+					<td>{{article.categories}}</td>
+					<td>{{article.description}}</td>
+					<td><a class="btn btn-primary" href="{{ path('article_show', {slug: article.slug}) }}">Voir l'article</a></td>
+				</tr>
+				
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez pas posté d'articles</td>
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
 
 {% endblock %}
