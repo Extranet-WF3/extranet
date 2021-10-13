@@ -22,6 +22,7 @@ class MessagePrivateController extends AbstractController
         $messages = new Messages();
 
         $target = $repository->findAll();
+        $user =$this->getUser();
         
 
         // je crée un formulaire symfony 
@@ -31,9 +32,8 @@ class MessagePrivateController extends AbstractController
 
         // si le formulaire a été soumis 
 
-        if($form->isSubmitted()){
+        if ($form->isSubmitted() && $form->isValid()) {
             
-            $user =$this->getUser();
             $messages->SetUser($user);
             $messages->setCreatedAt(new \DateTime());
             $messages->setStatus(0);
@@ -50,9 +50,6 @@ class MessagePrivateController extends AbstractController
         
         return $this->render('message_private/index.html.twig', [
             'MessageForm' => $form->createView(),
-            
-        
-            
         ]);
     }
     
