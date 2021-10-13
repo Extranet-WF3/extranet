@@ -51,7 +51,8 @@ class UsersController extends AbstractController
                 'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Nom'
-                ]
+
+                ],
             ])
             ->add('Firstname', TextType::class, [
                 'label' => 'Prénom',
@@ -75,6 +76,7 @@ class UsersController extends AbstractController
 
             ->add('Function', TextType::class, [
                 'label' => 'Statut',
+
                 'attr' => [
 
                     'placeholder' => 'Statut'
@@ -83,6 +85,7 @@ class UsersController extends AbstractController
 
             ->add('currentSituation', TextType::class, [
                 'label' => 'Situation actuelle',
+
                 'attr' => [
 
                     'placeholder' => 'situation actuelle'
@@ -103,6 +106,25 @@ class UsersController extends AbstractController
                 ],
                 'required' => false,
 
+            ])
+            ->add('currentSituation', TextType::class, [
+                'label' => 'Situation actuelle',
+                'attr' => [
+
+                    'placeholder' => 'Situation actuelle'
+
+
+                ],
+                'required' => false,
+            ])
+            ->add('currentPost', TextType::class, [
+                'label' => 'Poste actuel',
+                'attr' => [
+                'placeholder' => 'Poste actuel'
+
+
+                ],
+                'required' => false,
             ])
 
 
@@ -157,6 +179,7 @@ class UsersController extends AbstractController
 
 
             ])
+
 
 
             ->getForm();
