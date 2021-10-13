@@ -8,7 +8,7 @@
 
 		<h1 class="text-center">Liste des articles</h1>
 
-		<p class="col-12" style="font-size: 1.5rem;">Cliquer sur le titre de l'article pour le lire</p>
+		<p class="col-12 text-list">Cliquer sur le titre de l'article pour le lire</p>
 
         <!-- Liste des articles -->
         <div class="col">
@@ -22,10 +22,10 @@
 
 					<div class="card card-article mb-4">
 
-						<div class="card-body" style="background: rgb(211, 211, 211);">
+						<div class="card-body card-article">
 
 							<!-- Affichage du titre de l'article -->
-							<h4 class="card-title" style="">
+							<h4 class="card-title">
 
 								<a href="{{ path('article_show', {slug: article.slug}) }}">
 										{{ article.title }}
