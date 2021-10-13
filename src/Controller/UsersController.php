@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 
@@ -89,6 +90,7 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
+
             ])
             ->add('currentPost', TextType::class, [
                 'label' => 'Poste actuel',
@@ -101,6 +103,7 @@ class UsersController extends AbstractController
                 'required' => false,
 
             ])
+
 
             ->add('SessionNumber', TextType::class, [
                 'label' => 'Numéro de session',
@@ -150,6 +153,7 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
+
 
             ])
 
