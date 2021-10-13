@@ -17,6 +17,7 @@ use App\Service\MailerService;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -69,11 +70,19 @@ class UsersController extends AbstractController
                     'placeholder' => 'numéro de télephone'
                 ]
             ])
-            ->add('Function', TextType::class, [
+            ->add('Function', ChoiceType::class, [
 
                 'attr' => [
                     'placeholder' => 'statut'
-                ]
+                ],
+
+                'choices' => [
+                    '' => null,
+                    'Apprenant' => 'Apprenant',
+                    'Formateur' => 'Formateur',
+                    'Manager' => 'Manager',
+
+                ],
             ])
 
             ->add('SessionNumber', TextType::class, [
@@ -95,7 +104,8 @@ class UsersController extends AbstractController
 
                 'attr' => [
                     'placeholder' => 'linkedin'
-                ]
+                ],
+                'required' => false,
             ])
 
 
@@ -103,24 +113,49 @@ class UsersController extends AbstractController
 
                 'attr' => [
                     'placeholder' => ' twitter'
-                ]
+                ],
+                'required' => false,
             ])
 
             ->add('github', TextType::class, [
 
                 'attr' => [
                     'placeholder' => ' github'
-                ]
+                ],
+                'required' => false,
             ])
 
             ->add('image', ImageType::class, [
                 'attr' => [
 
                     'placeholder' => 'Image'
+                    
 
-                ]
+                ],
+                'required' => false,
 
             ])
+
+            ->add('currentSituation', TextType::class, [
+                'attr' => [
+
+                    'placeholder' => 'situation courante'
+                    
+
+                ],
+                'required' => false,
+            ])
+            ->add('currentPost', TextType::class, [
+                'attr' => [
+
+                    'placeholder' => 'poste actuel'
+        
+
+                ],
+                'required' => false,
+            ])
+
+
 
 
 
