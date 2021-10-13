@@ -17,7 +17,6 @@ use App\Service\MailerService;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -70,35 +69,6 @@ class UsersController extends AbstractController
                     'placeholder' => 'numéro de télephone'
                 ]
             ])
-            ->add('Function', ChoiceType::class, [
-
-                'attr' => [
-                    'placeholder' => 'statut'
-                ],
-
-                'choices' => [
-                    '' => null,
-                    'Apprenant' => 'Apprenant',
-                    'Formateur' => 'Formateur',
-                    'Manager' => 'Manager',
-
-                ],
-            ])
-
-            ->add('SessionNumber', TextType::class, [
-
-                'attr' => [
-                    'placeholder' => 'le numero de session'
-                ]
-            ])
-
-
-            ->add('trainingYear', TextType::class, [
-
-                'attr' => [
-                    'placeholder' => 'année Courante'
-                ]
-            ])
 
             ->add('Linkedin', TextType::class, [
 
@@ -129,7 +99,7 @@ class UsersController extends AbstractController
                 'attr' => [
 
                     'placeholder' => 'Image'
-                    
+
 
                 ],
                 'required' => false,
@@ -140,7 +110,7 @@ class UsersController extends AbstractController
                 'attr' => [
 
                     'placeholder' => 'situation courante'
-                    
+
 
                 ],
                 'required' => false,
@@ -149,7 +119,7 @@ class UsersController extends AbstractController
                 'attr' => [
 
                     'placeholder' => 'poste actuel'
-        
+
 
                 ],
                 'required' => false,
