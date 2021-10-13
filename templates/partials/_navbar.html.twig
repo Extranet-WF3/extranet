@@ -34,15 +34,17 @@
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 					<a class="dropdown-item" href="{{path('users_Profil')}}"> Voir mon profil</a>
-					<a class="dropdown-item" href="{{path('message_private')}}"> Envoyer un Message </a>
+					<a class="dropdown-item" href="{{path('message_private')}}"> Envoyer un message </a>
 					<a class="dropdown-item" href="{{path('message_receveid')}}"> Voir mes messages </a>
-					<a class="dropdown-item" href="{{path('app_logout')}}">déconnécter</a>
+					<a class="dropdown-item" href="{{path('app_logout')}}">Se déconnecter</a>
 				</div>
 			</li>
+		</ul>
+
 			{% if app.user.image != null %}
-				<img src="image" src=""{{asset('')}} alt="image">
-			{% else %}
-				<img class="avatar" src="{{asset('/images/src/avatar_base.png')}}" alt="Avatar">
-			{% endif %}
-		</div>
-	</nav>
+                <img src="image" src="{{app.user.image}}" alt="image">
+            {% else %}
+                <img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="Avatar">
+            {% endif %}			
+	</div>
+</nav>
