@@ -47,7 +47,7 @@
 		</ul>
 
 		{% if app.user.image != null %}
-			<img src="{{ vich_uploader_asset(app.user.image) }}" alt="{{ app.user.email }}">
+			<img class="avatar" src="{{ vich_uploader_asset(app.user.image) }}" alt="{{ app.user.email }}">
 		{% else %}
 			<img class="avatar" src="{{asset('/images/avatars/avatar_base.png')}}" alt="{{ app.user.email }}">
 		{% endif %}
