@@ -59,7 +59,10 @@ class RegistrationController extends AbstractController
                 ->to($user->getEmail())
                 ->subject('Inscription à l\'Extranet de WebForce3')
                 // Renvoi vers le fichier html signup
-                ->htmlTemplate('users/signup.html.twig');
+                ->htmlTemplate('users/signup.html.twig')
+                ->context([
+                    'user' => $user,
+                    ]);
                 // ->text('L\'activation de votre compte sera validée par un administrateur');
             $mailer->send($email);
 
