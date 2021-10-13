@@ -17,11 +17,11 @@ use App\Service\MailerService;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 
@@ -47,35 +47,36 @@ class UsersController extends AbstractController
 
         $form = $this->createFormBuilder($user)
             ->add('lastname', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Nom'
                 ]
             ])
             ->add('Firstname', TextType::class, [
-
+                'label' => 'Prénom',
                 'attr' => [
-                    'placeholder' => 'prénom'
+                    'placeholder' => 'Prénom'
                 ]
             ])
 
             ->add('email', TextType::class, [
-
+                'label' => 'Adresse mail',
                 'attr' => [
-                    'placeholder' => 'email'
+                    'placeholder' => 'Adresse mail'
                 ]
             ])
             ->add('NumberPhone', TextType::class, [
-
+                'label' => 'Numéro de téléphone',
                 'attr' => [
-                    'placeholder' => 'numéro de télephone'
+                    'placeholder' => 'Numéro de téléphone'
                 ]
             ])
             ->add('Function', ChoiceType::class, [
 
+                'label' => 'Statut',
                 'attr' => [
-                    'placeholder' => 'statut'
+                    'placeholder' => 'Statut'
                 ],
-
                 'choices' => [
                     '' => null,
                     'Apprenant' => 'Apprenant',
@@ -83,53 +84,52 @@ class UsersController extends AbstractController
                     'Manager' => 'Manager',
 
                 ],
+
             ])
 
             ->add('SessionNumber', TextType::class, [
-
+                'label' => 'Numéro de session',
                 'attr' => [
-                    'placeholder' => 'le numero de session'
+                    'placeholder' => 'Numéro de session'
                 ]
             ])
 
 
             ->add('trainingYear', TextType::class, [
-
+                'label' => 'Année de formation',
                 'attr' => [
-                    'placeholder' => 'année Courante'
+                    'placeholder' => 'Année de formation'
                 ]
             ])
 
             ->add('Linkedin', TextType::class, [
-
+                'label' => 'Profil Linkedin',
                 'attr' => [
-                    'placeholder' => 'linkedin'
-                ],
-                'required' => false,
+                    'placeholder' => 'Profil Linkedin'
+                ]
             ])
 
 
             ->add('twitter', TextType::class, [
-
+                'label' => 'Profil Twitter',
                 'attr' => [
-                    'placeholder' => ' twitter'
-                ],
-                'required' => false,
+                    'placeholder' => 'Profil Twitter'
+                ]
             ])
 
             ->add('github', TextType::class, [
-
+                'label' => 'GitHub',
                 'attr' => [
-                    'placeholder' => ' github'
+                    'placeholder' => ' GitHub'
                 ],
                 'required' => false,
+
             ])
 
             ->add('image', ImageType::class, [
+                'label' => 'Avatar',
                 'attr' => [
-
-                    'placeholder' => 'Image'
-                    
+                    'placeholder' => 'Avatar'
 
                 ],
                 'required' => false,
@@ -140,7 +140,7 @@ class UsersController extends AbstractController
                 'attr' => [
 
                     'placeholder' => 'situation courante'
-                    
+
 
                 ],
                 'required' => false,
@@ -149,7 +149,7 @@ class UsersController extends AbstractController
                 'attr' => [
 
                     'placeholder' => 'poste actuel'
-        
+
 
                 ],
                 'required' => false,
