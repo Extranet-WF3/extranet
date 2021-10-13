@@ -91,6 +91,7 @@ class UsersController extends AbstractController
                 ],
                 'required' => false,
 
+
             ])
             ->add('currentPost', TextType::class, [
                 'label' => 'Poste actuel',
