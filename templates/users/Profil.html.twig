@@ -3,12 +3,14 @@
 {% block title %}Page profil - {{parent()}}{% endblock %}
 
 {% block body %}
+
 	<h1 class="text-center my-3">Profil de 
 		{{app.user.lastname}} {{app.user.firstname}}</h1>
 
 
 	<div class="container col-4 offset-4 border rounded">
 		<table class="table">
+
 			<tr>
 				<td>Nom :</td>
 				<td>{{app.user.lastname}}</td>

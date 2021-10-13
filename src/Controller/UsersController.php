@@ -73,6 +73,7 @@ class UsersController extends AbstractController
                     'placeholder' => 'Numéro de téléphone'
                 ]
             ])
+
             ->add('Function', TextType::class, [
                 'label' => 'Statut',
                 'attr' => [
@@ -114,6 +115,7 @@ class UsersController extends AbstractController
                 ]
             ])
 
+
             ->add('Linkedin', TextType::class, [
                 'label' => 'Profil Linkedin',
                 'attr' => [
@@ -141,12 +143,15 @@ class UsersController extends AbstractController
             ->add('image', ImageType::class, [
                 'label' => 'Avatar',
                 'attr' => [
+
                     'placeholder' => 'Avatar',
                     
+
                 ],
                 'required' => false,
 
             ])
+
 
 
 
