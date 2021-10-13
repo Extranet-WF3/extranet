@@ -21,7 +21,7 @@
 
 
 								<h4>{{ announce.nameCompany }}</h4>
-								<p class="card-text">{{ announce.description | u.truncate( 200, '...', false) }}</p>
+								<p class="card-text">{{ announce.description | u.truncate( 50, '...', false) }}</p>
 								{% if announce.createdAt %}
 									{{ announce.createdAt |ago }}
 								{% else %}
