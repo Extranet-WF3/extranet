@@ -1,4 +1,6 @@
 html{
+    position: relative;
+    min-height: 100%;
     scroll-behavior: smooth;
 }
 
@@ -15,8 +17,8 @@ html{
 
 img{
     height: 150px; 
-    width : 200px;
-    padding : 5px;
+    width : 300px;
+    padding : 10px;
 }
 .navbar-collapse{
     justify-content: flex-end;
@@ -137,15 +139,16 @@ body{
 
 /* Début Footer */
 .footer{
-    display: block ;
+    position:absolute;
     bottom: 0;
     background: #6358B2 ;
-  
-    height: 150px;
+    padding: 30px 0 30px 0;
+
+
     width: 100%;
 }
 .copyright{
-    font-size: 20px;
+    font-size: 20px
 }
 
 .footer a{
