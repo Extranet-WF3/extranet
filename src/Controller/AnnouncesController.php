@@ -123,6 +123,8 @@ class AnnouncesController extends AbstractController
 
     public function announce(Announces $announce)
     {
+        
+
         return $this->render('announces/announce.html.twig', [
             'announce' => $announce,
         ]);
