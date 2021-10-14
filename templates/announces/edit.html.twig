@@ -6,15 +6,21 @@
 
 {% block body %}
 
-
-	<div class="card-body">
+<h1 class="text-center mt-3">Modidication de l'annonce {{announce.title}}</h1>
+	<div class="card-body col-8 offset-2 bg-gray border-0  my-3 py-3 ">
 		{{ form_start(form) }}
 		{{ form_widget(form) }}
+	</div>
+<div class="col-4 offset-4  text-center">
 
-		{{ include('announces/formEdit.html.twig', {'button_label': 'Update'}) }}
+	{{ include('announces/formEdit.html.twig', {'button_label': 'Modifier'}) }}
 
-		<a href="{{ path('announces') }}">Voir les annonces</a>
 
-		{{ form_end(form) }}
+	<a class="btn btn-danger" href="{{ path('announce_show',{slug: announce.slug}) }}">Annuler</a>
+</div>
 
-	{% endblock %}
+	{{ form_end(form) }}
+
+</div>
+
+{% endblock %}

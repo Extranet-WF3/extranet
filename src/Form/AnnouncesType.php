@@ -26,35 +26,53 @@ class AnnouncesType extends AbstractType
             ])
 
             ->add('title', null, [
-                'label' => 'Announce',
+                'label' => 'Titre de l\'annonce',
                 'attr' => [
                     'placeholder' => 'veuillez entrer le titre de l\'annonce',
                 ],
             ])
 
 
-            ->add('description', null, [
-                'label' => 'Description du poste'
-            ], TextareaType::class)
+            ->add('description',TextareaType::class , [
+                'label' => 'Description de l\'annonce',
+                'attr' => [
+                'placeholder' => 'Decrire le poste',
+            ], ])
 
             ->add('originalLink', null, [
-                'label' => 'Lien de l\'annonce'
-            ])
+                'label' => 'Lien de l\'annonce',
+                'attr' => [
+                    'placeholder' => 'Lien de l\'annonce'
+                ],])
             ->add('nameCompany', null, [
-                'label' => 'Entreprise'
-            ])
+                'label' => 'Entreprise',
+                'attr' => [
+                    'placeholder' => 'Entreprise'
+                ],])
             ->add('adressCompany', null, [
-                'label' => 'Adresse de l\'entreprise'
-            ])
+                'label' => 'Adresse de l\'entreprise',
+                'attr' => [
+                    'placeholder' => 'Adresse'
+                ],])
+            
             ->add('adressAdditional', null, [
-                'label' => 'L\' adresse additionnelle'
-            ])
+                'label' => ' Adresse additionnelle',
+                'attr' => [
+                    'placeholder' => 'Adresse additionnelle'
+                ],])
+            
             ->add('zipCode', null, [
-                'label' => 'Code postal'
-            ])
+                'label' => 'Code postal',
+                'attr' => [
+                    'placeholder' => 'Code postal'
+                ],])
+            
             ->add('city', null, [
-                'label' => 'Ville'
-            ])
+                'label' => 'Ville',
+                'attr' => [
+                    'placeholder' => 'Ville'
+                ],])
+            
             // ->add('user')
             // ->add('createdAt')
         ;
