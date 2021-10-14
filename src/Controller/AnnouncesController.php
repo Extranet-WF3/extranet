@@ -159,5 +159,25 @@ class AnnouncesController extends AbstractController
             'form' => $form,
         ]);
     }
+
+     /**
+     * @Route("/{id}/delete", name="announce_delete", methods={"POST"})
+     */
+    public function delete(Request $request, Announces $announce): Response
+    {
+        
+        $this->denyAccessUnlessGranted('delete', $announce);
+
+        //if ($this->isCsrfTokenValid('delete' . $announce->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($announce);
+            $entityManager->flush();
+        //}
+
+        return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
 }
 

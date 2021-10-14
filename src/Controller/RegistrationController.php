@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Users;
 use App\Form\RegistrationFormType;
 use App\Service\MailerService;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,16 +53,27 @@ class RegistrationController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
-            $email = (new Email())
+            $email = (new TemplatedEmail())
                 ->from('webforc3@gmail.com')
                 ->cc('webforc3@gmail.com')
                 ->to($user->getEmail())
                 ->subject('Inscription à l\'Extranet de WebForce3')
-                ->text('L\'activation de votre compte sera valider par un administrateur');
+                // Renvoi vers le fichier html signup
+                ->htmlTemplate('users/signup.html.twig')
+                ->context([
+                    'user' => $user,
+                    ]);
+                // ->text('L\'activation de votre compte sera validée par un administrateur');
             $mailer->send($email);
 
             $entityManager->flush();
             // do anything else you need here, like send an email
+
+            // Confirmation par message "flash" de la création de l'article
+            $this->addFlash(
+                'success',
+                'Votre demande d\'inscription a été prise en compte.'
+            );
 
             return $this->redirectToRoute('app_login');
         }

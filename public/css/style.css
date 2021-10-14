@@ -1,4 +1,6 @@
 html{
+    position: relative;
+    min-height: 100%;
     scroll-behavior: smooth;
 }
 
@@ -7,8 +9,8 @@ html{
 }
 /* Début Header */
 .navbar{
-    background: linear-gradient(90deg, rgba(56,182,247,1) 0%, rgba(125,31,175,0.989233193277311) 43%, 
-    rgba(106,130,185,0.9416141456582633) 88%);
+    background:#6358B2!important;
+    
     height: 150px;
     width: 100%;
 }
@@ -16,6 +18,7 @@ html{
 img{
     height: 150px; 
     width : 300px;
+    padding : 10px;
 }
 .navbar-collapse{
     justify-content: flex-end;
@@ -35,6 +38,18 @@ img{
     width: 100px;
     border-radius: 50px;
 }
+.navbar-brand{
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    width: 100px;
+}
+
+
 /* Fin Header */
 
 
@@ -124,15 +139,16 @@ body{
 
 /* Début Footer */
 .footer{
-    position: fixed;
+    position:absolute;
     bottom: 0;
-    background: linear-gradient(90deg, rgba(56,182,247,1) 0%, rgba(125,31,175,0.989233193277311) 43%, 
-    rgba(106,130,185,0.9416141456582633) 88%);
-    height: 150px;
+    background: #6358B2 ;
+    padding: 30px 0 30px 0;
+
+
     width: 100%;
 }
 .copyright{
-    font-size: 20px;
+    font-size: 20px
 }
 
 .footer a{

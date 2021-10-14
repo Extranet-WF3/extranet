@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\Images;
 use App\Entity\Users;
 use App\Entity\Announces;
@@ -20,7 +21,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+
 
 class UsersController extends AbstractController
 {
@@ -44,87 +47,125 @@ class UsersController extends AbstractController
 
         $form = $this->createFormBuilder($user)
             ->add('lastname', TextType::class, [
+                'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Nom'
-                ]
+
+                ],
+          
             ])
             ->add('Firstname', TextType::class, [
-
+                'label' => 'Prénom',
                 'attr' => [
-                    'placeholder' => 'prénom'
+                    'placeholder' => 'Prénom'
                 ]
             ])
 
             ->add('email', TextType::class, [
-
+                'label' => 'Adresse mail',
                 'attr' => [
-                    'placeholder' => 'email'
+                    'placeholder' => 'Adresse mail'
                 ]
             ])
             ->add('NumberPhone', TextType::class, [
-
+                'label' => 'Numéro de téléphone',
                 'attr' => [
-                    'placeholder' => 'numéro de télephone'
+                    'placeholder' => 'Numéro de téléphone'
                 ]
             ])
-            ->add('Function', TextType::class, [
 
+            ->add('Function', TextType::class, [
+                'label' => 'Statut',
                 'attr' => [
                     'placeholder' => 'statut'
                 ]
             ])
+            ->add('currentSituation', TextType::class, [
+                'label' => 'Situation actuelle',
+                'attr' => [
+
+                    'placeholder' => 'Situation actuelle'
+
+
+                ],
+                'required' => false,
+            ])
+            ->add('currentPost', TextType::class, [
+                'label' => 'Poste actuel',
+                'attr' => [
+                'placeholder' => 'Poste actuel'
+
+
+                ],
+                'required' => false,
+            ])
 
             ->add('SessionNumber', TextType::class, [
-
+                'label' => 'Numéro de session',
                 'attr' => [
-                    'placeholder' => 'le numero de session'
+                    'placeholder' => 'Numéro de session'
                 ]
             ])
 
 
             ->add('trainingYear', TextType::class, [
-
+                'label' => 'Année de formation',
                 'attr' => [
-                    'placeholder' => 'année Courante'
+                    'placeholder' => 'Année de formation'
                 ]
             ])
 
-            ->add('Linkedin', TextType::class, [
 
+            ->add('Linkedin', TextType::class, [
+                'label' => 'Profil Linkedin',
                 'attr' => [
-                    'placeholder' => 'linkedin'
+                    'placeholder' => 'Profil Linkedin'
                 ]
             ])
 
 
             ->add('twitter', TextType::class, [
-
+                'label' => 'Profil Twitter',
                 'attr' => [
-                    'placeholder' => ' twitter'
+                    'placeholder' => 'Profil Twitter'
                 ]
             ])
 
             ->add('github', TextType::class, [
-
+                'label' => 'GitHub',
                 'attr' => [
-                    'placeholder' => ' github'
-                ]
+                    'placeholder' => ' GitHub'
+                ],
+                'required' => false,
+
             ])
 
             ->add('image', ImageType::class, [
+                'label' => 'Avatar',
                 'attr' => [
 
-                    'placeholder' => 'Image'
+                    'placeholder' => 'Avatar',
+                    
 
-                ]
+                ],
+                'required' => false,
 
             ])
+
+
+
+
 
 
 
             ->getForm();
 
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get('image')->getData();
+            $manager->persist($user);
+            $manager->flush();
+        }
 
         return $this->render('users/editProfil.html.twig', [
             'user' => $user,
@@ -140,7 +181,7 @@ class UsersController extends AbstractController
     {
         $users = $repository->findAll();
         return $this->render('users/listes.html.twig', [
-            'users' => $users
+            'users' => $users,
 
         ]);
     }
@@ -208,17 +249,17 @@ class UsersController extends AbstractController
     /**
      * @Route("admin/{id}/activer", name="admin_activated", methods="GET")
      */
-    public function permuteActivated(UsersRepository $repository,MailerInterface $mailer ,$id)
+    public function permuteActivated(UsersRepository $repository, MailerInterface $mailer, $id)
     {
         $user = $repository->findOneBy(["id" => $id]);
         $user->setActivated(true);
         $entityManager = $this->getDoctrine()->getManager();
         $email = (new Email())
-        ->from('webforc3@gmail.com')
-        ->cc('webforc3@gmail.com')
-        ->to($user->getEmail())
-        ->subject('Compte WebForce3 ')
-        ->text('L\'activation de votre compte a été validé par un administrateur.');
+            ->from('webforc3@gmail.com')
+            ->cc('webforc3@gmail.com')
+            ->to($user->getEmail())
+            ->subject('Compte WebForce3 ')
+            ->text('L\'activation de votre compte a été validé par un administrateur.');
         $mailer->send($email);
         $entityManager->persist($user);
         $entityManager->flush();

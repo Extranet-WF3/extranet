@@ -1,23 +1,31 @@
 {% extends 'base.html.twig' %}
 
-
-{% block title %}MODIFIER PROFIL
-
+{% block title %}Modification profil -
+	{{parent()}}
 {% endblock %}
-
 
 {% block body %}
 
-	<h1>Profil</h1>
+
+<div class="col-10 offset-1">
+	<h1 class="text-center my-3">Modifier mon profil</h1>
 
 
-	{{ form_start(formUser) }}
+		{{ form_start(formUser) }}
 		{{ form_widget(formUser) }}
 
-		<button type="submit" class="btn btn-success">VALIDER</button>
+
+	<div class="text-center">
+		<button type="submit" class="btn btn-success">Confirmer</button>
+	</div>
 	{{ form_end(formUser) }}
 
 
 
+</div>
+
+
+
+	</div>
 
 {% endblock %}

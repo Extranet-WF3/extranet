@@ -1,100 +1,75 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Page profil - {{parent()}}{% endblock %}
+
 {% block body %}
-	<h1>PROFIL DE
-		{{app.user.pseudo}}</h1>
+
+	<h1 class="text-center my-3">Profil de 
+		{{app.user.lastname}} {{app.user.firstname}}</h1>
 
 
-	<div class="container">
-		<table>
+	<div class="container col-4 offset-4 border rounded">
+		<table class="table">
+
 			<tr>
-				<td>lastname:</td>
+				<td>Nom :</td>
 				<td>{{app.user.lastname}}</td>
 			</tr>
 			<tr>
-				<td>Firstname:</td>
+				<td>Prénom :</td>
 				<td>{{app.user.firstname}}</td>
 			</tr>
 			<tr>
-				<td>pseudo:</td>
+				<td>Pseudo :</td>
 				<td>{{app.user.pseudo}}</td>
 			</tr>
 			<tr>
-				<td>email:</td>
+				<td>Adresse mail :</td>
 				<td>{{app.user.email}}</td>
 			</tr>
 			<tr>
-				<td>numéroSession:</td>
+				<td>Numéro de session :</td>
 				<td>{{app.user.sessionnumber}}</td>
 			</tr>
 			<tr>
-				<td>Numéro de téléphone:</td>
+				<td>Numéro de téléphone :</td>
 				<td>{{app.user.numberPhone}}</td>
 			</tr>
 			<tr>
-				<td>Linkedin</td>
+				<td>Linkedin :</td>
 				<td>{{app.user.linkedin}}</td>
 			</tr>
 			<tr>
-				<td>Github:</td>
+				<td>GitHub :</td>
 				<td>{{app.user.github}}</td>
 			</tr>
 			<tr>
-				<td>Twitter:</td>
+				<td>Twitter :</td>
 				<td>{{app.user.twitter}}</td>
 			</tr>
 			<tr>
-				<td>Situationcourante:</td>
+				<td>Situation actuelle :</td>
 				<td>{{app.user.currentSituation}}</td>
 			</tr>
 			<tr>
-				<td>Posteactuelle:</td>
+				<td>Poste actuel :</td>
 				<td>{{app.user.currentPost}}</td>
 			</tr>
 		</table>
 
 	</div>
-	
-	<a role="button" class="btn btn-success" href="{{path('editProfil')}}">ModifierProfil</a>
-	<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voirmessageprivés</a>
-	<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">SuprimerCompte</a>
-	{% if is_granted('ROLE_ADMIN') %}
-		<a role="submit" class="btn btn-primary" href="{{ path('admin')}}">Voir les comptes en attentes</a>
-	{% endif %}
+	<div class="col-4 offset-4 d-flex flex-column text-center">
+		<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voir mes messages privés</a>
+		{% if is_granted('ROLE_ADMIN') %}
+			<a role="submit" class="btn btn-primary" href="{{ path('admin')}}">Voir les comptes en attente</a>
+		{% endif %}
+		<a role="button" class="btn btn-success" href="{{path('editProfil')}}">Modifier mon profil</a>
+		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Supprimer mon compte</a>
+	</div>
 	<br>
-	<h3>Liste des 6 derniers articles</h3>
-	<table>
-		<thead>
-			<th>Titre</th>
-			<th>Date de création</th>
-			<th>Catégories</th>
-			<th>Description</th>
-
-		</thead>
-		<tbody>
-			{% for article in articles %}
-				<tr>
-					<td>{{article.title}}</td>
-					<td>{{article.createdAt |ago}}</td>
-					<td>{{article.categories}}</td>
-					<td>{{article.description}}</td>
-					<td><a class="btn btn-primary" href="{{ path('article_show', {slug: article.slug}) }}">Voir l'article</a></td>
-				</tr>
-				
-			{% else %}
-				<tr>
-
-					<td colspan="5">
-						Vous n'avez pas poster d'articles</td>
-				</tr>
-
-
-			{% endfor %}
-		</tbody>
-	</table>
-	<br>
-	<h3>Liste des 6 dernières annonces</h3>
-	<table>
+		<div class="col-10 offset-1 text-center">
+	<h3>Liste de vos six dernières annonces</h3>
+	<table class="table">
 		<thead>
 			<th>Titre</th>
 			<th>Date de création</th>
@@ -116,12 +91,47 @@
 				<tr>
 
 					<td colspan="5">
-						Vous n'avez pas poster d'annonces</td>
+						Vous n'avez pas posté d'annonce</td>
 				</tr>
 
 
 			{% endfor %}
 		</tbody>
 	</table>
+
+	</div>
+
+	<div class="col-10 offset-1 text-center">
+		<h3>Liste de vos six derniers articles</h3>
+	<table class="table">
+		<thead>
+			<th>Titre</th>
+			<th>Date de création</th>
+			<th>Catégories</th>
+			<th>Description</th>
+
+		</thead>
+		<tbody>
+			{% for article in articles %}
+				<tr>
+					<td>{{article.title}}</td>
+					<td>{{article.createdAt |ago}}</td>
+					<td>{{article.categories}}</td>
+					<td>{{article.description}}</td>
+					<td><a class="btn btn-primary" href="{{ path('article_show', {slug: article.slug}) }}">Voir l'article</a></td>
+				</tr>
+				
+			{% else %}
+				<tr>
+
+					<td colspan="5">
+						Vous n'avez pas posté d'articles</td>
+				</tr>
+
+
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
 
 {% endblock %}

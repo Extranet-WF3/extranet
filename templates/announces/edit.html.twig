@@ -6,7 +6,6 @@
 
 {% block body %}
 
-	<h1></h1>
 
 	<div class="card-body">
 		{{ form_start(form) }}
@@ -14,8 +13,7 @@
 
 		{{ include('announces/formEdit.html.twig', {'button_label': 'Update'}) }}
 
-		<a href="{{ path('announces') }}">back to list</a>
-
+		<a href="{{ path('announces') }}">Voir les annonces</a>
 
 		{{ form_end(form) }}
 

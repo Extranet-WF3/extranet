@@ -9,7 +9,7 @@
         <!-- Block titre de l'article -->
         <div class="row mt-4">
 
-            <div class="col-8 offset-2 border rounded py-3" style="background: rgb(211, 211, 211);">
+            <div class="card-article col-8 offset-2 border rounded py-3">
             
                 <h2>{{ article.title }}</h2>
             
@@ -20,7 +20,7 @@
         <!-- Block catégorie de l'article -->
         <div class="row mt-4">
 
-            <div class="col-8 offset-2 border rounded mb-0 pt-3" style="background: rgb(211, 211, 211);">
+            <div class="card-article col-8 offset-2 border rounded mb-0 pt-3">
             
                 <p>Catégorie : <span class="font-weight-bold" > {{ article.categories }}</span></p>
             
@@ -31,7 +31,7 @@
         <!-- Block description de l'article -->
         <div class="row mt-4">
 
-            <div class="col-8 offset-2 border rounded text-justify py-3" style="background: rgb(211, 211, 211);">
+            <div class="card-article col-8 offset-2 border rounded text-justify py-3">
 
                 <article>{{ article.description }}</article>
 
@@ -42,7 +42,7 @@
         <!-- Block lien vers l'article -->
         <div class="row mt-4">
 
-            <div class="col-8 offset-2 border rounded py-2" style="background: rgb(211, 211, 211);">
+            <div class="card-article col-8 offset-2 border rounded py-2">
 
                 <a href="{{ article.originalLink }}">Lien vers l’article</a>
 
@@ -53,7 +53,7 @@
         <!-- Block date de publication -->
         <div class="row mt-4">
 
-            <div class="col-8 offset-2 border rounded pt-3" style="background: rgb(211, 211, 211);">
+            <div class="card-article col-8 offset-2 border rounded pt-3">
 
                 <p>Date de publication, le <time>{{ article.createdAt |format_date ('long', locale='fr') }}</time></p>
 
