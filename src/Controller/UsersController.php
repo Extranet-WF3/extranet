@@ -101,6 +101,7 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
+            ])
 
             ->add('SessionNumber', TextType::class, [
                 'label' => 'Numéro de session',
@@ -155,7 +156,7 @@ class UsersController extends AbstractController
             ])
 
 
-            ])
+            
 
 
 
