@@ -53,6 +53,7 @@ class UsersController extends AbstractController
                     'placeholder' => 'Nom'
 
                 ],
+
             ])
             ->add('Firstname', TextType::class, [
                 'label' => 'Prénom',
@@ -78,38 +79,13 @@ class UsersController extends AbstractController
                 'label' => 'Statut',
 
                 'attr' => [
-
-                    'placeholder' => 'Statut'
-                ],
-            ])
-
-            ->add('currentSituation', TextType::class, [
-                'label' => 'Situation actuelle',
-
-                'attr' => [
-
-                    'placeholder' => 'situation actuelle'
-
-
-                ],
-                'required' => false,
-
-
-            ])
-            ->add('currentPost', TextType::class, [
-                'label' => 'Poste actuel',
-                'attr' => [
-
-                    'placeholder' => 'Poste actuel'
-
-
-                ],
-                'required' => false,
-
+                    'placeholder' => 'statut'
+                ]
             ])
             ->add('currentSituation', TextType::class, [
                 'label' => 'Situation actuelle',
                 'attr' => [
+
 
                     'placeholder' => 'Situation actuelle'
 
@@ -125,8 +101,6 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
-            ])
-
 
             ->add('SessionNumber', TextType::class, [
                 'label' => 'Numéro de session',
@@ -142,6 +116,7 @@ class UsersController extends AbstractController
                     'placeholder' => 'Année de formation'
                 ]
             ])
+
 
             ->add('Linkedin', TextType::class, [
                 'label' => 'Profil Linkedin',
@@ -171,14 +146,18 @@ class UsersController extends AbstractController
                 'label' => 'Avatar',
                 'attr' => [
 
-                    'placeholder' => 'Avatar'
-
+                    'placeholder' => 'Avatar',
+                    
 
                 ],
                 'required' => false,
 
+            ])
+
 
             ])
+
+
 
 
 
