@@ -8,7 +8,9 @@
 
 		<h1 class="text-center">Liste des articles</h1>
 
-		<p class="col-12 text-list">Cliquer sur le titre de l'article pour le lire</p>
+		<label class="col-12 text-list">Cliquer sur le titre de l'article pour le lire</label>
+
+
 
         <!-- Liste des articles -->
         <div class="col">
@@ -22,16 +24,11 @@
 
 					<div class="card card-article mb-4">
 
-						<div class="card-body card-article">
+						<a href="{{ path('article_show', {slug: article.slug}) }}" class="card-body card-article" style="text-decoration:none; color:black;">
 
 							<!-- Affichage du titre de l'article -->
-							<h4 class="card-title">
+							<h4 class="card-title">{{ article.title }}</h4>
 
-								<a href="{{ path('article_show', {slug: article.slug}) }}" style="color: black; text-decoration: none;">
-										{{ article.title }}
-								</a>
-
-							</h4>
 
 							<!-- Affichage du début la description de l'article (texte tronqué) -->
 							<p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
@@ -42,8 +39,8 @@
 							<!-- Affichage de la date de publication de l'article -->
 							{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
 							<p>Publié le <time>{{ article.createdAt | ago }}</time></p>
-
-						</div>
+						
+						</a>
 
 					</div>
 
