@@ -63,6 +63,7 @@ class RegistrationController extends AbstractController
                 ->context([
                     'user' => $user,
                     ]);
+
                 // ->text('L\'activation de votre compte sera validée par un administrateur');
             $mailer->send($email);
 

@@ -55,8 +55,12 @@ img{
 
 body{
     margin-bottom: 200px;
-}
 
+}
+.list{
+    width:80%;
+    margin: auto;
+}
 
 /* Sidebar */
 .sidebar{
