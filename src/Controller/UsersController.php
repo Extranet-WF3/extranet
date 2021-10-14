@@ -14,6 +14,7 @@ use Doctrine\Persistence\ObjectManager;
 use phppharser\Node\Expr\Cast\Object_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Service\MailerService;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -52,7 +53,7 @@ class UsersController extends AbstractController
                     'placeholder' => 'Nom'
 
                 ],
-          
+
             ])
             ->add('Firstname', TextType::class, [
                 'label' => 'Prénom',
@@ -76,6 +77,7 @@ class UsersController extends AbstractController
 
             ->add('Function', TextType::class, [
                 'label' => 'Statut',
+
                 'attr' => [
                     'placeholder' => 'statut'
                 ]
@@ -83,6 +85,7 @@ class UsersController extends AbstractController
             ->add('currentSituation', TextType::class, [
                 'label' => 'Situation actuelle',
                 'attr' => [
+
 
                     'placeholder' => 'Situation actuelle'
 
@@ -98,7 +101,6 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
-            ])
 
             ->add('SessionNumber', TextType::class, [
                 'label' => 'Numéro de session',
@@ -153,6 +155,7 @@ class UsersController extends AbstractController
             ])
 
 
+            ])
 
 
 
@@ -254,13 +257,17 @@ class UsersController extends AbstractController
         $user = $repository->findOneBy(["id" => $id]);
         $user->setActivated(true);
         $entityManager = $this->getDoctrine()->getManager();
-        $email = (new Email())
-            ->from('webforc3@gmail.com')
-            ->cc('webforc3@gmail.com')
-            ->to($user->getEmail())
-            ->subject('Compte WebForce3 ')
-            ->text('L\'activation de votre compte a été validé par un administrateur.');
-        $mailer->send($email);
+        $email = (new TemplatedEmail())
+        ->from('webforc3@gmail.com')
+        ->cc('webforc3@gmail.com')
+        ->to($user->getEmail())
+        ->subject('Adhésion à l\'Extranet de WebForce3')
+        // Renvoi vers le fichier html signactivated
+        ->htmlTemplate('users/signactivated.html.twig')
+        ->context([
+            'user' => $user,
+            ]);
+$mailer->send($email);
         $entityManager->persist($user);
         $entityManager->flush();
 
