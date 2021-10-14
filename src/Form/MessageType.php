@@ -27,9 +27,7 @@ class MessageType extends AbstractType
             ])
             ->add('Object', TextareaType::class,[
                 'label' => 'Objet',
-                'attr' => [
-                    'placeholder' => 'Objet',
-                ],
+                
             ])
             ->add('Message', TextareaType::class,[
                 'label' => 'Message',
