@@ -8,14 +8,18 @@
 
 
 	<div class="col">
-		<h1 class="text-center p-3">Liste des annonces</h1>
+
+		<h1 class="text-center mt-3">Liste des annonces</h1>
 		<p class="col-12 text-list">Cliquer sur l'annonce pour la lire</p>
+
 
 		<div class="row">
 			{% for announce in announces %}
 
 
-				<div class="col-12 col-md-6 col-lg-4 color-dark text-couleur">
+
+				<div class="col-10 offset-1 col-md-6 col-lg-4 color-dark">
+
 					<a href="{{ path('announce_show', {slug: announce.slug}) }}" style="color: black; text-decoration: none;">
 						<div class="card card-annonce mb-4">
 							
