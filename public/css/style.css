@@ -156,15 +156,29 @@ body{
 }
 
 .img-footer{
-    width: 92px;
+    width: 50px;
+    height: 50px;
     background-color: white;
     border-radius: 10%;
 }
-
+.img-footer>a{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+}
+.img-footer > a > img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 .siteWeb-footer>img{
     height: 100%;
-    width: 50%;
+    width: 100%;
     border-radius: 5px;
+    
 }
 
 .footer a>i{
@@ -181,3 +195,93 @@ body{
     border-radius: 15px;
 }
 /* Fin Footer */
+
+/* Responsive tablette vers pc */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .navbar{
+        height: auto;
+    }
+    img{
+        height: 100px; 
+        width : 200px;
+        padding : 5px;
+    }
+    .navbar-toggler{
+        margin-right: 100px;
+    }
+    #scrollUp{
+        margin-right: 50px;
+    }
+    
+}
+/* Responsive tel vers tablette */
+@media screen and (min-width: 426px) and (max-width: 769px) {
+    .navbar{
+        height: auto;
+    }
+    img{
+        height: 100px; 
+        width : 200px;
+        padding : 5px;
+    }
+    .navbar-toggler{
+        margin-right: 100px;
+    }
+    .sidebar{
+        z-index: 5;
+    }
+    #scrollUp{
+        margin-right: 50px;
+        z-index: 5;
+    }
+    .footer{
+        padding: 30px 0 0 0;
+    }
+    .respons{
+        flex-direction: column;
+        padding: 0;
+    }
+    .res{
+        justify-content: center!important;
+    }
+    .map-footer{
+        text-align: center;
+        margin: auto;
+    }
+}
+/* Responsive tel */
+@media screen and (max-width: 426px) {
+    .navbar{
+        height: auto;
+    }
+    img{
+        height: 100px; 
+        width : 200px;
+        padding : 5px;
+    }
+    .navbar-toggler{
+        margin-right: 100px;
+    }
+    .sidebar{
+        z-index: 5;
+    }
+    #scrollUp{
+        margin-right: 50px;
+        z-index: 5;
+    }
+    .footer{
+        padding: 30px 0 0 0;
+    }
+    .respons{
+        flex-direction: column;
+        padding: 0;
+    }
+    .res{
+        justify-content: center!important;
+    }
+    .map-footer{
+        text-align: center;
+        margin: auto;
+    }
+
+}

@@ -7,10 +7,6 @@
 	<h1 class="text-center my-3">Profil de 
 		{{app.user.pseudo}}</h1>
 
-	<h1 class="text-center my-3">Profil de 
-		{{app.user.lastname}} {{app.user.firstname}}</h1>
-
-
 	<div class="container col-4 offset-4 border rounded">
 		<table class="table">
 
@@ -20,11 +16,11 @@
 
 			<tr>
 				<td>Nom :</td>
-				<td>{{app.user.lastname}}</td>
+				<td>{{app.user.firstname}}</td>
 			</tr>
 			<tr>
 				<td>Prénom :</td>
-				<td>{{app.user.firstname}}</td>
+				<td>{{app.user.lastname}}</td>
 			</tr>
 			<tr>
 				<td>Pseudo :</td>
@@ -75,8 +71,7 @@
 		{% if is_granted('ROLE_ADMIN') %}
 			<a role="submit" class="btn btn-primary" href="{{ path('admin')}}">Voir les comptes en attente</a>
 		{% endif %}
-		<a role="button" class="btn btn-success" href="{{path('editProfil')}}">Modifier mon profil</a>
-		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Supprimer mon compte</a>
+		
 	</div>
 	<br>
 	<div class="col-10 offset-1 text-center">

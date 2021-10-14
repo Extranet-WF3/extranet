@@ -29,15 +29,6 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 class UsersController extends AbstractController
 {
     /**
-     * @Route("/users", name="users")
-     */
-    public function index(): Response
-    {
-        return $this->render('users/index.html.twig', [
-            'controller_name' => 'UsersController',
-        ]);
-    }
-    /**
      * @Route("Profil/edit", name="editProfil")
      */
     public function editProfil(Request $request)
@@ -72,7 +63,8 @@ class UsersController extends AbstractController
                 'label' => 'Numéro de téléphone',
                 'attr' => [
                     'placeholder' => 'Numéro de téléphone'
-                ]
+                ],
+                'required' => false,
             ])
 
             ->add('Function', TextType::class, [
@@ -108,6 +100,7 @@ class UsersController extends AbstractController
                 'attr' => [
                     'placeholder' => 'Numéro de session'
                 ]
+
             ])
 
 
@@ -123,7 +116,8 @@ class UsersController extends AbstractController
                 'label' => 'Profil Linkedin',
                 'attr' => [
                     'placeholder' => 'Profil Linkedin'
-                ]
+                ],
+                'required' => false,
             ])
 
 
@@ -131,7 +125,8 @@ class UsersController extends AbstractController
                 'label' => 'Profil Twitter',
                 'attr' => [
                     'placeholder' => 'Profil Twitter'
-                ]
+                ],
+                'required' => false,
             ])
 
             ->add('github', TextType::class, [
