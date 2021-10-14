@@ -8,20 +8,25 @@
 
 
 	<div class="col">
+
 		<h1 class="text-center mt-3">Liste des annonces</h1>
+		<p class="col-12 text-list">Cliquer sur l'annonce pour la lire</p>
+
 
 		<div class="row">
 			{% for announce in announces %}
 
 
-				<div class="col-10 offset-1 col-md-6 col-lg-4 color-dark">
-					<a href="{{ path('announce_show', {slug: announce.slug}) }}" style="color: black; text-decoration: none;">
-						<div class="card card-article mb-4">
-							<div class="card-body">
 
+				<div class="col-10 offset-1 col-md-6 col-lg-4 color-dark">
+
+					<a href="{{ path('announce_show', {slug: announce.slug}) }}" style="color: black; text-decoration: none;">
+						<div class="card card-annonce mb-4">
+							
 
 								<h4>{{ announce.nameCompany }}</h4>
-								<p class="card-text">{{ announce.description | u.truncate( 200, '...', false) }}</p>
+								<p class="card-text">{{ announce.description | u.truncate( 50, '...', false) }}</p>
+								<p>{{ announce.description }}</p>
 								{% if announce.createdAt %}
 									{{ announce.createdAt |ago }}
 								{% else %}
@@ -29,7 +34,7 @@
 									(unpublished)
 
 								{% endif %}
-							</div>
+							
 						</div>
 					</a>
 				</div>

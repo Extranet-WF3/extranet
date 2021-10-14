@@ -83,7 +83,7 @@ class Articles
         return $this->categories;
     }
 
-    public function setCategories(string $categories): self
+    public function setCategories(?string $categories): self
     {
         $this->categories = $categories;
 
