@@ -45,5 +45,15 @@ security:
         - { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
-        - { path: ^/home, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/listes, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/Profil, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/show, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/Profil/delete, roles: IS_AUTHENTICATED_FULLY }       
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/announces, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/announce, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/article, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/articles, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/messageprivate, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/messagereceveid, roles: IS_AUTHENTICATED_FULLY }

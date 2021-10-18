@@ -41,10 +41,10 @@ class RegistrationController extends AbstractController
             $user->setPseudo($user->getlastname() . $user->getfirstname());
             $user->setActivated(0);
             $user->setRoles(['ROLE_USER']);
-            if ($user->getFunction() == 'apprenant' || $user->getFunction() == 'formateur') {
-                $user->setRoles(['ROLES_USERS']);
+            if ($user->getFunction() == 'Apprenant' || $user->getFunction() == 'Formateur') {
+                $user->setRoles(['ROLE_USERS']);
             } else {
-                $user->setRoles(['ROLES_ADMIN']);
+                $user->setRoles(['ROLE_ADMIN']);
             }
 
 

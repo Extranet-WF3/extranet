@@ -68,7 +68,7 @@ class Images
         return $this->src;
     }
 
-    public function setSrc(string $src): self
+    public function setSrc(?string $src): self
     {
         $this->src = $src;
 

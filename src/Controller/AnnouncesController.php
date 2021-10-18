@@ -133,10 +133,7 @@ class AnnouncesController extends AbstractController
 
 
     /**
-
      * @Route("/announce/{id}/edit", name="announce_edit")
-
-
      */
 
     public function edit(Request $request, Announces $announce): Response
@@ -162,7 +159,7 @@ class AnnouncesController extends AbstractController
         ]);
     }
 
-     /**
+    /**
      * @Route("/{id}/delete", name="announce_delete", methods={"POST"})
      */
     public function delete(Request $request, Announces $announce): Response
