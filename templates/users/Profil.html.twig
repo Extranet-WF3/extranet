@@ -5,7 +5,7 @@
 {% block body %}
 
 	<h1 class="text-center my-3">Profil de 
-		{{app.user.pseudo}}</h1>
+		{{app.user.firstname}} {{app.user.lastname}} </h1>
 
 	<div class="container col-4 offset-4 border rounded">
 		<table class="table">
@@ -65,7 +65,7 @@
 
 	<div class="col-4 offset-4 d-flex flex-column text-center">
 		<a role="button" class="btn btn-success" href="{{path('editProfil')}}">Modifier mon profil</a>
-		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Suprimer mon compte</a>
+		<a role="submit" class="btn btn-danger" href="{{path('deleteProfil')}}">Supprimer mon compte</a>
 
 		<a role="submit" class="btn btn-primary" href="{{path('message_private')}}">Voir mes messages privés</a>
 		{% if is_granted('ROLE_ADMIN') %}
