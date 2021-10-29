@@ -65,7 +65,7 @@ class AnnouncesController extends AbstractController
 
         //on prepare une entité
 
-        $announce = new Announces;
+        $announce = new Announces();
 
         //dump($announce);
 

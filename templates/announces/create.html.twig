@@ -5,7 +5,7 @@
 
 {% block body %}
 	
-
+	<div class="container">
 		<div class="row">
 
 			<div class="col">
@@ -24,6 +24,7 @@
 						{{ form_widget(form) }}
 
 
+
 				<div class="text-center">
 					<button class=" btn btn-primary text-center text-white" formnovalidate>Confirmer
 					 </button>
@@ -36,11 +37,8 @@
 
 				</div>
 
-				<div class="text-center">
-					<a href="{{ path('announces') }}"class=" btn btn-primary text-center text-white" formnovalidate>Confirmer
-					 </a>
-				</div>
+				
 			</div>
-
+	</div>
 		
 	{% endblock %}

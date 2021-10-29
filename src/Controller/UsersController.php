@@ -38,7 +38,7 @@ class UsersController extends AbstractController
         $user = $this->getUser();
 
         $form = $this->createFormBuilder($user)
-            ->add('lastname', TextType::class, [
+            ->add('Firstname', TextType::class, [
                 'label' => 'Nom',
                 'attr' => [
                     'placeholder' => 'Nom'
@@ -46,7 +46,7 @@ class UsersController extends AbstractController
                 ],
 
             ])
-            ->add('Firstname', TextType::class, [
+            ->add('Lastname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => [
                     'placeholder' => 'Prénom'
@@ -271,3 +271,5 @@ $mailer->send($email);
         return $this->redirectToRoute('users_Profil');
     }
 }
+
+
