@@ -93,15 +93,17 @@ class UsersController extends AbstractController
 
                 ],
                 'required' => false,
-            ])
 
-            ->add('SessionNumber', TextType::class, [
-                'label' => 'Numéro de session',
-                'attr' => [
-                    'placeholder' => 'Numéro de session'
-                ]
+                ])
+                ->add('SessionNumber', TextType::class, [
+                    'label' => 'Numéro de session',
+                    'attr' => [
+                        'placeholder' => 'Numéro de session'
+                    ],
+                ])
+            
 
-            ])
+
 
 
             ->add('trainingYear', TextType::class, [
@@ -151,7 +153,6 @@ class UsersController extends AbstractController
             ])
 
 
-            
 
 
 
