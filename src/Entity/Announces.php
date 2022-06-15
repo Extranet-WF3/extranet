@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnnouncesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,12 +27,7 @@ class Announces
      */
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
-     *  @Assert\Choice({"Stage", "Alternance", "Emploi"})
-     */
-    private $categories;
+    
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -93,6 +90,16 @@ class Announces
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="announces")
+     */
+    private $category;
+
+    public function __construct()
+    {
+        $this->category = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,17 +117,7 @@ class Announces
         return $this;
     }
 
-    public function getCategories(): ?string
-    {
-        return $this->categories;
-    }
-
-    public function setCategories(string $categories): self
-    {
-        $this->categories = $categories;
-
-        return $this;
-    }
+    
 
     public function getTitle(): ?string
     {
@@ -238,6 +235,33 @@ class Announces
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+            $category->addAnnounce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->category->removeElement($category)) {
+            $category->removeAnnounce($this);
+        }
 
         return $this;
     }

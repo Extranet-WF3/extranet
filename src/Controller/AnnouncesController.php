@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Controller;
-
+use App\Form\EntityType;
+use App\DataFixtures\Categorie;
 use App\Entity\Announces;
+use App\Entity\AnnounceSearch;
+use App\Form\AnnounceSearchType;
 use App\Form\AnnouncesType;
 use App\Repository\AnnouncesRepository;
 use App\Repository\UsersRepository;
@@ -19,16 +22,22 @@ class AnnouncesController extends AbstractController
     /**
      * @Route("/announces", name="announces")
      */
-    public function list(AnnouncesRepository $announcesRepository): Response
+    public function list(Request $request,AnnouncesRepository $announcesRepository): Response
     {
+
+        //creation du formulaire de la recherche d'annonces
+
+        $search = new AnnounceSearch();
+        $form = $this->createForm(AnnounceSearchType::class, $search);
+        $form->handleRequest($request);
         //on recupère les annonces dans la BDD
-        
+
         //$announcesRepository = $this->getDoctrine()
-          //  ->getRepository(users::class)->findAll();
+        //  ->getRepository(users::class)->findAll();
         $repository = $this->getDoctrine()->getRepository(Announces::class);
 
         //Toutes les annonces dans un tableau
-        
+
 
         //recuperer toutes les annonces
 
@@ -41,93 +50,101 @@ class AnnouncesController extends AbstractController
 
         return $this->render('announces/list.html.twig', [
             'announces' => $announces,
+            'form' => $form->createView()
         ]);
     }
-    
-     
 
 
 
-     /**
-      * 
+
+
+    /**
+     * 
      * @Route("/announce/create", name="create_announce", methods={"GET", "POST"})
      * 
      */
 
-    public function create(Request $request, SluggerInterface $slugger):Response{
+    public function create(Request $request, SluggerInterface $slugger): Response
+    {
 
-    //on prepare une entité
+        //on prepare une entité
 
-    $announce = new Announces;
-    
-    //dump($announce);
+        $announce = new Announces;
 
-    //creation de formulaire Bootstrap
+        //dump($announce);
 
-       $form= $this->createForm(AnnouncesType::class, $announce);
+        //creation de formulaire Bootstrap
 
-           // le formulaire est créer dans le fichier announcesType.php qui se trouve dans le dossier Form
-            
-            
+        $form = $this->createForm(AnnouncesType::class, $announce);
 
-
-            //faire le lien entre le formulaire et les données de la requête
-
-            $form->handleRequest($request);
-
-            //on hydrate l'objet des données du formulaire
-
-            //verifier si le formulaire est soumis et validé
-            
-            if ($form->isSubmitted() && $form->isValid()){
-
-                $slug = $slugger->slug($announce->getTitle())->lower();
-
-                $announce->setSlug($slug);
+        // le formulaire est créer dans le fichier announcesType.php qui se trouve dans le dossier Form
 
 
-                $announce->setCreatedAt(new \DateTimeImmutable());
 
-                $announce->setUser($this->getUser());
 
-               //Insertion dans la BDD...Persister un objet avec Doctrine
+        //faire le lien entre le formulaire et les données de la requête
 
-               $manager = $this->getDoctrine()->getManager();
-                $manager->persist($announce); //mets de côté l'objet
-                $manager->flush(); //INSERT
+        $form->handleRequest($request);
 
-                //on va rediriger vers la même page
+        //on hydrate l'objet des données du formulaire
 
-                return $this->redirectToRoute('create_announce');
+        //verifier si le formulaire est soumis et validé
 
-                
-            }
-            
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            
+            $slug = $slugger->slug($announce->getTitle())->lower();
+
+            $announce->setSlug($slug);
+
+
+            $announce->setCreatedAt(new \DateTimeImmutable());
+
+            //recuperer l'utilisateur connecté
+            $announce->setUser($this->getUser());
+
+            //Insertion dans la BDD...Persister un objet avec Doctrine
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($announce); //mets de côté l'objet
+            $manager->flush(); //INSERT
+
+            //on va rediriger vers la liste des annonces
+
+            return $this->redirectToRoute('announces');
+        }
+
+
+
         return $this->render('announces/create.html.twig', [
-            'form' => $form ->createView() 
+            'form' => $form->createView()
         ]);
-     }
+    }
 
 
-     /**
+    /**
      * @Route("/announce/{slug}", name="announce_show")
      */
 
-    public function announce(Announces $announce) {
+    public function announce(Announces $announce)
+    {
         return $this->render('announces/announce.html.twig', [
             'announce' => $announce,
         ]);
-     }
+    }
 
 
-     /**
+    /**
      * @Route("/{id}/announce", name="announce_edit", methods={"GET","POST"})
      */
 
     public function edit(Request $request, Announces $announce): Response
     {
+        //l'utilisateur doit être connecté s'il ne l'ai pas on redirige
+
+        
+        $this->denyAccessUnlessGranted('edit', $announce);
+
+        
         $form = $this->createForm(AnnouncesType::class, $announce);
         $form->handleRequest($request);
 
@@ -141,11 +158,7 @@ class AnnouncesController extends AbstractController
             'announce' => $announce,
             'form' => $form,
         ]);
-
-
-
-
-}
+    }
 
 
     /**
@@ -153,13 +166,19 @@ class AnnouncesController extends AbstractController
      */
     public function delete(Request $request, Announces $announce): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$announce->getId(), $request->request->get('_token'))) {
-           $entityManager = $this->getDoctrine()->getManager();
+        
+        $this->denyAccessUnlessGranted('delete', $announce);
+
+        //if ($this->isCsrfTokenValid('delete' . $announce->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($announce);
-           $entityManager->flush();
-        }
+            $entityManager->flush();
+        //}
 
         return $this->redirectToRoute('announces', [], Response::HTTP_SEE_OTHER);
     }
 
+
+
+    
 }
