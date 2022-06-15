@@ -40,7 +40,7 @@ class Announces
      * @Assert\NotBlank
      */
 
-    
+
     private $description;
 
     /**
@@ -90,6 +90,7 @@ class Announces
      */
     private $slug;
 
+<<<<<<< HEAD
     /**
      * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="announces")
      */
@@ -99,6 +100,9 @@ class Announces
     {
         $this->category = new ArrayCollection();
     }
+=======
+
+>>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
 
     public function getId(): ?int
     {

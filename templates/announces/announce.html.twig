@@ -6,47 +6,82 @@
 
 {% block body %}
 
+	<div class="d-flex flex-column">
+		<div class="row mt-4 p-3">
 
-	<div class="example-wrapper">
-		<div class="show">
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Entreprise
+				</h5>
+				<p>{{ announce.nameCompany }}</p>
+			</div>
 
-			<div class="entreprise">
-				<h4>{{ announce.nameCompany }}</h4>
+		</div>
 
+		<div class="row mt-4">
 
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Adresse:</h5>
 				<p>{{ announce.adressCompany }}</p>
+			</div>
 
+		</div>
+
+
+		<div class="row mt-4">
+
+			<div class=" card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Adresse additionnel
+				</h5>
 				<p>{{ announce.adressAdditional }}</p>
+			</div>
 
+		</div>
+
+		<div class="row mt-4">
+
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Code postal
+				</h5>
 				<p>{{ announce.zipCode }}</p>
+			</div>
 
+		</div>
+
+		<div class="row mt-4">
+
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Ville
+				</h5>
 				<p>{{ announce.city }}</p>
 			</div>
 
-
-			<div class="annonce">
-				<h4>Le poste :
-					{{ announce.title }}
-				</h4>
+		</div>
 
 
-			</div>
+		<div class="row mt-4">
 
-			<div class="description">
-				<h4>{{ announce.description }}</h4>
-			</div>
-
-
-			<div class="categorie">
-				<h4>Type d'emploi</h4>
-				<p>{{ announce.categories }}</p>
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Le poste
+				</h5>
+				<p>{{ announce.title }}</p>
 			</div>
 
 
 		</div>
-		<a href="{{ announce.originalLink }}">
-			<button>Postuler</button>
-		</a>
+		<div class="row mt-4">
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Description du poste</h5>
+				<p>{{ announce.description }}</p>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div class="card-annonce col-8 offset-2 border rounded py-3">
+				<h5>Type d'emploi</h5>
+				<p>{{ announce.categories }}</p>
+			</div>
+		</div>
+		
 
 		<div class="col mt-4">
 			{% if is_granted('edit',announce) %}
@@ -58,11 +93,20 @@
 			
 			{{ include('announces/deleteAnnounce.html.twig') }}
 
-			{% endif %}
-			
-		</div>
+	<div class="col-4 offset-4   modal-footer text-center">
+		<a class=" btn btn-success align-self-center px-4" href="{{ announce.originalLink }}">
+			Postuler
+		</a>
+		
+		{% if is_granted('edit',announce) %}
+			<a href="{{ path('announce_edit', {id: announce.id}) }}" class=" btn btn-primary px-4 " data-dismiss="modal">Modifier</a>
+		{% endif %}
 
+
+		{% if is_granted('delete',announce) %}
+
+			{{ include('announces/deleteAnnounce.html.twig') }}
+		{% endif %}
 	</div>
-
 
 {% endblock %}

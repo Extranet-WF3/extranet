@@ -6,15 +6,18 @@ use App\Repository\UsersRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 /**
  * @ORM\Entity(repositoryClass=UsersRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Il y a déjà un compte existant")
+ *
  */
-class Users implements UserInterface, PasswordAuthenticatedUserInterface
+class Users implements UserInterface, PasswordAuthenticatedUserInterface,Serializable
 {
     /**
      * @ORM\Id
@@ -119,6 +122,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $article;
 
+
     /**
      * @ORM\OneToOne(targetEntity=Images::class, inversedBy="user", cascade={"persist", "remove"})
      */
@@ -133,6 +137,11 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Messages::class, mappedBy="target", orphanRemoval=true)
      */
     private $messageReceived;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $activated;
 
     public function __construct()
     {
@@ -459,6 +468,8 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+
     public function getImage(): ?Images
     {
         return $this->image;
@@ -529,5 +540,37 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    public function getActivated(): ?bool
+    {
+        return $this->activated;
+    }
+
+    public function setActivated(bool $activated): self
+    {
+        $this->activated = $activated;
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->email,
+            $this->password,
+
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password,
+
+        ) = unserialize($serialized);
     }
 }

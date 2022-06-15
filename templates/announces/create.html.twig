@@ -4,17 +4,43 @@
 {% endblock %}
 
 {% block body %}
+	
 
-	<h1>
-		Créer une annonce
-	</h1>
+		<div class="row">
 
-	<div class="card-body">
-		{{ form_start(form) }}
-		{{ form_widget(form) }}
+			<div class="col">
 
-		<button class="btn btn-primary" formnovalidate>Envoyer</button>
+				<div
+					class="card ">
 
-		{{ form_end(form) }}
+					<!-- Entête formulaire de création d'une annonce -->
 
+					<h1 class="card-annonce col-8 offset-2 bg-white border-0 text-center my-3 py-3">
+						Créer une annonce
+					</h1>
+
+					<div class="card-annonce col-8 offset-2 border rounded mb-3 py-3">
+						{{ form_start(form) }}
+						{{ form_widget(form) }}
+
+
+				<div class="text-center">
+					<button class=" btn btn-primary text-center text-white" formnovalidate>Confirmer
+					 </button>
+				</div>
+
+						{{ form_end(form) }}
+
+
+					</div>
+
+				</div>
+
+				<div class="text-center">
+					<a href="{{ path('announces') }}"class=" btn btn-primary text-center text-white" formnovalidate>Confirmer
+					 </a>
+				</div>
+			</div>
+
+		
 	{% endblock %}

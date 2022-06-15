@@ -1,30 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Message privée{% endblock %}
+{% block title %}Message privée - {{parent()}}{% endblock %}
 
 {% block body %}
-<div class="container">
+
+	<div class="container">
 
 
+		{{ form_start(MessageForm) }}
 
 
-{{ form_start(MessageForm) }}
+		{{ form_widget(MessageForm)}}
 
 
-{{ form_widget(MessageForm)}}
+		<button type="submit" class="btn btn-primary">
+			Envoyer
+		</button>
+
+		{{ form_start(MessageForm) }}
 
 
-<button type="submit" class="btn btn-primary"> Envoyer </button>
-
- {{ form_end(MessageForm) }}
-
-
-
-
-</div>
-
-
+	</div>
 
 
 {% endblock %}
-

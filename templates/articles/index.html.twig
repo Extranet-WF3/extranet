@@ -4,70 +4,53 @@
 
 {% block body %}
 
-<h1>Liste des articles</h1>
-
 	<main>
 
-		<!-- Bouton de filtre suivant les catégories -->
-		<div class="row">
+		<h1 class="text-center mt-3 ">Liste des articles</h1>
 
-			<div class="col-8 offset-2 mt-3">
-				<select name="categories" class="">
+		<label class="col-12 text-list text-center mb-3">Cliquer sur le titre de l'article pour le lire</label>
 
-					<option value=""></option>
 
-					<option value="">Général</option>
 
-					<option value="">Programmation</option>
+        <!-- Liste des articles -->
+        <div class="col">
 
-					<option value="">Langages</option>
+            <div class="row">
 
-					<option value="">Frameworks</option>
+				<!-- Boucle d'affichage de tous les articles -->
+				{% for article in articles %}
 
-					<option value="">API</option>
+				<div class="col-10 offset-1 col-md-6 col-lg-4">
 
-					<option value="">Logiciels</option>
+					<div class="card card-article mb-4">
 
-					<option value="">Matériel informatique</option>
+						<a href="{{ path('article_show', {slug: article.slug}) }}" class="card-body card-article" style="text-decoration:none; color:black;">
 
-					<option value="">Secteur emploi</option>
+							<!-- Affichage du titre de l'article -->
+							<h4 class="card-title">{{ article.title }}</h4>
 
-				</select>
+
+							<!-- Affichage du début la description de l'article (texte tronqué) -->
+							<p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
+
+							<!-- Affichage de la catégorie de l'article -->
+							<p>Catégorie : {{ article.categories }}</p>
+
+							<!-- Affichage de la date de publication de l'article -->
+							{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
+							<p>Publié le <time>{{ article.createdAt | ago }}</time></p>
+						
+						</a>
+
+					</div>
+
+				</div>
+
+				{% endfor %}
 
 			</div>
 
 		</div>
-
-        {% for article in articles %}
-
-        <div class="col-12 col-md-6 col-lg-4">
-
-            <div class="card card-product mb-4">
-
-                <div class="card-body">
-
-                    <h4 class="card-title">
-                        {# <a href="{{ path('article_show', {slug: article.slug}) }}" title="{{ article.name }}"> #}
-                            {{ article.title }}
-                        {# </a> #}
-                    </h4>
-
-                    <p class="card-text">{{ article.description | u.truncate(80, '...', false) }}</p>
-
-                    <div class="mb-4">
-                        Catégorie: {{ article.categories }}
-                    </div>
-
-					{# Utilisation du bundle knp-time-bundle, qui permet d'afficher le nombre de jours de la publication #}
-					<p>Publié <time>{{ article.createdAt | ago }}</time></p>
-
-				</div>
-
-            </div>
-
-        </div>
-
-        {% endfor %}
 
 	</Main>
 
