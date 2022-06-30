@@ -1,0 +1,32 @@
+
+
+
+
+
+
+.annonce{
+    border: 0.2em solid;
+    margin-top: 15px;
+}
+
+.description{
+    border: 0.2em solid;
+    margin-top: 15px;
+}
+
+.entreprise{
+    border: 0.2em solid;
+    margin-top: 15px;
+}
+
+.categorie{
+    border: 0.2em solid;
+    margin-top: 15px;
+}
+
+
+
+button{
+    margin-top: 10px;
+    align-items: center;
+}

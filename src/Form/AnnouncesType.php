@@ -10,13 +10,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AnnouncesType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
             ->add('categories', ChoiceType::class, [
                 'choices'  => [
                     'Stage' => 'Stage',
@@ -75,6 +75,25 @@ class AnnouncesType extends AbstractType
             
             // ->add('user')
             // ->add('createdAt')
+
+           
+            ->add('categories', ChoiceType::class,[
+                'choices'  => [
+                    'Stage' => null,
+                    'Alternance' => null,
+                    'Emploi' => null
+                ],])
+            ->add('title')
+            ->add('description', TextareaType::class)
+            ->add('originalLink')
+            ->add('nameCompany')
+            ->add('adressCompany')
+            ->add('adressAdditional')
+            ->add('zipCode')
+            ->add('city')
+            ->add('user')
+            ->add('createdAt')
+
         ;
     }
 

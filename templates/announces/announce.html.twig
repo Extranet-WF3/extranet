@@ -83,7 +83,15 @@
 		</div>
 		
 
-	</div>
+		<div class="col mt-4">
+			{% if is_granted('edit',announce) %}
+			<a href="{{ path('announce_edit', {id: announce.id}) }}" class="btn btn-secondary mr-3">Modifier</a>
+			{% endif %}
+			{#<a href="{{ path('announce_delete', { id: announce.id}) }}" class="btn btn-danger">Delete</a>#}
+
+			{% if is_granted('delete',announce) %}
+			
+			{{ include('announces/deleteAnnounce.html.twig') }}
 
 	<div class="col-4 offset-4   modal-footer text-center">
 		<a class=" btn btn-success align-self-center px-4" href="{{ announce.originalLink }}">

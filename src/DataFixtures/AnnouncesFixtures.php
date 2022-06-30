@@ -18,10 +18,17 @@ class AnnouncesFixtures extends Fixture implements DependentFixtureInterface
 
         $faker = Factory::create('fr_FR');
 
+<<<<<<< HEAD
+        for ($i = 0; $i < 10; $i++) {
+
+            $announce = new Announces();
+            
+=======
         for ($i = 0; $i < 5; $i++) {
 
             $announce = new Announces();
             $announce->setCategories($faker->randomElement($array = array('Stage', 'Alternance', 'Emploi')));
+>>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
             $announce->setTitle($faker->title());
             $announce->setDescription($faker->text());
             $announce->setOriginalLink($faker->url());

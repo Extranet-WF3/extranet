@@ -22,8 +22,8 @@ class Announces
 
     /**
      * @ORM\Column(type="date")
-     * 
-     * 
+     * @Assert\NotBlank
+     * @Assert\Date
      */
     private $createdAt;
 
@@ -96,7 +96,6 @@ class Announces
     private $slug;
 
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -114,17 +113,7 @@ class Announces
         return $this;
     }
 
-    public function getCategories(): ?string
-    {
-        return $this->categories;
-    }
-
-    public function setCategories(string $categories): self
-    {
-        $this->categories = $categories;
-
-        return $this;
-    }
+    
 
     public function getTitle(): ?string
     {
@@ -242,6 +231,33 @@ class Announces
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categorie[]
+     */
+    public function getCategory(): Collection
+    {
+        return $this->category;
+    }
+
+    public function addCategory(Categorie $category): self
+    {
+        if (!$this->category->contains($category)) {
+            $this->category[] = $category;
+            $category->addAnnounce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): self
+    {
+        if ($this->category->removeElement($category)) {
+            $category->removeAnnounce($this);
+        }
 
         return $this;
     }

@@ -4,11 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\Announces;
-use App\Entity\AnnounceSearch;
-use App\Form\AnnounceSearchType;
 use App\Form\AnnouncesType;
-use App\Repository\AnnouncesRepository;
-use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -22,9 +18,8 @@ class AnnouncesController extends AbstractController
     /**
      * @Route("/announces", name="announces")
      */
-    public function list(AnnouncesRepository $announcesRepository): Response
+    public function list(Request $request): Response
     {
-
 
         //on recupère les annonces dans la BDD
 
@@ -46,7 +41,6 @@ class AnnouncesController extends AbstractController
 
         return $this->render('announces/list.html.twig', [
             'announces' => $announces,
-
         ]);
     }
 
@@ -78,9 +72,33 @@ class AnnouncesController extends AbstractController
 
 
 
+
+
+        $announce = new Announces;
+
+        //dump($announce);
+
+        //creation de formulaire Bootstrap
+
+        $form = $this->createForm(AnnouncesType::class, $announce);
+
+        // le formulaire est créer dans le fichier announcesType.php qui se trouve dans le dossier Form
+
+
+
+
+
+
         //faire le lien entre le formulaire et les données de la requête
 
         $form->handleRequest($request);
+
+       $form= $this->createForm(AnnouncesType::class, $announce);
+
+            
+            
+            
+
 
         //on hydrate l'objet des données du formulaire
 
@@ -95,21 +113,17 @@ class AnnouncesController extends AbstractController
 
             $announce->setCreatedAt(new \DateTimeImmutable());
 
-            //recuperer l'utilisateur connecté
-            $announce->setUser($this->getUser());
+               //$data = $form->getData();
 
-            //Insertion dans la BDD...Persister un objet avec Doctrine
+               //Insertion dans la BDD...Persister un objet avec Doctrine
 
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($announce); //mets de côté l'objet
-            $manager->flush(); //INSERT
+               $manager = $this->getDoctrine()->getManager();
+                $manager->persist($announce);
+                $manager->flush();
 
-            //on va rediriger vers la liste des annonces
-
-            return $this->redirectToRoute('announces');
-        }
-
-
+                
+            }
+            
 
         return $this->render('announces/create.html.twig', [
             'form' => $form->createView()

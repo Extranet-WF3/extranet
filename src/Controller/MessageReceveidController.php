@@ -21,6 +21,15 @@ class MessageReceveidController extends AbstractController
     {
         $user = $this->getUser();
 
+<<<<<<< HEAD
+        // récupere tous les donées msg private (objet : message)
+
+        $receveid = $this->getDoctrine()
+            ->getRepository(Messages::class) // recuperer le messagesreposittoy.php
+            ->findAll();
+
+
+=======
         // recuper la cible puis filtre les 5 dernier message
         $messages = $repository->findByTarget([$user], null, 5, null); 
 
@@ -28,6 +37,7 @@ class MessageReceveidController extends AbstractController
         return $this->render('message_receveid/receveid.html.twig', [ 
             'messages' => $messages, 
             'user' => $user, // permet d'envoyer ce qu'on a recuperer sur twig 
+>>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
 
         
         ]);
