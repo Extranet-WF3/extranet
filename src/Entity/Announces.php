@@ -22,12 +22,17 @@ class Announces
 
     /**
      * @ORM\Column(type="date")
-     * 
-     * 
+     * @Assert\NotBlank
+     * @Assert\Date
      */
     private $createdAt;
 
-    
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     *  @Assert\Choice({"Stage", "Alternance", "Emploi"})
+     */
+    private $categories;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -90,19 +95,6 @@ class Announces
      */
     private $slug;
 
-<<<<<<< HEAD
-    /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="announces")
-     */
-    private $category;
-
-    public function __construct()
-    {
-        $this->category = new ArrayCollection();
-    }
-=======
-
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
 
     public function getId(): ?int
     {

@@ -1,19 +1,10 @@
 <?php
 
 namespace App\Controller;
-<<<<<<< HEAD
-use App\Form\EntityType;
-use App\DataFixtures\Categorie;
-=======
 
 
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
 use App\Entity\Announces;
-use App\Entity\AnnounceSearch;
-use App\Form\AnnounceSearchType;
 use App\Form\AnnouncesType;
-use App\Repository\AnnouncesRepository;
-use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 
@@ -27,18 +18,9 @@ class AnnouncesController extends AbstractController
     /**
      * @Route("/announces", name="announces")
      */
-    public function list(Request $request,AnnouncesRepository $announcesRepository): Response
+    public function list(Request $request): Response
     {
 
-<<<<<<< HEAD
-        //creation du formulaire de la recherche d'annonces
-
-        $search = new AnnounceSearch();
-        $form = $this->createForm(AnnounceSearchType::class, $search);
-        $form->handleRequest($request);
-=======
-
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
         //on recupère les annonces dans la BDD
 
         //$announcesRepository = $this->getDoctrine()
@@ -59,11 +41,6 @@ class AnnouncesController extends AbstractController
 
         return $this->render('announces/list.html.twig', [
             'announces' => $announces,
-<<<<<<< HEAD
-            'form' => $form->createView()
-=======
-
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
         ]);
     }
 
@@ -73,11 +50,7 @@ class AnnouncesController extends AbstractController
 
     /**
      * 
-<<<<<<< HEAD
-     * @Route("/announce/create", name="create_announce", methods={"GET", "POST"})
-=======
      * @Route("/announce/create", name="create_announce")
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
      * 
      */
 
@@ -85,7 +58,6 @@ class AnnouncesController extends AbstractController
     {
 
         //on prepare une entité
-<<<<<<< HEAD
 
         $announce = new Announces;
 
@@ -100,7 +72,7 @@ class AnnouncesController extends AbstractController
 
 
 
-=======
+
 
         $announce = new Announces;
 
@@ -115,10 +87,18 @@ class AnnouncesController extends AbstractController
 
 
 
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
+
+
         //faire le lien entre le formulaire et les données de la requête
 
         $form->handleRequest($request);
+
+       $form= $this->createForm(AnnouncesType::class, $announce);
+
+            
+            
+            
+
 
         //on hydrate l'objet des données du formulaire
 
@@ -133,21 +113,17 @@ class AnnouncesController extends AbstractController
 
             $announce->setCreatedAt(new \DateTimeImmutable());
 
-            //recuperer l'utilisateur connecté
-            $announce->setUser($this->getUser());
+               //$data = $form->getData();
 
-            //Insertion dans la BDD...Persister un objet avec Doctrine
+               //Insertion dans la BDD...Persister un objet avec Doctrine
 
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($announce); //mets de côté l'objet
-            $manager->flush(); //INSERT
+               $manager = $this->getDoctrine()->getManager();
+                $manager->persist($announce);
+                $manager->flush();
 
-            //on va rediriger vers la liste des annonces
-
-            return $this->redirectToRoute('announces');
-        }
-
-
+                
+            }
+            
 
         return $this->render('announces/create.html.twig', [
             'form' => $form->createView()
@@ -161,42 +137,27 @@ class AnnouncesController extends AbstractController
 
     public function announce(Announces $announce)
     {
-<<<<<<< HEAD
-=======
         
 
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
         return $this->render('announces/announce.html.twig', [
             'announce' => $announce,
         ]);
     }
 
 
-<<<<<<< HEAD
-    /**
-     * @Route("/{id}/announce", name="announce_edit", methods={"GET","POST"})
-=======
 
     /**
      * @Route("/announce/{id}/edit", name="announce_edit")
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
      */
 
     public function edit(Request $request, Announces $announce): Response
     {
         //l'utilisateur doit être connecté s'il ne l'ai pas on redirige
 
-<<<<<<< HEAD
-        
-        $this->denyAccessUnlessGranted('edit', $announce);
-
-        
-=======
 
         $this->denyAccessUnlessGranted('edit', $announce);
 
 
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
         $form = $this->createForm(AnnouncesType::class, $announce);
         $form->handleRequest($request);
 
@@ -212,10 +173,6 @@ class AnnouncesController extends AbstractController
         ]);
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
     /**
      * @Route("/{id}/delete", name="announce_delete", methods={"POST"})
      */
@@ -235,10 +192,5 @@ class AnnouncesController extends AbstractController
 
 
 
-<<<<<<< HEAD
-    
-}
-=======
 }
 
->>>>>>> 2713ecffcd072afa923f55ab44995d57456d5148
